@@ -1,0 +1,1588 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<title>Name That Hydrocarbon</title>
+<style>
+:root{--bg:#f4f6f8;--card:#fff;--tx:#14202b;--mu:#5d6b78;--ac:#0f8b8d;--ac2:#e8f5f5;--ok:#16a34a;--bad:#dc2626;--bd:#d9e0e6;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0e1419;--card:#18212a;--tx:#e8eef3;--mu:#92a1ae;--ac:#3cc4c6;--ac2:#14343a;--bd:#2a3743}}
+:root[data-theme="dark"]{--bg:#0e1419;--card:#18212a;--tx:#e8eef3;--mu:#92a1ae;--ac:#3cc4c6;--ac2:#14343a;--bd:#2a3743}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--tx);font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+#app{max-width:760px;margin:0 auto;padding:18px 14px 40px}
+h1{margin:6px 0 2px;font-size:clamp(26px,6vw,38px)}h1 span{color:var(--ac)}
+.sub{color:var(--mu);margin:0 0 18px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:14px;padding:16px}
+.card h3{margin:0 0 4px}.card p{margin:0 0 10px;color:var(--mu);font-size:14px}
+button{font:inherit;cursor:pointer;border-radius:10px;border:1px solid var(--bd);background:var(--card);color:var(--tx);padding:9px 14px}
+button:hover{border-color:var(--ac)}
+.pri{background:var(--ac);color:#fff;border-color:var(--ac);font-weight:700}
+.lv{display:flex;gap:6px;flex-wrap:wrap}.lv button{flex:1;padding:8px 6px;font-size:14px}
+.lv small{display:block;color:var(--mu);font-size:11px}
+.boss{background:linear-gradient(135deg,#7c1d3a,#3b1d6e);color:#fff;border:0}.boss p{color:#e8d9f5}
+.inf{background:linear-gradient(135deg,#0d5c63,#1b3a6b);color:#fff;border:0}.inf p{color:#d3ecf0}
+.banner{background:var(--ac2);border:1px solid var(--ac);border-radius:12px;padding:12px 14px;margin-bottom:14px}
+.bar{display:flex;gap:8px;flex-wrap:wrap;align-items:center;justify-content:space-between;margin-bottom:10px}
+.pill{background:var(--card);border:1px solid var(--bd);border-radius:999px;padding:5px 12px;font-size:14px}
+.pill b{font-size:16px}
+.prog{height:6px;background:var(--bd);border-radius:6px;overflow:hidden;margin-bottom:12px}.prog i{display:block;height:100%;background:var(--ac)}
+.mol{background:var(--card);border:1px solid var(--bd);border-radius:14px;padding:12px;text-align:center;min-height:200px;display:flex;align-items:center;justify-content:center;color:var(--tx)}
+.mol svg{display:block;margin:auto}
+.row{display:flex;gap:8px;margin-top:12px}
+input[type=text]{flex:1;font:inherit;font-size:18px;padding:12px;border-radius:10px;border:2px solid var(--bd);background:var(--card);color:var(--tx);min-width:0}
+input[type=text]:focus{outline:none;border-color:var(--ac)}
+.fb{margin-top:12px;padding:12px 14px;border-radius:12px;font-size:16px}
+.fb.ok{background:rgba(22,163,74,.14);border:1px solid var(--ok)}.fb.no{background:rgba(220,38,38,.12);border:1px solid var(--bad)}
+.fb code{font-size:18px;font-weight:700;word-break:break-all}
+.hint{color:var(--mu);font-size:13px;margin-top:8px}
+.end{text-align:center}.trophy{font-size:96px;line-height:1.1}
+.big{font-size:clamp(64px,18vw,110px);font-weight:800;color:var(--ac);line-height:1}
+.end .row{justify-content:center;flex-wrap:wrap}
+.link{background:none;border:0;color:var(--mu);text-decoration:underline;padding:4px}
+.st{margin:8px 0;padding:0}.st li{list-style:none;margin:5px 0;line-height:1.35}
+.toast{position:fixed;top:calc(env(safe-area-inset-top,0px) + 14px);left:50%;transform:translateX(-50%);padding:12px 22px;border-radius:999px;font-weight:700;color:#fff;z-index:9;animation:tp 1.8s forwards;box-shadow:0 6px 20px rgba(0,0,0,.28);white-space:nowrap}
+.toast.y{background:var(--ok)}.toast.n{background:var(--bad)}
+@keyframes tp{0%{opacity:0;transform:translate(-50%,-14px)}12%{opacity:1;transform:translate(-50%,0)}80%{opacity:1}100%{opacity:0}}
+:root{--bg:#eef2f8;--card:#ffffff;--tx:#0f1b2d;--mu:#64748b;--ac:#0ea5a4;--ac2:#e0f7f6;--ok:#16a34a;--bad:#e11d48;--bd:#e2e8f0;--sh:0 1px 2px rgba(15,27,45,.05),0 10px 30px rgba(15,27,45,.07);--g1:#0ea5a4;--g2:#6366f1}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#080d18;--card:#111a2c;--tx:#e6edf7;--mu:#8b9ab0;--ac:#2dd4bf;--ac2:#0e2f33;--ok:#34d399;--bad:#fb7185;--bd:#1f2b42;--sh:0 1px 2px rgba(0,0,0,.4),0 12px 32px rgba(0,0,0,.35);--g1:#14b8a6;--g2:#818cf8}}
+:root[data-theme="dark"]{--bg:#080d18;--card:#111a2c;--tx:#e6edf7;--mu:#8b9ab0;--ac:#2dd4bf;--ac2:#0e2f33;--ok:#34d399;--bad:#fb7185;--bd:#1f2b42;--sh:0 1px 2px rgba(0,0,0,.4),0 12px 32px rgba(0,0,0,.35);--g1:#14b8a6;--g2:#818cf8}
+html{color-scheme:light dark}:root[data-theme="light"]{color-scheme:light}:root[data-theme="dark"]{color-scheme:dark}
+body{font-family:Inter,"SF Pro Text",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;background-color:var(--bg);background-image:radial-gradient(900px 420px at 12% -8%,color-mix(in srgb,var(--g1) 16%,transparent),transparent 70%),radial-gradient(800px 420px at 100% 0,color-mix(in srgb,var(--g2) 15%,transparent),transparent 70%);background-attachment:fixed;-webkit-font-smoothing:antialiased;transition:background-color .3s,color .3s}
+#app{max-width:800px;padding:22px 16px 90px}
+#app>*{animation:fi .38s ease both}
+@keyframes fi{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+h1{font-weight:800;letter-spacing:-.03em;margin:8px 0 4px}
+h1 span{background:linear-gradient(90deg,var(--g1),var(--g2));-webkit-background-clip:text;background-clip:text;color:transparent}
+.sub{font-size:15px}
+.card{border-radius:20px;box-shadow:var(--sh);transition:transform .18s,box-shadow .18s,border-color .18s}
+.grid .card:hover{transform:translateY(-3px)}
+.card h3{font-size:18px;letter-spacing:-.01em}
+button{border-radius:12px;font-weight:600;transition:transform .12s,box-shadow .18s,border-color .18s,background .18s;-webkit-tap-highlight-color:transparent}
+button:hover{transform:translateY(-1px)}button:active{transform:translateY(1px) scale(.98)}
+button:focus-visible,input:focus-visible{outline:3px solid var(--ac);outline-offset:2px}
+.pri{background:linear-gradient(135deg,var(--g1),var(--g2));border:0;color:#fff;box-shadow:0 6px 18px color-mix(in srgb,var(--g2) 35%,transparent)}
+.pri:hover{box-shadow:0 8px 22px color-mix(in srgb,var(--g2) 50%,transparent)}
+.lv button{background:var(--bg);border-color:var(--bd)}.lv button:hover{background:var(--ac2);border-color:var(--ac)}
+.boss{background:linear-gradient(135deg,#9f1239,#4c1d95);box-shadow:0 12px 30px rgba(76,29,149,.35)}
+.inf{background:linear-gradient(135deg,#0f766e,#1d4ed8);box-shadow:0 12px 30px rgba(29,78,216,.3)}
+.boss .pri,.inf .pri{background:rgba(255,255,255,.18);backdrop-filter:blur(6px);box-shadow:none;border:1px solid rgba(255,255,255,.35)}
+.banner{border-radius:16px;box-shadow:var(--sh)}
+.pill{border-radius:999px;box-shadow:var(--sh);padding:6px 14px;font-weight:500}
+.prog{height:8px;border-radius:8px}.prog i{background:linear-gradient(90deg,var(--g1),var(--g2));border-radius:8px;transition:width .4s ease}
+.mol{border-radius:22px;box-shadow:var(--sh);min-height:230px;background-image:radial-gradient(color-mix(in srgb,var(--mu) 28%,transparent) 1px,transparent 1.2px);background-size:20px 20px}
+input[type=text]{border-radius:14px;padding:14px 16px;font-size:18px;box-shadow:var(--sh);transition:border-color .18s,box-shadow .18s}
+input[type=text]:focus{box-shadow:0 0 0 4px var(--ac2),var(--sh)}
+.row .pri{padding:12px 22px;font-size:16px}
+.fb{border-radius:16px;box-shadow:var(--sh);border-width:1px 1px 1px 5px;animation:fi .3s ease both}
+.fb.ok{border-left-color:var(--ok)}.fb.no{border-left-color:var(--bad)}
+.fb code{background:var(--card);padding:2px 8px;border-radius:8px}
+.toast{box-shadow:0 10px 30px rgba(0,0,0,.3);font-size:15px;letter-spacing:.01em}
+.end{padding:30px 18px}.trophy{animation:pop .8s cubic-bezier(.2,.9,.3,1.3) both;filter:drop-shadow(0 10px 18px rgba(245,158,11,.4))}
+@keyframes pop{0%{transform:scale(.3) rotate(-14deg);opacity:0}60%{transform:scale(1.18) rotate(5deg);opacity:1}100%{transform:none}}
+.big{background:linear-gradient(135deg,var(--g1),var(--g2));-webkit-background-clip:text;background-clip:text;color:transparent;letter-spacing:-.03em;animation:fi .6s .2s ease both}
+#thm{position:fixed;right:calc(env(safe-area-inset-right,0px) + 14px);bottom:calc(env(safe-area-inset-bottom,0px) + 14px);width:48px;height:48px;border-radius:50%;padding:0;font-size:21px;line-height:1;box-shadow:var(--sh);z-index:8;background:var(--card)}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+/* ---- pop-art / graph-paper theme ---- */
+:root{--bg:#e6eddf;--card:#f6f8ef;--tx:#0c1f33;--mu:#4f6078;--bd:#0c1f33;--ac:#ff7a59;--ac2:#ffe0d6;--ok:#12a150;--bad:#e5173f;--sh:#2f6df6;--g1:#0c1f33;--g2:#0c1f33;--dsp:"Bricolage Grotesque","Archivo Black",Impact,"Arial Black",system-ui,sans-serif;--mono:"JetBrains Mono",ui-monospace,Menlo,Consolas,monospace}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0b1612;--card:#112019;--tx:#eaf3e4;--mu:#9bb1a4;--bd:#eaf3e4;--ac:#ff8a6b;--ac2:#3b2018;--ok:#4ade80;--bad:#fb7185;--sh:#3b82f6;--g1:#eaf3e4;--g2:#eaf3e4}}
+:root[data-theme="dark"]{--bg:#0b1612;--card:#112019;--tx:#eaf3e4;--mu:#9bb1a4;--bd:#eaf3e4;--ac:#ff8a6b;--ac2:#3b2018;--ok:#4ade80;--bad:#fb7185;--sh:#3b82f6;--g1:#eaf3e4;--g2:#eaf3e4}
+body{font-family:"Bricolage Grotesque",system-ui,-apple-system,"Segoe UI",sans-serif;background-color:var(--bg);background-image:linear-gradient(color-mix(in srgb,var(--tx) 9%,transparent) 1px,transparent 1px),linear-gradient(90deg,color-mix(in srgb,var(--tx) 9%,transparent) 1px,transparent 1px);background-size:26px 26px;background-attachment:fixed}
+#app{max-width:880px;padding:28px 18px 100px}
+.hero{font-family:var(--dsp);font-weight:800;text-transform:uppercase;font-size:clamp(56px,15vw,130px);line-height:.86;letter-spacing:-.045em;margin:6px 0 14px}
+.hero small{display:block;font-size:.34em;font-style:italic;font-weight:500;text-transform:lowercase;letter-spacing:0;margin:.15em 0 .05em .08em;color:var(--mu)}
+.hero mark{background:var(--ac);color:var(--tx);display:inline-block;padding:0 .06em;margin-left:-.06em}
+.lede{max-width:34em;color:var(--mu);font-size:17px;margin:0 0 18px}
+.ctl{display:flex;flex-wrap:wrap;align-items:center;gap:12px 20px;margin:14px 0}
+.ctl>span,.mono{font-family:var(--mono);font-size:12px;color:var(--mu)}
+.seg{display:inline-flex;border:2px solid var(--tx);border-radius:12px;overflow:hidden;background:var(--card)}
+.seg button{border:0;border-radius:0;background:transparent;padding:8px 15px;color:var(--tx)}
+.seg button.on{background:var(--tx);color:var(--card)}
+.note{background:var(--ac);color:#0c1f33;border:2px solid var(--tx);border-radius:12px;padding:11px 14px;font-weight:700;margin:12px 0;display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between}
+.rows{border-top:2px solid var(--tx);margin-top:16px}
+.rw{--c:var(--tx);display:grid;grid-template-columns:8px 150px 1fr auto;gap:18px;align-items:center;padding:16px 0;border-bottom:2px solid var(--tx)}
+.rw .stripe{align-self:stretch;background:var(--c);border-radius:5px}
+.rw .th{color:var(--c);display:flex;justify-content:center;min-width:0}
+.rw .th svg{width:100%!important;max-height:62px!important}
+.rw h3{font-family:var(--dsp);font-size:clamp(26px,5.5vw,38px);font-weight:800;margin:0;letter-spacing:-.02em;line-height:1}
+.rw p{margin:5px 0 4px;color:var(--mu)}
+.lvl{display:flex;gap:7px}
+.lvl button,.rw .play{background:transparent;border:2px solid var(--c);color:var(--c);border-radius:10px;font-weight:800;padding:7px 12px;min-width:40px}
+.lvl button:hover,.rw .play:hover{background:var(--c);color:var(--card)}
+@media (max-width:640px){.rw{grid-template-columns:8px 1fr}.rw .th{display:none}.rw .lvl,.rw .play{grid-column:2;justify-self:start}}
+button{border:2px solid var(--tx);background:var(--card);color:var(--tx);box-shadow:none;border-radius:12px;font-family:inherit;font-weight:700}
+button:hover{transform:none;background:var(--ac2)}button:active{transform:translate(2px,2px)}
+.pri{background:var(--tx);color:var(--card);border:2px solid var(--tx);box-shadow:none}
+.pri:hover{background:var(--ac);color:#0c1f33;box-shadow:none}
+.link{border:0;background:none;box-shadow:none}.link:hover{background:none}
+.card{background:var(--card);border:2px solid var(--tx);border-radius:16px;box-shadow:7px 7px 0 var(--sh)}
+.grid .card:hover{transform:none}
+.pill{border:2px solid var(--tx);box-shadow:none;background:var(--card);font-family:var(--mono);font-size:13px;font-weight:600;padding:5px 12px}.pill b{font-size:15px}
+.prog{height:12px;border:2px solid var(--tx);border-radius:10px;background:var(--card)}.prog i{background:var(--ac);border-radius:0}
+.mol{border:2px solid var(--tx);border-radius:16px;box-shadow:8px 8px 0 var(--sh);background:var(--card);background-image:none}
+input[type=text]{border:2px solid var(--tx);border-radius:12px;box-shadow:none;font-family:var(--mono);font-size:17px}
+input[type=text]:focus{border-color:var(--tx);box-shadow:5px 5px 0 var(--sh)}
+.fb{border:2px solid var(--tx);border-radius:14px;box-shadow:6px 6px 0 var(--tx)}
+.fb.ok{background:color-mix(in srgb,var(--ok) 24%,var(--card))}.fb.no{background:color-mix(in srgb,var(--bad) 18%,var(--card))}
+.fb code{border:2px solid var(--tx);background:var(--card)}
+.toast{border:2px solid var(--tx);box-shadow:5px 5px 0 var(--tx);color:#0c1f33;font-family:var(--mono)}.toast.y{background:#7ee2a0}.toast.n{background:#ff8f8f}
+.end{box-shadow:9px 9px 0 var(--sh)}
+.big{background:none;-webkit-text-fill-color:currentColor;color:var(--tx);font-family:var(--dsp);font-weight:800;text-shadow:5px 5px 0 var(--ac)}
+#thm{border:2px solid var(--tx);box-shadow:4px 4px 0 var(--sh)}
+.pace{display:flex;align-items:center;gap:12px;margin:10px 0 6px;padding:10px 12px;border:2px solid var(--tx);border-radius:12px;background:var(--card);animation:pacein .5s cubic-bezier(.2,.9,.3,1.4) both}
+.pace .medal{font-size:30px;line-height:1}.pace b{display:block;font-size:19px;letter-spacing:-.01em}.pace small{font-family:var(--mono);font-size:12px;color:var(--mu)}
+.pace.t0{opacity:.9}.pace.t1{border-color:#cd7f32}.pace.t2{border-color:#cd7f32;background:color-mix(in srgb,#cd7f32 14%,var(--card))}
+.pace.t3{border-color:#9aa4b2;background:color-mix(in srgb,#c0c7d1 24%,var(--card))}
+.pace.t4{border-color:#e0a800;background:color-mix(in srgb,#ffd700 22%,var(--card));box-shadow:4px 4px 0 #e0a800}
+.pace.t5{border-color:#e0a800;background:linear-gradient(100deg,color-mix(in srgb,#ffd700 38%,var(--card)),color-mix(in srgb,#ff9d00 28%,var(--card)));box-shadow:5px 5px 0 #e0a800;animation:pacein .5s cubic-bezier(.2,.9,.3,1.4) both,glow 1.1s ease-in-out 3}
+@keyframes pacein{from{opacity:0;transform:scale(.8) translateY(8px)}to{opacity:1;transform:none}}
+@keyframes glow{50%{filter:brightness(1.15) saturate(1.25)}}
+.cat2{display:flex;flex-direction:column;gap:6px;padding:10px 12px;border:2px solid var(--tx);border-radius:12px;background:var(--card)}.cat2 .seg{width:100%}.cat2 .seg button{flex:1;padding:6px 6px;font-size:13px}
+button:disabled{opacity:.55;cursor:not-allowed;transform:none}
+.cats{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:8px;margin:10px 0 16px}.cat{display:flex;gap:10px;align-items:center;padding:10px 12px;border:2px solid var(--tx);border-radius:12px;background:var(--card);cursor:pointer;font-weight:700}.cat.on{background:var(--tx);color:var(--card)}.cat input{accent-color:var(--ac);width:18px;height:18px}.play{font-size:18px;padding:14px 30px;margin-top:6px}
+.pacepop{position:fixed;left:50%;top:26%;transform:translate(-50%,-50%);font-family:var(--dsp);font-weight:800;font-size:clamp(30px,8vw,64px);color:#ffd700;-webkit-text-stroke:2px #0c1f33;text-shadow:5px 5px 0 #0c1f33;z-index:21;pointer-events:none;white-space:nowrap;animation:pop2 1.7s ease both}
+@keyframes pop2{0%{opacity:0;transform:translate(-50%,-30%) scale(.5)}15%{opacity:1;transform:translate(-50%,-50%) scale(1.15)}30%{transform:translate(-50%,-50%) scale(1)}80%{opacity:1}100%{opacity:0;transform:translate(-50%,-70%) scale(1)}}
+.splits{margin-top:20px;padding:14px 16px}.sphead{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;justify-content:space-between;margin-bottom:8px}.sphead h3{margin:0}.spstats{display:flex;flex-wrap:wrap;gap:8px}
+.splist{list-style:none;margin:0;padding:0;max-height:260px;overflow:auto}.splist li{display:grid;grid-template-columns:44px 1fr 74px 64px;gap:10px;align-items:center;padding:7px 0;border-top:2px dashed color-mix(in srgb,var(--tx) 22%,transparent);font-family:var(--mono);font-size:13px}
+.splist li i{display:block;height:8px;min-width:3px;background:var(--ok);border-radius:4px}.splist li.x i{background:var(--bad)}.splist b{text-align:right}.splist em{font-style:normal;text-align:right;color:var(--mu)}
+.cmp{display:grid;gap:8px;margin:10px 0 6px}.cmp>div{display:grid;grid-template-columns:86px 1fr;gap:10px;align-items:center}
+.cmp .lbl{font-family:var(--mono);font-size:12px;color:var(--mu);text-transform:uppercase;letter-spacing:.04em}
+.cmp code{font-family:var(--mono);font-size:17px;font-weight:600;word-break:break-all;line-height:1.5}
+.cmp mark{background:#ffd34d;color:#0c1f33;border-radius:4px;padding:0 2px;box-shadow:0 0 0 2px #e0a800}
+.cmp del{background:color-mix(in srgb,var(--bad) 28%,transparent);color:inherit;text-decoration:line-through 2px var(--bad);border-radius:4px;padding:0 2px}
+.why{margin:6px 0 0;font-weight:700;font-size:16px;line-height:1.4}
+.cat2 small{display:block;margin-top:-2px}
+@media (max-width:520px){.cmp>div{grid-template-columns:1fr;gap:2px}}
+
+.pq{margin:4px 0 10px;font-size:20px;line-height:1.3}
+.mol.poly{min-height:150px;padding:16px}
+.prow{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px}.prow svg{max-width:100%}
+.pplus{font-size:26px;font-weight:800}
+.popts{display:grid;gap:10px;margin-top:14px;grid-template-columns:1fr 1fr}.popts.pics{grid-template-columns:1fr}
+.popt{display:flex;align-items:center;gap:12px;text-align:left;padding:12px 14px;font-size:16px;line-height:1.35;min-height:56px;color:var(--tx)}
+.popt>svg{flex:none;margin:0 auto;max-height:190px}.popt>.prow{flex:1}.popt>.prow svg{flex:none}
+.popt .pk{flex:none;width:28px;height:28px;border-radius:50%;border:2px solid var(--tx);display:grid;place-items:center;font-family:var(--mono);font-size:13px}
+.popt.right{background:color-mix(in srgb,var(--ok) 28%,var(--card));border-color:var(--ok)}.popt.wrong{background:color-mix(in srgb,var(--bad) 24%,var(--card));border-color:var(--bad)}
+.popt:disabled{opacity:1;cursor:default}
+@media (max-width:520px){.popts{grid-template-columns:1fr}}
+
+.pq{margin:4px 0 10px;font-size:20px;line-height:1.3}
+.mol.poly{min-height:150px;padding:16px}
+.prow{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px}.prow svg{max-width:100%}
+.pplus{font-size:26px;font-weight:800}
+.popts{display:grid;gap:10px;margin-top:14px;grid-template-columns:1fr 1fr}.popts.pics{grid-template-columns:1fr}
+.popt{display:flex;align-items:center;gap:12px;text-align:left;padding:12px 14px;font-size:16px;line-height:1.35;min-height:56px;color:var(--tx)}
+.popt>svg{flex:none;margin:0 auto;max-height:190px}.popt>.prow{flex:1}.popt>.prow svg{flex:none}
+.popt .pk{flex:none;width:28px;height:28px;border-radius:50%;border:2px solid var(--tx);display:grid;place-items:center;font-family:var(--mono);font-size:13px}
+.popt.right{background:color-mix(in srgb,var(--ok) 28%,var(--card));border-color:var(--ok)}.popt.wrong{background:color-mix(in srgb,var(--bad) 24%,var(--card));border-color:var(--bad)}
+.popt:disabled{opacity:1;cursor:default}
+@media (max-width:520px){.popts{grid-template-columns:1fr}}
+
+.popts>*{min-width:0}.popt{min-width:0;overflow:hidden}.popt svg{max-width:100%;height:auto}.mol.poly svg{max-width:100%;height:auto}
+.popt>svg{flex:0 1 auto}.popt>.pk+svg{margin:0 auto}.popt>.prow{max-width:calc(100% - 44px)}
+
+.lbl{font-family:var(--mono);font-size:12px;color:var(--mu);text-transform:uppercase;letter-spacing:.04em;margin:14px 0 6px}
+.bld{min-height:200px}
+.bslot{cursor:pointer}.bslot rect{fill:transparent;stroke:color-mix(in srgb,var(--ac) 80%,transparent);stroke-width:2;stroke-dasharray:5 4}
+.bslot:hover rect{fill:color-mix(in srgb,var(--ac) 18%,transparent)}
+.done .bslot{pointer-events:none}.done .bslot rect{stroke:none}
+.pal{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}.pal button{font-family:var(--mono);font-size:16px;padding:9px 14px;min-width:54px}
+.pal .ghost{border-style:dashed}
+.ansdraw{display:flex;justify-content:center;background:var(--card);border:2px solid var(--tx);border-radius:12px;padding:10px;margin-top:4px}.ansdraw svg{max-width:100%;height:auto}
+
+.tgt{display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between;background:var(--card);border:2px solid var(--tx);border-radius:14px;padding:12px 14px;margin:6px 0 4px}
+.tgt code{font-family:var(--mono);font-size:18px;font-weight:700;word-break:break-all}
+.tgt .mc-svg{max-width:280px}
+.mc-svg svg{max-width:100%;height:auto;max-height:130px}
+.bench{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px;margin:6px 0 10px}
+.mcardb{position:relative;display:flex;flex-direction:column;align-items:center;gap:4px;padding:10px 8px;min-height:110px;background:var(--card);font-weight:600}
+.mcardb.on{background:color-mix(in srgb,var(--ac) 22%,var(--card));box-shadow:4px 4px 0 var(--sh)}
+.mcardb:disabled{opacity:1;cursor:default}
+.mname{font-family:var(--mono);font-size:12.5px;line-height:1.3;word-break:break-all;text-align:center}
+.selno{position:absolute;top:6px;left:8px;width:22px;height:22px;border-radius:50%;background:var(--tx);color:var(--card);font-size:12px;display:grid;place-items:center}
+.inf{position:absolute;top:6px;right:8px;font-family:var(--mono);font-size:10px;color:var(--mu)}
+.pend{border:2px dashed var(--tx);border-radius:14px;padding:10px 12px;margin:8px 0}
+.rmsg{font-weight:700;color:var(--bad);margin:6px 0}
+.rx{display:grid;gap:8px;margin:8px 0}.rxg>div{display:flex;flex-wrap:wrap;gap:6px;margin-top:4px}.rxg button{font-size:14px;padding:7px 11px}
+.rxg .lbl{margin:0}
+.route{margin:6px 0;padding-left:22px;line-height:1.5;font-size:14px}.route li{margin:3px 0}
+.mcard{display:flex;flex-direction:column;align-items:center;gap:4px;width:100%}.mcard svg{max-height:120px;max-width:100%;height:auto}
+.popt.picked{background:color-mix(in srgb,var(--ac) 22%,var(--card))}
+</style></head><body><div id="app"></div><button id="thm" onclick="toggleTheme()" title="Toggle light / dark mode" aria-label="Toggle light or dark mode"></button>
+<script>
+/* ===================== Name That Hydrocarbon v4 — core ===================== */
+const ST=['','meth','eth','prop','but','pent','hex','hept','oct','non','dec'],MU=['','','di','tri','tetra','penta','hexa'];
+const HALS=['F','Cl','Br'],HN={F:'fluoro',Cl:'chloro',Br:'bromo'};
+const R=(a,b)=>a+Math.floor(Math.random()*(b-a+1)),pick=a=>a[R(0,a.length-1)],chance=p=>Math.random()<p;
+const asc=(a,b)=>a-b;
+const cmp=(a,b)=>{if(Array.isArray(a)){for(let i=0;i<Math.max(a.length,b.length);i++){if(a[i]===undefined)return -1;if(b[i]===undefined)return 1;const c=cmp(a[i],b[i]);if(c)return c}return 0}return a<b?-1:a>b?1:0};
+const nzs=s=>String(s||'').toLowerCase().replace(/\s+/g,'').replace(/[‐-―−]/g,'-');
+// alphabetical key of a branch name: ignore anything in brackets and leading locants / multipliers
+const ak=t=>{let s=t;while(/\([^()]*\)/.test(s))s=s.replace(/\([^()]*\)-?/g,'');return s.replace(/^[\d,\-]+/,'').replace(/-/g,'')};
+const esc=s=>String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/"/g,'&quot;');
+
+/* ---------- molecular graph ---------- */
+class Mol{
+ constructor(){this.at=[];this.bd=[];this.adj=[];this.rings=[]}
+ add(el,o={}){const i=this.at.length;this.at.push({el,...o});this.adj.push([]);return i}
+ bond(a,b,o=1){this.bd.push([a,b,o]);this.adj[a].push([b,o]);this.adj[b].push([a,o])}
+ ord(a,b){const x=this.adj[a].find(q=>q[0]==b);return x?x[1]:0}
+ el(i){return this.at[i].el}
+ val(i){return this.adj[i].reduce((s,q)=>s+q[1],0)}
+ hc(i){const a=this.at[i];if(a.ar)return this.adj[i].length==2?1:0;return({C:4,N:3,O:2,S:2,F:1,Cl:1,Br:1}[a.el])-this.val(i)}
+ inRing(i){return this.rings.some(r=>r.ids.includes(i))}
+}
+
+// canonical string of the subtree hanging from i (coming from `from`)
+function canon(M,i,from,seen){seen=new Set(seen||[]);seen.add(i);
+ const k=M.adj[i].filter(([j])=>j!=from).map(([j,o])=>o+(seen.has(j)?'*'+M.el(j):canon(M,j,i,seen))).sort();
+ return M.el(i)+(M.at[i].ar?'a':'')+'('+k.join(',')+')'}
+function canonMol(M){let best=null;for(let i=0;i<M.at.length;i++){const c=canon(M,i,-1);if(best===null||c<best)best=c}return best}
+// signature of a path (everything hanging off it + bond orders), direction-independent
+function pathSig(M,p){const set=new Set(p);
+ const one=q=>q.map((id,i)=>M.adj[id].filter(([j])=>!set.has(j)).map(([j,o])=>o+canon(M,j,id,set)).sort().join(',')+'|'+(i<q.length-1?M.ord(id,q[i+1]):0)).join('#');
+ const a=one(p),b=one(p.slice().reverse());return a<b?a:b}
+// all simple paths through acyclic carbons
+function carbonPaths(M,ok){const out=[],ids=M.at.map((_,i)=>i).filter(ok);
+ const dfs=(path,vis)=>{const last=path[path.length-1];let ext=false;
+  for(const[j]of M.adj[last])if(!vis.has(j)&&ok(j)){ext=true;vis.add(j);path.push(j);dfs(path,vis);path.pop();vis.delete(j)}
+  if(!ext)out.push(path.slice())};
+ for(const s of ids){const deg=M.adj[s].filter(([j])=>ok(j)).length;if(deg<=1)dfs([s],new Set([s]))}
+ return out}
+
+/* ---------- substituents (branches) ----------
+ hal {k:'hal',x}  oh {k:'oh'}  sh {k:'sh'}
+ alk {k:'alk',n,a,ms:[{q,s}]}     chain of n carbons attached at carbon a, branches on carbon q
+ cyc {k:'cyc',r,ar,ene:[j],ms:[{q,s}]}  ring attached at ring atom 0 (bond j joins atoms j and j+1)
+ eth {k:'eth',n,ms:[{q,s}]}       -O- then n carbons                                        */
+function prefixStr(items,noLoc){const g=new Map();
+ items.forEach(it=>{if(!g.has(it.name))g.set(it.name,[]);g.get(it.name).push(it.loc)});
+ return[...g.keys()].sort((a,b)=>cmp([ak(a),a],[ak(b),b])).map(nm=>{const L=g.get(nm).sort(asc);return(noLoc?'':L.join(',')+'-')+MU[L.length]+nm}).join('-')}
+const bracketed=pre=>pre?'('+pre+')-':'';
+function ringLoc(r,dir,q){return dir>0?q+1:((r-q)%r)+1}
+function ringBondLoc(r,l1,l2){return Math.abs(l1-l2)==1?Math.min(l1,l2):Math.max(l1,l2)}
+function subName(s){
+ if(s.k=='hal')return HN[s.x];
+ if(s.k=='nh2')return'amino';
+ if(s.k=='oh')return'hydroxyl';
+ if(s.k=='sh')return'sulfanyl';
+ if(s.k=='alk'){const n=s.n,ms=s.ms||[];
+  const c=[0,1].map(rv=>{const a2=rv?n+1-s.a:s.a,it=ms.map(m=>({loc:rv?n+1-m.q:m.q,name:subName(m.s)}));
+   return{a2,it,key:[a2,it.map(x=>x.loc).sort(asc),it.slice().sort((x,y)=>cmp([ak(x.name),x.loc],[ak(y.name),y.loc])).map(x=>x.loc)]}}).sort((x,y)=>cmp(x.key,y.key))[0];
+  return bracketed(prefixStr(c.it,n==1))+(c.a2==1?ST[n]+'yl':ST[n]+'-'+c.a2+'-yl')}
+ if(s.k=='cyc'){const r=s.ar?6:s.r,ms=s.ms||[],ene=s.ene||[];
+  const c=[1,-1].map(d=>{const L=q=>ringLoc(r,d,q),it=ms.map(m=>({loc:L(m.q),name:subName(m.s)})),el=ene.map(j=>ringBondLoc(r,L(j),L((j+1)%r))).sort(asc);
+   return{it,el,key:[it.filter(x=>x.name=='hydroxyl').map(x=>x.loc).sort(asc),el,it.map(x=>x.loc).sort(asc),it.slice().sort((x,y)=>cmp([ak(x.name),x.loc],[ak(y.name),y.loc])).map(x=>x.loc)]}}).sort((x,y)=>cmp(x.key,y.key))[0];
+  const base=s.ar?'phenyl':'cyclo'+ST[r]+(c.el.length?'-('+c.el.join(',')+'-'+MU[c.el.length]+'ene)-yl':'yl');
+  return bracketed(prefixStr(c.it))+base}
+ if(s.k=='eth'){const n=s.n,ms=s.ms||[],stem=ST[n],fg=ms.filter(m=>m.s.k=='oh'||m.s.k=='sh'),hl=ms.filter(m=>m.s.k=='hal');
+  if(fg.length)return stem+'-('+(n==1?'':fg[0].q+'-')+(fg[0].s.k=='oh'?'ol':'thiol')+')-oxy';
+  if(hl.length)return'('+prefixStr(hl.map(m=>({loc:m.q,name:subName(m.s)})),n==1)+')-'+stem+'oxy';
+  return stem+'oxy'}
+ throw new Error('sub '+s.k)}
+const simpleSub=s=>s.k=='hal'||s.k=='oh'||s.k=='nh2'||(s.k=='alk'&&s.a==1&&!(s.ms||[]).length);
+const isNested=s=>(s.k=='alk'&&((s.ms||[]).length||(s.a!=1&&s.a!=s.n)))||(s.k=='cyc'&&(s.ms||[]).length)||(s.k=='eth'&&(s.ms||[]).length);
+// longest carbon reach of a branch measured from (and including) its attachment carbon
+function subReach(s){if(s.k=='alk'){let m=Math.max(s.a,s.n-s.a+1);(s.ms||[]).forEach(x=>{if(x.s.k=='alk')m=Math.max(m,Math.abs(x.q-s.a)+1+subReach(x.s))});return m}return 0}
+
+// attach a branch to atom `at`; returns root atom id
+function attachSub(M,at,s){
+ if(s.k=='hal'){const x=M.add(s.x);M.bond(at,x);return x}
+ if(s.k=='oh'){const o=M.add('O');M.bond(at,o);return o}
+ if(s.k=='nh2'){const o=M.add('N');M.bond(at,o);return o}
+ if(s.k=='sh'){const o=M.add('S');M.bond(at,o);return o}
+ if(s.k=='alk'){const c=[null];for(let i=1;i<=s.n;i++){c.push(M.add('C'));if(i>1)M.bond(c[i-1],c[i])}M.bond(at,c[s.a]);(s.ms||[]).forEach(m=>attachSub(M,c[m.q],m.s));return c[s.a]}
+ if(s.k=='cyc'){const r=s.ar?6:s.r,ids=[];for(let i=0;i<r;i++)ids.push(M.add('C',s.ar?{ar:1}:{}));
+  for(let i=0;i<r;i++)M.bond(ids[i],ids[(i+1)%r],!s.ar&&(s.ene||[]).includes(i)?2:1);
+  M.rings.push({ids,ar:!!s.ar});M.bond(at,ids[0]);(s.ms||[]).forEach(m=>attachSub(M,ids[m.q],m.s));return ids[0]}
+ if(s.k=='eth'){const o=M.add('O');M.bond(at,o);const c=[null];for(let i=1;i<=s.n;i++){c.push(M.add('C'));M.bond(i==1?o:c[i-1],c[i])}(s.ms||[]).forEach(m=>attachSub(M,c[m.q],m.s));return o}
+ throw new Error('attach '+s.k)}
+
+/* ---------- nitrogen groups (Lesson 7) ----------
+ A group on N (or the alkyl part of a primary "alkylamine") is named from the longest chain through the C–N carbon,
+ numbered so the C–N carbon is lowest; chains with 3+ carbons carry that number (N-1-propyl, N-2-propyl, 2-propylamine).
+ Branches of that group go in brackets in front of it: N-1-(2-chloro)propyl, 1-(2-methyl)butylamine.             */
+const brk=pre=>pre?'('+pre+')':'';
+function nGroup(s){
+ if(s.k=='cyc'&&s.ar)return'phenyl';
+ const n=s.n,ms=s.ms||[];
+ const c=[0,1].map(rv=>{const a2=rv?n+1-s.a:s.a,it=ms.map(m=>({loc:rv?n+1-m.q:m.q,name:subName(m.s)}));
+  return{a2,it,key:[a2,it.map(x=>x.loc).sort(asc),it.slice().sort((x,y)=>cmp([ak(x.name),x.loc],[ak(y.name),y.loc])).map(x=>x.loc)]}}).sort((x,y)=>cmp(x.key,y.key))[0];
+ return(n>=3?c.a2+'-':'')+brk(prefixStr(c.it))+ST[n]+'yl'}
+function nPrefix(ns){const names=ns.map(nGroup).sort((a,b)=>cmp([ak(a),a],[ak(b),b]));
+ if(names.length==2&&names[0]==names[1])return'N,N-di'+names[0];
+ return names.map(x=>'N-'+x).join('-')}
+// longest carbon chain through the attachment carbon of a group (used to decide which group is the parent)
+function groupLen(s){if(s.k=='cyc')return s.ar?6:s.r;return s.n}
+/* ---------- spec -> graph ----------
+ chain : {kind:'chain',n,bonds:{i:2|3},subs:[{p,s}],oh:[p],sh:[p],ket:[p],ald,acid,eth:{p,s}|null,stereo:{i:'E'|'Z'}}
+ ring  : {kind:'ring',r,ar,ene:[j],subs:[{p,s}],oh:[p],sh:[p],ket:[p],cooh:p|null}   ring atoms p = 0..r-1
+ ester : {kind:'ester',ac:{t:'chain',n,bonds,subs,stereo}|{t:'benz',subs},al:{t:'chain',n,a,ms}|{t:'ring',r,ene,ms}} */
+function chainAtoms(M,n,bonds){const c=[null];for(let i=1;i<=n;i++){c.push(M.add('C'));if(i>1)M.bond(c[i-1],c[i],(bonds||{})[i-1]||1)}return c}
+function buildMol(m){const M=new Mol();
+ if(m.kind=='chain'){const c=chainAtoms(M,m.n,m.bonds);M.chain=c.slice(1);
+  if(m.acid){const o=M.add('O');M.bond(c[1],o,2);const h=M.add('O');M.bond(c[1],h,1);M.grp=[c[1],o,h]}
+  if(m.acid2){const o=M.add('O');M.bond(c[m.n],o,2);const h=M.add('O');M.bond(c[m.n],h,1)}
+  if(m.ald){const o=M.add('O');M.bond(c[1],o,2)}
+  (m.ket||[]).forEach(p=>{const o=M.add('O');M.bond(c[p],o,2)});
+  (m.oh||[]).forEach(p=>attachSub(M,c[p],{k:'oh'}));(m.sh||[]).forEach(p=>attachSub(M,c[p],{k:'sh'}));
+  (m.subs||[]).forEach(x=>attachSub(M,c[x.p],x.s));if(m.eth)attachSub(M,c[m.eth.p],m.eth.s);
+  M.spine=M.chain;M.stype='chain';return M}
+ if(m.kind=='ring'){const r=m.ar?6:m.r,ids=[];for(let i=0;i<r;i++)ids.push(M.add('C',m.ar?{ar:1}:{}));
+  for(let i=0;i<r;i++)M.bond(ids[i],ids[(i+1)%r],!m.ar&&(m.ene||[]).includes(i)?2:1);M.rings.push({ids,ar:!!m.ar});
+  (m.ket||[]).forEach(p=>{const o=M.add('O');M.bond(ids[p],o,2)});
+  (m.oh||[]).forEach(p=>attachSub(M,ids[p],{k:'oh'}));(m.sh||[]).forEach(p=>attachSub(M,ids[p],{k:'sh'}));
+  (m.subs||[]).forEach(x=>attachSub(M,ids[x.p],x.s));
+  if(m.cooh!=null){const c=M.add('C');M.bond(ids[m.cooh],c);const o=M.add('O');M.bond(c,o,2);const h=M.add('O');M.bond(c,h,1)}
+  M.ring=ids;M.spine=ids;M.stype='ring';return M}
+ if(m.kind=='ester'){let carb,acidIds;
+  if(m.ac.t=='chain'){const c=chainAtoms(M,m.ac.n,m.ac.bonds);acidIds=c.slice(1);carb=c[1];(m.ac.subs||[]).forEach(x=>attachSub(M,c[x.p],x.s));M.chain=acidIds;M.spine=acidIds;M.stype='chain'}
+  else{const ids=[];for(let i=0;i<6;i++)ids.push(M.add('C',{ar:1}));for(let i=0;i<6;i++)M.bond(ids[i],ids[(i+1)%6]);M.rings.push({ids,ar:true});
+   (m.ac.subs||[]).forEach(x=>attachSub(M,ids[x.p],x.s));carb=M.add('C');M.bond(ids[0],carb);acidIds=[carb,...ids];M.ring=ids;M.spine=ids;M.stype='ring'}
+  const od=M.add('O');M.bond(carb,od,2);const oe=M.add('O');M.bond(carb,oe,1);
+  const before=M.at.length;
+  if(m.al.t=='chain')attachSub(M,oe,{k:'alk',n:m.al.n,a:m.al.a,ms:m.al.ms});else attachSub(M,oe,{k:'cyc',r:m.al.r,ene:m.al.ene,ms:m.al.ms});
+  M.acidSide=new Set(acidIds);M.alcSide=new Set();for(let i=before;i<M.at.length;i++)M.alcSide.add(i);
+  M.alcRoot=M.adj[oe].find(([j])=>j!=carb)[0];M.carb=carb;M.oe=oe;return M}
+ if(m.kind=='amine'){let at;
+  if(m.par.t=='chain'){const c=chainAtoms(M,m.par.n,{});M.chain=c.slice(1);M.spine=M.chain;M.stype='chain';at=c[m.par.a];(m.par.subs||[]).forEach(x=>attachSub(M,c[x.p],x.s))}
+  else{const r=m.par.r,ids=[];for(let i=0;i<r;i++)ids.push(M.add('C'));for(let i=0;i<r;i++)M.bond(ids[i],ids[(i+1)%r]);M.rings.push({ids,ar:false});M.ring=ids;M.spine=ids;M.stype='ring';at=ids[0]}
+  const N=M.add('N');M.bond(at,N);M.nAtom=N;M.nsub=nSubs(M,N,m.ns);return M}
+ if(m.kind=='amide'){let carb;
+  if(m.ac.t=='chain'){const c=chainAtoms(M,m.ac.n,{});carb=c[1];M.chain=c.slice(1);M.spine=M.chain;M.stype='chain';(m.ac.subs||[]).forEach(x=>attachSub(M,c[x.p],x.s));M.acidSide=new Set(M.chain)}
+  else{const ids=[];for(let i=0;i<6;i++)ids.push(M.add('C',{ar:1}));for(let i=0;i<6;i++)M.bond(ids[i],ids[(i+1)%6]);M.rings.push({ids,ar:true});
+   (m.ac.subs||[]).forEach(x=>attachSub(M,ids[x.p],x.s));carb=M.add('C');M.bond(ids[0],carb);M.ring=ids;M.spine=ids;M.stype='ring'}
+  const o=M.add('O');M.bond(carb,o,2);const N=M.add('N');M.bond(carb,N);M.nAtom=N;M.carb=carb;M.nsub=nSubs(M,N,m.ns);return M}
+ throw new Error('kind '+m.kind)}
+// attach the groups on N and remember each group's atoms + its named chain (for the checks)
+function nSubs(M,N,ns){return(ns||[]).map(s=>{const b=M.at.length,root=attachSub(M,N,s),atoms=new Set();for(let i=b;i<M.at.length;i++)atoms.add(i);
+ const chain=s.k=='alk'?Array.from({length:s.n},(_,k)=>b+k):null;return{s,root,atoms,chain}})}
+
+// stereogenic C=C bonds of the parent chain: both carbons inside the chain, and on each carbon the
+// chain side differs from what else is attached (H or a branch). Reference group = the parent chain.
+function stereoBonds(m,M){const out=[],ch=M.chain;if(!ch)return out;const n=ch.length;
+ for(let i=2;i<=n-2;i++){if(M.ord(ch[i-1],ch[i])!=2)continue;let ok=true;
+  for(const[me,rest,mate]of[[ch[i-1],ch[i-2],ch[i]],[ch[i],ch[i+1],ch[i-1]]]){
+   const other=M.adj[me].filter(([j])=>j!=rest&&j!=mate);
+   if(other.length&&canon(M,other[0][0],me)==canon(M,rest,me))ok=false}
+  if(ok)out.push(i)}
+ return out}
+
+// returns null when the structure is a fair, unambiguous question; otherwise a reason
+function invalid(m,M){
+ for(let i=0;i<M.at.length;i++)if(M.hc(i)<0)return'valence';
+ const acyc=i=>M.el(i)=='C'&&!M.inRing(i);
+ const chk=(chain,req,within)=>{const n=chain.length,sg=pathSig(M,chain);
+  for(const q of carbonPaths(M,i=>acyc(i)&&(!within||within.has(i)))){if(!req.every(x=>q.includes(x)))continue;
+   if(q.length>n)return'longer chain';if(q.length==n&&pathSig(M,q)!=sg)return'tie'}return null};
+ if(m.kind=='chain'){const c=M.chain,req=[];
+  const P=p=>c[p-1];if(m.acid||m.ald)req.push(P(1));if(m.acid2)req.push(P(m.n));(m.ket||[]).forEach(p=>req.push(P(p)));(m.oh||[]).forEach(p=>req.push(P(p)));(m.sh||[]).forEach(p=>req.push(P(p)));
+  Object.keys(m.bonds||{}).forEach(i=>{req.push(P(+i),P(+i+1))});(m.subs||[]).filter(x=>x.s.k=='nh2').forEach(x=>req.push(P(x.p)));
+  const e=chk(c,req);if(e)return e;
+  for(const x of m.subs||[])if(x.s.k=='cyc'&&!x.s.ar&&x.s.r>=m.n)return'ring bigger than chain'}
+ if(m.kind=='ring'){const r=m.ar?6:m.r;for(const x of m.subs||[])if(subReach(x.s)>r)return'branch longer than ring'}
+ if(m.kind=='ester'){if(m.ac.t=='chain'){const e=chk(M.chain,[M.chain[0]],M.acidSide);if(e)return'acid side '+e}
+  if(m.al.t=='chain'){const alc=[...M.alcSide].filter(acyc);const mainPath=carbonPaths(M,i=>acyc(i)&&M.alcSide.has(i)).filter(q=>q.includes(M.alcRoot)).sort((a,b)=>b.length-a.length)[0];
+   if(!mainPath||mainPath.length!=m.al.n)return'alcohol side longer';const e=chk(mainPath,[M.alcRoot],M.alcSide);if(e)return'alcohol side '+e}}
+ if(m.kind=='amine'||m.kind=='amide'){
+  for(const g of M.nsub){if(!g.chain)continue;const e=chk(g.chain,[g.root],g.atoms);if(e)return'N-group '+e}
+  const rest=new Set();M.at.forEach((a,i)=>{if(!M.nsub.some(g=>g.atoms.has(i)))rest.add(i)});
+  if(m.kind=='amine'){const pl=m.par.t=='chain'?m.par.n:m.par.r;
+   for(const g of M.nsub){if(groupLen(g.s)>=pl)return'N-group as long as parent';if(g.s.ar&&(m.par.t!='chain'||pl<7))return'phenyl would be the parent'}
+   if(m.par.t=='chain'){const e=chk(M.chain,[M.chain[m.par.a-1]],rest);if(e)return'parent '+e}}  // slide: N-methyl-(3-cyclohexyl)butan-2-amine — the chain holding the C–N carbon is the parent even next to a bigger ring
+  else if(m.ac.t=='chain'){const e=chk(M.chain,[M.chain[0]],rest);if(e)return'acid side '+e}}
+ return null}
+/* ---------- naming (classroom conventions) ----------
+ Priority for "lowest number" (high -> low): COOH > ester/ether > CHO > C=O (one) > OH > SH > C=C/C≡C > branches > alphabet.
+ A lone OH (no COOH / CHO / C=O / ether present) is the top group and named -ol; otherwise it is a "hydroxyl" branch.
+ Lower-priority endings go in brackets in that same order; the highest one is last and bare.
+ "an" stays unless the parent has a C=C or C≡C. A dash always follows ")" when a name continues.          */
+const KEYLBL={eth:'the ether O',ket:'the C=O (ketone)',oh:'the OH',ohb:'the OH (hydroxyl)',sh:'the SH',un:'the C=C / C≡C',br:'the branches',al:'the alphabetically first branch',st:'Z before E',nloc:'the C–N carbon'};
+function parentBody(stem,dbl,tri,parts,forceAn){
+ const U=[];if(dbl.length)U.push({locs:dbl,word:MU[dbl.length]+'ene'});if(tri.length)U.push({locs:tri,word:MU[tri.length]+'yne'});
+ if(!parts.length){if(!U.length)return stem+'ane';
+  if(U.length==1)return stem+'-'+U[0].locs.join(',')+'-'+U[0].word;
+  return stem+'-('+U[0].locs.join(',')+'-'+U[0].word+')-'+U[1].locs.join(',')+'-'+U[1].word}
+ const all=[...U,...parts],last=all.pop();let s=stem+(U.length&&!forceAn?'':'an');
+ all.forEach(g=>{s+='-('+g.locs.join(',')+'-'+g.word+')'});
+ return s+(last.bare?(all.length?'-':'')+last.word:'-'+last.locs.join(',')+'-'+last.word)}
+const pick1=(cands)=>{const s=cands.slice().sort((a,b)=>cmp(a.key,b.key));let why=null;
+ if(s.length>1){const a=s[0].key,b=s[1].key;for(let k=0;k<a.length;k++)if(cmp(a[k],b[k])){why=s[0].lbl[k];break}}
+ return{c:s[0],why}};
+const alphaLocs=items=>items.slice().sort((x,y)=>cmp([ak(x.name),x.loc],[ak(y.name),y.loc])).map(x=>x.loc);
+const stPrefix=st=>st.length?st.map(([i,z])=>`(${z}-${i})`).join('-')+'-':'';
+
+function nameChain(m){const n=m.n,fixed=(m.acid&&!m.acid2)||m.ald,ket0=m.ket||[],oh0=m.oh||[],sh0=m.sh||[];
+ const ohBranch=oh0.length&&(m.acid||m.ald||ket0.length||m.eth),olP=oh0.length&&!ohBranch;
+ const cands=(fixed?[0]:[0,1]).map(rv=>{const f=p=>rv?n+1-p:p,fb=i=>rv?n-i:i;
+  const ket=ket0.map(f).sort(asc),oh=oh0.map(f).sort(asc),sh=sh0.map(f).sort(asc),dbl=[],tri=[];
+  for(const[i,o]of Object.entries(m.bonds||{}))(o==2?dbl:tri).push(fb(+i));dbl.sort(asc);tri.sort(asc);
+  const items=(m.subs||[]).map(x=>({loc:f(x.p),name:subName(x.s)}));if(ohBranch)oh.forEach(l=>items.push({loc:l,name:'hydroxyl'}));
+  const eth=m.eth?{loc:f(m.eth.p),name:subName(m.eth.s)}:null;
+  const st=Object.entries(m.stereo||{}).map(([i,z])=>[fb(+i),z]).sort((a,b)=>a[0]-b[0]);
+  const all=items.map(x=>x.loc).concat(eth?[eth.loc]:[]).sort(asc),un=[...dbl,...tri].sort(asc),stk=st.map(x=>x[1]=='Z'?0:1);
+  const key=olP?[oh,sh,un,all,alphaLocs(items),stk]:[eth?[eth.loc]:[],ket,oh,sh,un,all,alphaLocs(items),stk];
+  const lbl=olP?['oh','sh','un','br','al','st']:['eth','ket','ohb','sh','un','br','al','st'];
+  return{key,lbl,ket,oh,sh,dbl,tri,items,eth,st}});
+ const{c,why}=pick1(cands);
+ const parts=[];
+ const P=(locs,w,bare)=>({locs,word:(bare?'':MU[locs.length])+w,bare});
+ if(c.sh.length)parts.push(P(c.sh,"thiol"));
+ if(c.ket.length)parts.push(P(c.ket,'one'));
+ if(olP)parts.push(P(c.oh,'ol'));
+ if(m.ald)parts.push({word:'al',bare:1});
+ if(m.acid)parts.push({word:m.acid2?'dioicacid':'oicacid',bare:1});
+ // the highest group goes last; thiol/ketone order already low->high
+ const body=parentBody(ST[n],c.dbl,c.tri,parts);
+ let pre;
+ if(c.eth)pre=c.eth.loc+'-'+c.eth.name+(c.items.length?'-('+prefixStr(c.items)+')-':'');
+ else pre=prefixStr(c.items);
+ const sp=stPrefix(c.st),show=sp+pre+body;
+ const top=m.acid?'COOH':m.ald?'CHO':c.ket.length?'C=O':c.eth?'ether O':olP?'OH':c.sh.length?'SH':(c.dbl.length||c.tri.length)?'C=C/C≡C':'branches';
+ return{show,preLen:sp.length+pre.length,why,top,n,unsat:!!(c.dbl.length||c.tri.length),fixed}}
+
+function nameRing(m){const r=m.ar?6:m.r,ket0=m.ket||[],oh0=m.oh||[],sh0=m.sh||[];
+ if(m.cooh!=null){const cands=[1,-1].map(d=>{const L=p=>ringLoc(r,d,(p-m.cooh+r)%r),items=(m.subs||[]).map(x=>({loc:L(x.p),name:subName(x.s)})).concat(oh0.map(p=>({loc:L(p),name:'hydroxyl'})));
+   return{items,key:[items.map(x=>x.loc).sort(asc),alphaLocs(items)],lbl:['br','al']}});
+  const{c,why}=pick1(cands);const pre=prefixStr(c.items);return{show:pre+'benzoicacid',preLen:pre.length,why,top:'COOH',n:6,unsat:false,fixed:true}}
+ const ohBranch=oh0.length&&ket0.length,olP=oh0.length&&!ohBranch,cands=[];
+ for(let s0=0;s0<r;s0++)for(const d of[1,-1]){const L=p=>ringLoc(r,d,(p-s0+r)%r);
+  const ket=ket0.map(L).sort(asc),oh=oh0.map(L).sort(asc),sh=sh0.map(L).sort(asc),ene=(m.ene||[]).map(j=>ringBondLoc(r,L(j),L((j+1)%r))).sort(asc);
+  const items=(m.subs||[]).map(x=>({loc:L(x.p),name:subName(x.s)}));if(ohBranch)oh.forEach(l=>items.push({loc:l,name:'hydroxyl'}));
+  const all=items.map(x=>x.loc).sort(asc);
+  cands.push(olP?{key:[oh,sh,ene,all,alphaLocs(items)],lbl:['oh','sh','un','br','al'],ket,oh,sh,ene,items}:{key:[ket,oh,sh,ene,all,alphaLocs(items)],lbl:['ket','ohb','sh','un','br','al'],ket,oh,sh,ene,items})}
+ const{c,why}=pick1(cands);
+ const fg=c.ket.length+(olP?c.oh.length:0)+c.sh.length,single=fg==1&&!c.items.length&&!c.ene.length;
+ let body,top=c.ket.length?'C=O':olP?'OH':c.sh.length?'SH':c.ene.length?'C=C':'branches';
+ if(m.ar){
+  if(!fg)body='benzene';
+  else if(olP&&c.oh.length==1&&!c.sh.length)body='phenol';
+  else if(single)body='benzenethiol';
+  else{const parts=[];if(c.sh.length)parts.push({locs:c.sh,word:MU[c.sh.length]+'thiol'});if(olP)parts.push({locs:c.oh,word:MU[c.oh.length]+'ol'});
+   body='benzene'+parts.map((g,i)=>i<parts.length-1?'-('+g.locs.join(',')+'-'+g.word+')':'-'+g.locs.join(',')+'-'+g.word).join('')}}
+ else{const stem='cyclo'+ST[r];
+  if(!fg)body=c.ene.length==1?stem+'ene':c.ene.length?stem+'-'+c.ene.join(',')+'-'+MU[c.ene.length]+'ene':stem+'ane';
+  else if(single){const w=c.ket.length?'one':olP?'ol':'thiol';body=stem+'an'+(w=='thiol'?'e':'')+w}
+  else{const parts=[];if(c.sh.length)parts.push({locs:c.sh,word:MU[c.sh.length]+'thiol'});if(c.ket.length)parts.push({locs:c.ket,word:MU[c.ket.length]+'one'});if(olP)parts.push({locs:c.oh,word:MU[c.oh.length]+'ol'});
+   body=parentBody(stem,c.ene,[],parts)}}
+ const noLoc=!fg&&!c.ene.length&&c.items.length==1,pre=prefixStr(c.items,noLoc);
+ return{show:pre+body,preLen:pre.length,why,top,n:r,unsat:!!c.ene.length,fixed:false,ring:true}}
+
+function alcName(al){
+ if(al.t=='ring')return'1-'+subName({k:'cyc',r:al.r,ene:al.ene||[],ms:al.ms||[]});
+ const n=al.n,ms=al.ms||[];
+ const c=[0,1].map(rv=>{const a2=rv?n+1-al.a:al.a,it=ms.map(x=>({loc:rv?n+1-x.q:x.q,name:subName(x.s)}));
+  return{a2,it,key:[a2,it.filter(x=>x.name=='hydroxyl').map(x=>x.loc).sort(asc),it.map(x=>x.loc).sort(asc),alphaLocs(it)]}}).sort((x,y)=>cmp(x.key,y.key))[0];
+ return c.a2+'-'+bracketed(prefixStr(c.it))+ST[n]+'yl'}
+function nameEster(m){const al=alcName(m.al);let acid,sp='';
+ if(m.ac.t=='benz'){const cands=[1,-1].map(d=>{const items=(m.ac.subs||[]).map(x=>({loc:ringLoc(6,d,x.p),name:subName(x.s)}));return{items,key:[items.map(x=>x.loc).sort(asc),alphaLocs(items)],lbl:['br','al']}});
+  const pre=prefixStr(pick1(cands).c.items);acid=bracketed(pre)+'benzanoate'}
+ else{const a=m.ac,dbl=[],tri=[];for(const[i,o]of Object.entries(a.bonds||{}))(o==2?dbl:tri).push(+i);dbl.sort(asc);tri.sort(asc);
+  const items=(a.subs||[]).map(x=>({loc:x.p,name:subName(x.s)})),pre=prefixStr(items);
+  acid=bracketed(pre)+parentBody(ST[a.n],dbl,tri,[{word:'oate',bare:1}]);
+  sp=stPrefix(Object.entries(a.stereo||{}).map(([i,z])=>[+i,z]).sort((x,y)=>x[0]-y[0]))}
+ const show=sp+al+(acid[0]=='('?'-':'')+acid;
+ return{show,preLen:0,why:null,top:'ester',n:m.ac.t=='benz'?6:m.ac.n,unsat:false,fixed:true,ester:true,alc:al,acid}}
+
+/* ---------- amines & amides (Lesson 7, spelled exactly like the slides) ----------
+ amino branch:   3-aminopentane · 5-amino-3-methylhex-(1-yne)-3-ol
+ primary, N-way: methylamine · 2-propylamine · 1-(2-methyl)butylamine
+ 2°/3° amines:   N-methylethanamine · N-ethylcyclopropanamine · N,N-dimethylbutan-2-amine · N-methyl-(3-cyclohexyl)butan-2-amine
+ amides:         N-methylethanamide · N-methyl-N-2-propylbutanamide · N-methyl-(5-bromo)pentanamide · N-ethyl-N-methyl-(2-methyl)benzamide */
+function primaryAlt(m){const nh=(m.subs||[]).filter(x=>x.s.k=='nh2');
+ if(m.kind!='chain'||nh.length!=1||Object.keys(m.bonds||{}).length||(m.oh||[]).length||(m.sh||[]).length||(m.ket||[]).length||m.ald||m.acid||m.eth)return null;
+ const others=m.subs.filter(x=>x.s.k!='nh2');if(others.some(x=>!(x.s.k=='hal'||(x.s.k=='alk'&&!(x.s.ms||[]).length&&x.s.a==1))))return null;
+ const n=m.n,c=[0,1].map(rv=>{const f=p=>rv?n+1-p:p,it=others.map(x=>({loc:f(x.p),name:subName(x.s)}));
+  return{a:f(nh[0].p),it,key:[[f(nh[0].p)],it.map(x=>x.loc).sort(asc),alphaLocs(it)]}}).sort((x,y)=>cmp(x.key,y.key))[0];
+ return(n>=3?c.a+'-':'')+brk(prefixStr(c.it))+ST[n]+'ylamine'}
+function nameAmine(m){const P=m.par,np=nPrefix(m.ns);let body,pre='',why=null;
+ if(P.t=='ring')body='cyclo'+ST[P.r]+'anamine';
+ else{const n=P.n,cands=[0,1].map(rv=>{const f=p=>rv?n+1-p:p,it=(P.subs||[]).map(x=>({loc:f(x.p),name:subName(x.s)}));
+   return{a:f(P.a),it,key:[[f(P.a)],it.map(x=>x.loc).sort(asc),alphaLocs(it)],lbl:['nloc','br','al']}});
+  const r=pick1(cands);why=r.why;pre=brk(prefixStr(r.c.it));body=ST[n]+'an'+(n>=3?'-'+r.c.a+'-amine':'amine')}
+ const show=np+(pre?'-'+pre:'')+body;
+ return{show,why,top:'amine',n:P.t=='ring'?P.r:P.n,unsat:false,fixed:false,ring:P.t=='ring',npre:np}}
+function nameAmide(m){const A=m.ac,np=nPrefix(m.ns);let pre,body,why=null;
+ if(A.t=='benz'){const cands=[1,-1].map(d=>{const it=(A.subs||[]).map(x=>({loc:ringLoc(6,d,x.p),name:subName(x.s)}));return{it,key:[it.map(x=>x.loc).sort(asc),alphaLocs(it)],lbl:['br','al']}});
+  const r=pick1(cands);why=r.why;pre=brk(prefixStr(r.c.it));body='benzamide'}
+ else{pre=brk(prefixStr((A.subs||[]).map(x=>({loc:x.p,name:subName(x.s)}))));body=ST[A.n]+'anamide'}
+ const show=np+(np&&pre?'-':'')+pre+body;
+ return{show,why,top:'amide',n:A.t=='benz'?6:A.n,unsat:false,fixed:true,npre:np}}
+function nameMol(m){if(m.kind=='amine')return nameAmine(m);if(m.kind=='amide')return nameAmide(m);
+ const r=m.kind=='chain'?nameChain(m):m.kind=='ring'?nameRing(m):nameEster(m);
+ const alt=primaryAlt(m);if(alt){if(m.n<=2){r.alts=[r.show];r.show=alt}else r.alts=[alt]}return r}
+// accepted spellings: the slides write ")" before a name both with and without a dash, so both are accepted for N names
+function acceptedNames(q){const nm=q.nm,base=[nm.show,...(nm.alts||[])],out=new Set();
+ const nGroup=q.kind=='amine'||q.kind=='amide'||(nm.alts||[]).length;
+ for(const b of base){out.add(nzs(b));if(/benzanoate$/.test(b))out.add(nzs(b.replace(/benzanoate$/,'benzenoate')));if(nGroup){out.add(nzs(b.replace(/\)(?=[a-z])/gi,')-')));out.add(nzs(b.replace(/\)-(?=[a-z])/gi,')')))}}
+ return[...out]}
+
+/* ---------- "No-number names": drop locants that cannot be ambiguous ---------- */
+function isomerSpecs(m){const n=m.n,fixed=m.acid||m.ald,out=[];
+ const bo=Object.values(m.bonds||{}),subs=(m.subs||[]).map(x=>x.s);
+ const nk=(m.ket||[]).length,no=(m.oh||[]).length,ns=(m.sh||[]).length;
+ const lo=fixed?2:1;
+ const rec=(stage,acc)=>{
+  if(stage==0){// bonds
+   const go=(k,used,bonds)=>{if(k==bo.length)return rec(1,{...acc,bonds:{...bonds}});
+    for(let i=lo;i<=n-1;i++){if(used.has(i)||used.has(i+1))continue;const u=new Set(used);u.add(i);u.add(i+1);go(k+1,u,{...bonds,[i]:bo[k]})}};
+   return go(0,new Set(),{})}
+  const pos=(cnt,from,to,cb,prev=from-1,arr=[])=>{if(arr.length==cnt)return cb(arr);for(let p=Math.max(from,prev+1);p<=to;p++)pos(cnt,from,to,cb,p,[...arr,p])};
+  if(stage==1)return pos(nk,2,n-1,a=>rec(2,{...acc,ket:a}));
+  const posR=(cnt,from,to,cb,prev=from,arr=[])=>{if(arr.length==cnt)return cb(arr);for(let p=prev;p<=to;p++)posR(cnt,from,to,cb,p,[...arr,p])};
+  if(stage==2)return posR(no,fixed?2:1,n,a=>rec(3,{...acc,oh:a}));
+  if(stage==3)return posR(ns,fixed?2:1,n,a=>rec(4,{...acc,sh:a}));
+  if(stage==4){const go=(k,list)=>{if(k==subs.length)return out.push({...m,...acc,subs:list,stereo:{}});
+    const start=k&&JSON.stringify(subs[k])==JSON.stringify(subs[k-1])?list[k-1].p:1;
+    for(let p=start;p<=n;p++)go(k+1,[...list,{p,s:subs[k]}])};go(0,[])}};
+ rec(0,{});return out}
+function locantSlots(s){const out=[];let mt;const rx=/\d+(?:,\d+)*/g;while((mt=rx.exec(s)))out.push({i:mt.index,t:mt[0]});return out}
+function dropRender(s,slots,W){let o='',last=0;slots.forEach((x,k)=>{o+=s.slice(last,x.i)+(W.has(k)?'\0':x.t);last=x.i+x.t.length});o+=s.slice(last);
+ o=o.replace(/^\0-/,'').replace(/-\0-/g,'').replace(/\(\0-/g,'(');
+ o=o.replace(/-\(([a-z]+)\)-?/g,'$1').replace(/(en|yn|on)e(?=[aeiou])/g,'$1');
+ return o.replace(/--+/g,'-').replace(/^-|-$/g,'').replace(/an(?=(di|tri)?thiol)/g,'ane')}
+const NN_CACHE=new Map();
+function noNumber(m){
+ if(m.kind!='chain'||m.n>5||m.eth||m.acid2||Object.keys(m.stereo||{}).length)return null;
+ if((m.subs||[]).some(x=>!simpleSub(x.s)||x.s.k=='nh2'))return null;
+ const nf=Object.keys(m.bonds||{}).length+(m.subs||[]).length+(m.ket||[]).length+(m.oh||[]).length+(m.sh||[]).length;if(nf>4)return null;
+ const me=nameMol(m),T=me.show,slots=locantSlots(T);if(!slots.length)return null;
+ const ck=JSON.stringify([m.n,m.bonds,m.subs,m.ket,m.oh,m.sh,m.acid,m.ald]);if(NN_CACHE.has(ck))return NN_CACHE.get(ck);
+ const myCanon=canonMol(buildMol(m)),seen=new Map();
+ for(const sp of isomerSpecs(m)){const M=buildMol(sp);if(invalid(sp,M))continue;stereoBonds(sp,M).forEach(i=>sp.stereo[i]='E');
+  const c=canonMol(M);if(seen.has(c))continue;seen.set(c,nameMol(sp).show.replace(/^(\([EZ]-\d+\)-)+/,''))}
+ const skel=s=>s.replace(/\d+(?:,\d+)*/g,'#');
+ const A=new Set(),B=new Set();slots.forEach((x,k)=>(x.i<me.preLen?A:B).add(k));
+ let res=null;
+ for(const W of[new Set([...A,...B])]){if((T.match(/\(\d/g)||[]).length>1||/\(\d[\d,]*-(di|tri)?(one|thiol)\)/.test(T))break;
+  const match=[...seen.entries()].filter(([c,nm])=>{if(skel(nm)!=skel(T))return false;const sl=locantSlots(nm);return sl.every((x,k)=>W.has(k)||x.t==slots[k].t)});
+  if(match.length==1&&match[0][0]==myCanon){res=dropRender(T,slots,W);break}}
+ NN_CACHE.set(ck,res);return res}
+/* ---------- generation ---------- */
+const CATS=[['dbl','Double bonds'],['tri','Triple bonds'],['ring','Rings'],['benz','Benzene'],['nest','Branches on branches'],['oh','Alcohols (OH)'],['sh','Thiols (SH)'],['eth','Ethers'],['hal','Halogens'],['st','E/Z (cis/trans)'],['ket','Ketones (-one)'],['ald','Aldehydes (-al)'],['acid','Carboxylic acids (-oicacid)'],['est','Esters (-oate)'],['amine','Amines'],['amide','Amides'],['cyclo','Cyclo parent chains'],['nonum','No-number names']];
+const CATHELP={cyclo:'The ring itself is the parent: cyclohexanol, 3-methylcyclohex-(1-ene)…',amine:'Amino branches (3-aminopentane), alkylamines (2-propylamine) and N-named amines (N,N-dimethylbutan-2-amine).',amide:'N-methylethanamide, N-methyl-(5-bromo)pentanamide, …benzamide.',nonum:'Names where every number is dropped because there is only one possible spot, e.g. methylpropene (not 2-methylprop-1-ene).',st:'E/Z needs a C=C inside the chain, so Guaranteed E/Z always adds one.'};
+// pairs that can never share one molecule (the second is left out when both are Guaranteed)
+const INCOMPAT=[['acid','ald'],['est','tri'],['est','sh'],['est','eth'],['est','ket'],['est','ald'],['est','acid'],['eth','ald'],['eth','acid'],['nonum','nest'],['nonum','ring'],['nonum','benz'],['nonum','est'],['nonum','eth'],['nonum','st'],
+ ['amine','sh'],['amine','eth'],['amine','ket'],['amine','ald'],['amine','acid'],['amine','est'],['amine','amide'],['amine','nonum'],
+ ['amide','dbl'],['amide','tri'],['amide','st'],['amide','oh'],['amide','sh'],['amide','eth'],['amide','ket'],['amide','ald'],['amide','acid'],['amide','est'],['amide','cyclo'],['amide','ring'],['amide','nonum'],
+ ['cyclo','tri'],['cyclo','st'],['cyclo','ald'],['cyclo','eth'],['cyclo','est'],['cyclo','ring'],['cyclo','benz'],['cyclo','nonum']];
+const DN=['Easy','Medium-easy','Medium','Hard','Brutal'];
+const alk=(n,a=1,ms=[])=>({k:'alk',n,a,ms}),hal=()=>({k:'hal',x:pick(HALS)});
+function nestedSub(f,D){const r=Math.random();
+ if(f.ring&&r<.3){const rr=R(3,5);return{k:'cyc',r:rr,ms:[{q:R(1,rr-1),s:f.hal&&chance(.6)?hal():alk(1)}]}}
+ if(f.benz&&r<.5)return{k:'cyc',ar:1,r:6,ms:[{q:R(1,5),s:f.hal&&chance(.5)?hal():alk(1)}]};
+ const n=R(f.hal?2:3,D>=4?5:4),a=R(1,n),ms=[],used=new Set();
+ for(let t=0;t<R(1,2);t++){
+  if(f.hal&&(chance(.55)||n<3)){const q=R(1,n);if(!used.has(q)){used.add(q);ms.push({q,s:hal()})}}
+  else if(n>=3){const q=R(2,n-1);if(!used.has(q)){used.add(q);ms.push({q,s:alk(1)})}}}
+ if(!ms.length&&(a==1||a==n))return n>=3?alk(n,a,[{q:2,s:alk(1)}]):alk(n,a,[{q:n,s:hal()}]);
+ return alk(n,a,ms)}
+function plainSub(f,D){const o=['m','m'];if(D>=2)o.push('e');if(D>=3)o.push('p');if(f.hal)o.push('h','h');
+ const t=pick(o);return t=='h'?hal():alk(t=='m'?1:t=='e'?2:3)}
+
+function genChain(f,D,small){
+ const nr=small?[2,4]:[[3,5],[4,6],[5,8],[6,9],[7,10]][D-1];let n=R(nr[0],nr[1]);
+ const want=[];
+ if(f.nest&&!small)want.push(nestedSub(f,D));
+ if(f.ring&&!small)want.push({k:'cyc',r:R(3,5)});
+ if(f.benz&&!small)want.push({k:'cyc',ar:1,r:6});
+ if(!small){if(f.ring)n=Math.max(n,6);if(f.nest||f.benz)n=Math.max(n,5);if(f.st)n=Math.max(n,4);
+  for(const s of want)n=Math.max(n,2*subReach(s)+(simpleSub(s)?1:3));if(n>10)return null}
+ const m={kind:'chain',n,bonds:{},subs:[],oh:[],sh:[],ket:[],stereo:{}};
+ if(f.acid)m.acid=1;else if(f.ald)m.ald=1;if(m.acid&&!small&&n>=3&&chance(.3))m.acid2=1;const fixed=m.acid||m.ald;
+ const cap=[0],het=[],sp=new Set(),sp2=new Set();for(let p=1;p<=n;p++)cap.push(4-(p>1)-(p<n));
+ if(m.acid)cap[1]-=3;if(m.ald)cap[1]-=2;if(m.acid2)cap[n]-=3;
+ const lo=fixed?2:1,hi=m.acid2?n-2:n-1,used=new Set(),free=i=>i>=lo&&i<=hi&&!used.has(i)&&!used.has(i+1);
+ const putB=(i,o)=>{used.add(i);used.add(i+1);m.bonds[i]=o;cap[i]-=o-1;cap[i+1]-=o-1;(o==3?sp:sp2).add(i);(o==3?sp:sp2).add(i+1)};
+ const inner=i=>i>=2&&i+1<=n-1;
+ if(f.tri){const c=[];for(let i=lo;i<n;i++)if(free(i))c.push(i);if(!c.length)return null;putB(pick(c),3)}
+ const nd=f.dbl?(D>=4&&n>=6&&chance(.35)?2:1):0;
+ for(let k=0;k<nd;k++){const c=[];for(let i=lo;i<n;i++)if(free(i)&&(f.st?(k>0||inner(i)):!inner(i)))c.push(i);if(!c.length)return null;putB(pick(c),2)}
+ if(f.st&&!Object.entries(m.bonds).some(([i,o])=>o==2&&inner(+i)))return null;
+ const spot=(from,to,need,ok=()=>true)=>{const c=[];for(let p=from;p<=to;p++)if(cap[p]>=need&&!sp.has(p)&&ok(p))c.push(p);return c.length?pick(c):null};
+ const nk=f.ket?(D>=4&&n>=5&&chance(.3)?2:1):0;
+ for(let k=0;k<nk;k++){const p=spot(2,n-1,2,p=>!sp2.has(p)&&!het[p]);if(p==null)return null;cap[p]-=2;het[p]=1;m.ket.push(p)}
+ for(const[key,arr]of[['oh',m.oh],['sh',m.sh]]){if(!f[key])continue;const cnt=small?1:R(1,D>=3?2:1);
+  for(let k=0;k<cnt;k++){const p=spot(lo,n,1,p=>!sp2.has(p)&&!het[p]);if(p==null)return null;cap[p]--;het[p]=1;arr.push(p)}}
+ if(f.eth&&!fixed){const p=spot(2,n-1,1,p=>!sp2.has(p)&&!het[p]);if(p==null)return null;cap[p]--;het[p]=1;
+  const k=R(1,2),ms=[];if((f.hal&&chance(.5))||f.nest)ms.push({q:R(1,k),s:hal()});m.eth={p,s:{k:'eth',n:k,ms}}}
+ if(f.amine)want.unshift({k:'nh2'});
+ if(f.hal&&!m.eth&&!want.some(s=>JSON.stringify(s).includes('"hal"')))want.push(hal());
+ const smax=small?2:[1,2,3,3,4][D-1],ns=Math.max(want.length,R(small?0:(D>=4?1:0),smax));
+ while(want.length<ns)want.push(plainSub(f,D));
+ const big=[];
+ for(const s of want){const isBig=!simpleSub(s);const rc=subReach(s),p=spot(s.k=='nh2'?1:2,s.k=='nh2'?n:n-1,1,p=>(isBig?rc<Math.min(p-1,n-p):rc<=Math.min(p-1,n-p))&&!((s.k=='hal'||s.k=='nh2')&&het[p])&&!(s.k=='nh2'&&sp2.has(p))&&!(isBig&&(het[p]||big.some(q=>Math.abs(q-p)<2))));if(p==null)return null;
+  cap[p]--;if(isBig)big.push(p);if(s.k=='hal'||s.k=='nh2')het[p]=1;m.subs.push({p,s})}
+ return m}
+
+function genRing(f,D){const ar=!!f.benz,m={kind:'ring',ar,r:6,ene:[],subs:[],oh:[],sh:[],ket:[],cooh:null};
+ const r=ar?6:(f.ket?R(5,7):pick([[5,6],[5,6,6],[4,5,6,6,7],[3,4,5,6,7,8],[3,4,5,6,7,8]][D-1]));m.r=r;
+ const cap=Array(r).fill(2),het=[];
+ if(!ar&&f.dbl){if(r<4)return null;const j=R(0,r-1);m.ene.push(j);cap[j]--;cap[(j+1)%r]--;
+  if(f.ket&&r>=6&&chance(.4)){const j2=(j+3)%r;m.ene.push(j2);cap[j2]--;cap[(j2+1)%r]--}}
+ const eneAt=p=>m.ene.some(j=>j==p||(j+1)%r==p);
+ const spot=(need,ok=()=>true)=>{const c=[];for(let p=0;p<r;p++)if(cap[p]>=need&&ok(p))c.push(p);return c.length?pick(c):null};
+ if(ar&&f.acid){m.cooh=0;cap[0]=0}
+ if(!ar&&f.ket){for(let k=0;k<(D>=4&&chance(.5)?2:1);k++){const p=spot(2,p=>!eneAt(p));if(p==null)return null;cap[p]=0;het[p]=1;m.ket.push(p)}}
+ for(const[key,arr]of[['oh',m.oh],['sh',m.sh]]){if(!f[key])continue;const onEne=chance(.5);for(let k=0;k<R(1,D>=3?2:1);k++){const p=spot(1,p=>(onEne||!eneAt(p))&&!het[p]);if(p==null)return null;cap[p]--;het[p]=1;arr.push(p)}}
+ const want=[];if(f.nest)want.push(nestedSub({...f,ring:false,benz:false},Math.min(D,3)));if(f.hal)want.push(hal());
+ const ns=Math.max(want.length,R(ar&&!m.oh.length&&!m.sh.length&&m.cooh==null?1:0,[1,2,3,3,4][D-1]));
+ while(want.length<ns)want.push(plainSub(f,Math.min(D,3)));
+ for(const s of want){const p=spot(1,p=>!(ar&&(het[p]||cap[p]<2))&&!(s.k=='hal'&&het[p])&&!(!simpleSub(s)&&cap[p]<2));if(p==null)return null;cap[p]-=ar?2:1;if(ar)het[p]=1;m.subs.push({p,s})}
+ return m}
+
+function genEster(f,D){const m={kind:'ester'};
+ if(f.benz&&(!f.dbl||chance(.5))){const subs=[];for(let k=0;k<R(f.hal?1:0,D>=3?2:1);k++){const p=R(1,5);if(!subs.some(x=>x.p==p))subs.push({p,s:f.hal&&chance(.6)?hal():alk(1)})}m.ac={t:'benz',subs}}
+ else{let n=R(1,[3,4,5,6,6][D-1]);if(f.dbl)n=Math.max(n,f.st?4:3);if(f.st&&!f.dbl)return null;const ac={t:'chain',n,bonds:{},subs:[],stereo:{}};
+  if(f.dbl){const c=[];for(let i=2;i<n;i++)if(f.st?i+1<=n-1:i==n-1)c.push(i);if(!c.length)return null;ac.bonds[pick(c)]=2}
+  if(D>=3&&n>=3&&chance(.5)){const p=R(2,n-1);if(!ac.bonds[p]||!ac.bonds[p-1])ac.subs.push({p,s:f.hal&&chance(.5)?hal():alk(1)})}
+  m.ac=ac}
+ if(f.ring){const r=R(3,6),al={t:'ring',r,ene:[],ms:[]};if(f.dbl&&r>=4&&chance(.6))al.ene.push(R(1,r-2));
+  const eneAt=q=>al.ene.some(j=>j==q||j+1==q);
+  if(f.oh){const c=[];for(let q=1;q<r;q++)if(!eneAt(q))c.push(q);if(c.length)al.ms.push({q:pick(c),s:{k:'oh'}})}
+  if((f.hal||f.nest||chance(.3))&&r>=4){const q=R(1,r-1);if(!al.ms.some(x=>x.q==q)&&!(eneAt(q)&&false))al.ms.push({q,s:f.hal&&chance(.6)?hal():alk(1)})}
+  m.al=al}
+ else{const n=R(1,[3,4,5,6,7][D-1]+(f.nest?1:0)),a=R(1,n),ms=[],u=new Set([a]);
+  const put=(s,mid)=>{for(let t=0;t<9;t++){const q=mid?R(2,Math.max(2,n-1)):R(1,n);if(n<3&&mid)return;if(!u.has(q)){u.add(q);ms.push({q,s});return}}};
+  if(f.oh&&n>=2)put({k:'oh'});if(f.hal&&chance(.7))put(hal());if((f.nest||D>=4&&chance(.4))&&n>=3)put(alk(1),1);
+  m.al={t:'chain',n,a,ms}}
+ return m}
+
+// a group on N: methyl/ethyl/propyl/butyl (attached at C1 or C2), branched with a methyl or halogen, or phenyl
+function nSubGroup(f,D,maxLen){const o=[];for(let n=1;n<=Math.min(maxLen,D>=3?4:3);n++)o.push(n);const n=pick(o);
+ if(f.benz&&chance(.35))return{k:'cyc',ar:1,r:6};
+ if(n>=3&&f.nest&&chance(.6)){const ms=[{q:2,s:f.hal&&chance(.5)?hal():alk(1)}];return alk(n,1,ms)}
+ if(n>=3&&f.hal&&chance(.3))return alk(n,1,[{q:R(2,n),s:hal()}]);
+ return alk(n,n>=3&&chance(.4)?2:1)}
+function genAmine(f,D){
+ if(!f.cyclo&&(f.dbl||f.tri||f.st||f.oh||chance(.4)))return genChain(f,D,false);
+ const nN=D>=3&&chance(.45)?2:1;
+ let par;if(f.cyclo){par={t:'ring',r:R(3,6)}}
+ else{const n=R(f.benz?7:[2,3,4,5,6][D-1],Math.max(f.benz?8:[3,4,5,6,7][D-1],f.benz?8:2));par={t:'chain',n,a:R(1,Math.ceil(n/2)),subs:[]};
+  const sp=[];for(let p=1;p<=n;p++)if(p!=par.a)sp.push(p);
+  const nb=D>=2?R(f.ring||f.hal?1:0,Math.min(2,D-1)):0;for(let k=0;k<nb&&sp.length;k++){const p=sp.splice(R(0,sp.length-1),1)[0];
+   const s=f.ring&&k==0?{k:'cyc',r:R(3,6)}:f.hal&&chance(.5)?hal():alk(1);if(s.k=='alk'&&(p==1||p==n))continue;if(s.k=='cyc'&&(p==1||p==n))continue;par.subs.push({p,s})}}
+ const pl=par.t=='chain'?par.n:par.r,ns=[];
+ for(let k=0;k<nN;k++){const g=nSubGroup(f,D,pl-1);if(g.ar&&(par.t!='chain'||pl<7))return null;ns.push(g)}
+ if(ns.length==2&&nGroup(ns[0])==nGroup(ns[1])&&/\d/.test(nGroup(ns[0])))return null;
+ return{kind:'amine',par,ns}}
+function genAmide(f,D){let ac;
+ if(f.benz&&chance(.5)){const subs=[];for(let k=0;k<R(0,D>=3?2:1);k++){const p=R(1,5);if(!subs.some(x=>x.p==p))subs.push({p,s:f.hal&&chance(.5)?hal():alk(1)})}ac={t:'benz',subs}}
+ else{const n=R(1,[3,4,5,6,6][D-1]),subs=[];
+  if(n>=3&&(f.hal||D>=2)&&chance(.6)){const p=R(2,n),s=f.hal&&(p==n||chance(.5))?hal():alk(1);if(!(s.k=='alk'&&p>=n-0))subs.push({p,s})}
+  ac={t:'chain',n,subs}}
+ const nN=chance(.12)?0:D>=2&&chance(.5)?2:1,ns=[];for(let k=0;k<nN;k++)ns.push(nSubGroup(f,D,4));
+ if(ns.length==2&&nGroup(ns[0])==nGroup(ns[1])&&/\d/.test(nGroup(ns[0])))return null;
+ return{kind:'amide',ac,ns}}
+function makeFrom(f,D,small){
+ if(f.amide)return genAmide(f,D);
+ if(f.amine&&!small)return genAmine(f,D);
+ if(f.cyclo&&!small)return genRing({...f,benz:false},D);
+ if(f.est)return genEster(f,D);
+ const noChainOnly=!(f.tri||f.st||f.ald||f.eth||(f.acid&&!f.benz));
+ if(f.benz&&!small&&noChainOnly&&!f.dbl&&!f.ket&&!f.ring&&chance(.5))return genRing(f,D);
+ return genChain(f,D,small)}
+
+function featuresOf(m,M){const F=new Set();
+ M.bd.forEach(([a,b,o])=>{if(M.el(a)=='C'&&M.el(b)=='C'){if(o==2)F.add('dbl');if(o==3)F.add('tri')}});
+ M.rings.forEach(r=>F.add(r.ar?'benz':(M.stype=='ring'&&r.ids===M.ring?'cyclo':'ring')));
+ M.at.forEach(a=>{if(a.el=='N')F.add(m.kind=='amide'?'amide':'amine')});
+ M.at.forEach((a,i)=>{if(a.el=='O'&&M.hc(i)==1&&!M.adj[i].some(([j])=>M.adj[j].some(([k,o])=>M.el(k)=='O'&&o==2)))F.add('oh');if(a.el=='S')F.add('sh');if(HALS.includes(a.el))F.add('hal')});
+ if(m.kind=='chain'){if(m.eth)F.add('eth');if((m.ket||[]).length)F.add('ket');if(m.ald)F.add('ald');if(m.acid)F.add('acid');if(Object.keys(m.stereo||{}).length)F.add('st');
+  if((m.subs||[]).some(x=>isNested(x.s))||(m.eth&&isNested(m.eth.s)))F.add('nest')}
+ if(m.kind=='ring'){if((m.ket||[]).length)F.add('ket');if(m.cooh!=null)F.add('acid');if((m.subs||[]).some(x=>isNested(x.s)))F.add('nest')}
+ if(m.kind=='ester'){F.add('est');if(m.ac.t=='chain'&&Object.keys(m.ac.stereo||{}).length)F.add('st');if((m.al.ms||[]).some(x=>x.s.k!='oh')||(m.al.t=='chain'&&m.al.a!=1&&m.al.a!=m.al.n))F.add('nest')}
+ if(m.kind=='amine'||m.kind=='amide'){if(m.ns.some(g=>(g.ms||[]).length))F.add('nest');if(m.kind=='amide'&&(m.ac.subs||[]).some(x=>isNested(x.s)))F.add('nest')}
+ if(m.nn)F.add('nonum');
+ return F}
+
+// spec -> finished question (or null)
+function finalize(m,need,ban){const M=buildMol(m);if(invalid(m,M))return null;
+ if(m.kind=='chain'||(m.kind=='ester'&&m.ac.t=='chain')){const sb=stereoBonds(m,M);const tgt=m.kind=='chain'?m:m.ac;tgt.stereo={};
+  sb.forEach(i=>tgt.stereo[i]=pick(['E','Z']))}
+ const nm=nameMol(m);if(/undefined|NaN/.test(nm.show))return null;
+ m.nn=noNumber(m);if(m.nn)nm.full=nm.show,nm.show=m.nn;
+ const F=featuresOf(m,M);for(const k of need)if(!F.has(k))return null;for(const k of ban)if(F.has(k))return null;
+ const g=layoutMol(m,M,'z');if(!g)return null;const lg=layoutMol(m,M,'x');if(!lg)return null;
+ const q={...m,M,nm,g,lg,F};nm.out=acceptedNames(q);return q}
+
+let RELAX=0;
+function buildCats(){const D=CFG.diff||3,stt=k=>CFG.cats[k]||0,pr=[.2,.3,.4,.5,.6][D-1];
+ let G=CATS.map(x=>x[0]).filter(k=>stt(k)==2),A=CATS.map(x=>x[0]).filter(k=>stt(k)==1);const dropped=[];
+ for(const[a,b]of INCOMPAT)if(G.includes(a)&&G.includes(b)){G=G.filter(k=>k!=b);dropped.push(b)}
+ for(let r=0;r<RELAX&&G.length;r++){const d=pick(G);G=G.filter(k=>k!=d);A.push(d);dropped.push(d)}
+ const ban=CATS.map(x=>x[0]).filter(k=>stt(k)==0&&!dropped.includes(k)&&!(k=='dbl'&&G.includes('st')));
+ for(let z=0;z<60;z++){const f={};G.forEach(k=>f[k]=true);
+  const focus=G.length?null:(A.length?pick(A):null);A.forEach(k=>{if(k==focus||chance(pr))f[k]=true});
+  for(const[a,b]of INCOMPAT)if(f[a]&&f[b])f[G.includes(a)?b:G.includes(b)?a:pick([a,b])]=false;
+  if(f.st&&!f.est)f.dbl=true;if(f.st&&stt('dbl')==0&&!G.includes('st'))f.st=false;
+  const small=f.nonum||(stt('nonum')>0&&chance(D<=2?.35:.2));
+  if(small&&!G.includes('nonum')){const keep=['dbl','tri','hal','oh','sh','ket','ald','acid'].filter(k=>f[k]&&!G.includes(k));Object.keys(f).forEach(k=>{if(!G.includes(k))f[k]=false});if(keep.length)f[pick(keep)]=true}
+  const spec=makeFrom(f,D,small);if(!spec)continue;
+  const need=G.filter(k=>f[k]);if(small&&!need.includes('nonum'))need.push('nonum');
+  const q=finalize(spec,need,ban);if(q){q.dropped=dropped.slice();return q}}
+ return null}
+function gen(){RELAX=0;const t0=Date.now();
+ for(let k=0;k<4000&&Date.now()-t0<9000;k++){RELAX=Math.floor((Date.now()-t0)/1800);const q=buildCats();if(q){RELAX=0;return q}}
+ RELAX=0;for(let k=0;k<200;k++){const q=finalize(genChain({},2),[],[]);if(q)return q}
+ return finalize({kind:'chain',n:4,bonds:{},subs:[{p:2,s:alk(1)}],oh:[],sh:[],ket:[],stereo:{}},[],[])}
+/* ---------- drawing ----------
+ Two coordinate sets per molecule: 'z' = skeletal (zig-zag) and 'x' = Lewis (straight, 90° branches).
+ Branches never bend unless they have to: in Lewis they run straight in the direction they leave the parent,
+ in skeletal they keep a regular zig-zag. The one deliberate bend is at a two-bonded O (ethers / esters).
+ Every layout is checked for overlaps and near-overlaps; if no clean layout exists the molecule is regenerated. */
+const D60=Math.PI/3,D90=Math.PI/2;
+function tryLayout(m,M,style){
+ const N=M.at.length,P=new Array(N).fill(null),sh=[],done=new Set(),centers=new Map();
+ const sgn=()=>chance(.5)?1:-1,put=(i,x,y)=>{P[i]=[x,y]},kidsOf=i=>M.adj[i].map(x=>x[0]).filter(j=>!P[j]);
+ const ringOf=i=>M.rings.find(r=>r.ids.includes(i));
+ const size=(i,from,seen=new Set())=>{seen.add(i);let c=M.el(i)=='C'?1:.5;for(const[j]of M.adj[i])if(j!=from&&!seen.has(j)&&!P[j])c+=size(j,i,seen);return c};
+ const ringKids=(r)=>{const[cx,cy]=centers.get(r);for(const id of r.ids){const ks=kidsOf(id);if(!ks.length)continue;const a=Math.atan2(P[id][1]-cy,P[id][0]-cx);
+   ks.forEach((k,q)=>placeKid(id,k,ks.length>1?a+(q?-.6:.6):a,sgn()))}};
+ const placeRing=(entry,from,e)=>{const r=ringOf(entry);done.add(r);const n=r.ids.length,Rr=.5/Math.sin(Math.PI/n);
+  const ex=P[from][0]+Math.cos(e),ey=P[from][1]+Math.sin(e),cx=ex+Rr*Math.cos(e),cy=ey+Rr*Math.sin(e),k0=r.ids.indexOf(entry),sg=sgn();
+  r.ids.forEach((id,idx)=>{const k=(idx-k0+n)%n,a=e+Math.PI+sg*2*Math.PI*k/n;put(id,cx+Rr*Math.cos(a),cy+Rr*Math.sin(a))});
+  centers.set(r,[cx,cy]);ringKids(r)};
+ const placeKid=(i,k,d,ph)=>{if(M.inRing(k)&&!done.has(ringOf(k)))return placeRing(k,i,d);put(k,P[i][0]+Math.cos(d),P[i][1]+Math.sin(d));tree(k,i,d,ph)};
+ function tree(i,from,d,ph){const ks=kidsOf(i);if(!ks.length)return;
+  if((M.el(i)=='O'||M.el(i)=='S')&&ks.length==1){const b=sgn();return placeKid(i,ks[0],d+b*D60,-b)}   // the ether/ester bend
+  ks.sort((a,b)=>size(b,i)-size(a,i));
+  if(style=='x'){const s=sgn(),dirs=ks.length==1?[d]:ks.length==2?(chance(.6)?[d,d+s*D90]:[d+D90/2,d-D90/2]):[d,d+D90,d-D90];ks.forEach((k,q)=>placeKid(i,k,dirs[q],0))}
+  else{if(!ph)ph=sgn();const dirs=ks.length==1?[d+ph*D60]:ks.length==2?(chance(.7)?[d+ph*D60,d-ph*D60]:[d,d-ph*D90]):[d,d+D90,d-D90];
+   ks.forEach((k,q)=>placeKid(i,k,dirs[q],ks.length>2?sgn():(q==0?-ph:ph)))}}
+ // ---- spine
+ if(M.stype=='chain'){const c=M.chain,n=c.length,stereo=(m.kind=='ester'?m.ac.stereo:m.stereo)||{};
+  const lin=c.map((id,j)=>(j>0&&M.ord(c[j-1],id)==3)||(j<n-1&&M.ord(id,c[j+1])==3)),t=new Array(n).fill(0);
+  if(style=='z'){let last=sgn();
+   for(let j=1;j<n-1;j++){if(lin[j])continue;const st=stereo[j];
+    t[j]=(st&&t[j-1])?(st=='Z'?t[j-1]:-t[j-1]):-last;last=t[j]}
+   let h=0;put(c[0],0,0);const hd=[];for(let j=0;j<n-1;j++){if(j>0)h+=t[j]*D60;hd.push(h);put(c[j+1],P[c[j]][0]+Math.cos(h),P[c[j]][1]+Math.sin(h))}
+   c.forEach((id,j)=>{const ks=kidsOf(id);if(!ks.length)return;let dirs,ph=[];
+    if(n==1){dirs=ks.length==1?[0]:ks.length==2?[D60,-D60]:[0,2*D60,-2*D60]}
+    else if(j>0&&j<n-1){const u1=hd[j-1]+Math.PI,u2=hd[j],b=Math.atan2(-(Math.sin(u1)+Math.sin(u2)),-(Math.cos(u1)+Math.cos(u2)));dirs=ks.length==1?[b]:[b+.6,b-.6]}
+    else if(j==0){const out=hd[0]+Math.PI,tt=t[1]||0;dirs=ks.length==1?[out+tt*D60]:ks.length==2?[out+D60,out-D60]:[out,out+D90,out-D90];ph=ks.length==1?[-tt]:[]}
+    else{const hl=hd[n-2],tt=t[n-2]||0;dirs=ks.length==1?[hl-tt*D60]:ks.length==2?[hl+D60,hl-D60]:[hl,hl+D90,hl-D90];ph=ks.length==1?[tt]:[]}
+    if(ks.length>1&&(j==0||j==n-1))ks.sort((a,b)=>size(b,id)-size(a,id));
+    ks.forEach((k,q)=>placeKid(id,k,dirs[q],ph[q]||sgn()))})}
+  else{c.forEach((id,j)=>put(id,j,0));const side={};
+   Object.entries(stereo).forEach(([i,z])=>{const s1=sgn();side[c[+i-1]]=s1;side[c[+i]]=z=='Z'?s1:-s1});
+   c.forEach((id,j)=>{const ks=kidsOf(id);if(side[id]!==undefined&&!ks.length)sh.push([id,side[id]]);if(!ks.length)return;let dirs;
+    if(n==1)dirs=ks.length==1?[0]:ks.length==2?[0,D90]:[0,D90,-D90];
+    else if(j>0&&j<n-1){const s=side[id]!==undefined?side[id]:sgn();dirs=ks.length==1?[s*D90]:[D90,-D90]}
+    else{const out=j==0?Math.PI:0,s=sgn();ks.sort((a,b)=>size(b,id)-size(a,id));dirs=ks.length==1?[out]:ks.length==2?[out,s*D90]:[out,D90,-D90]}
+    ks.forEach((k,q)=>placeKid(id,k,dirs[q],0))})}}
+ else{const ids=M.spine,n=ids.length,Rr=.5/Math.sin(Math.PI/n),a0=style=='x'?-D90:Math.random()*6.283;
+  ids.forEach((id,k)=>put(id,Rr*Math.cos(a0+2*Math.PI*k/n),Rr*Math.sin(a0+2*Math.PI*k/n)));const r=ringOf(ids[0]);done.add(r);centers.set(r,[0,0]);ringKids(r)}
+ if(P.some(p=>!p))return null;
+ // level the drawing: chain end-to-end horizontal
+ if(style=='z'&&M.stype=='chain'&&M.chain.length>1){const a=P[M.chain[0]],b=P[M.chain[M.chain.length-1]],ang=-Math.atan2(b[1]-a[1],b[0]-a[0]),cs=Math.cos(ang),sn=Math.sin(ang);
+  for(const p of P){const x=p[0],y=p[1];p[0]=x*cs-y*sn;p[1]=x*sn+y*cs}}
+ const G={A:P,B:M.bd.map(([a,b,o])=>[a,b,M.at[a].ar&&M.at[b].ar?1:o]),Xh:{},rg:new Set(),arom:[],sh};
+ M.at.forEach((a,i)=>{if(a.el!='C'){const h=M.hc(i);G.Xh[i]=a.el+(h>0?'H'+(h>1?'₂':''):'')}});
+ M.rings.forEach(r=>{r.ids.forEach(i=>G.rg.add(i));if(r.ar){const cx=r.ids.reduce((s,i)=>s+P[i][0],0)/6,cy=r.ids.reduce((s,i)=>s+P[i][1],0)/6,R0=Math.hypot(P[r.ids[0]][0]-cx,P[r.ids[0]][1]-cy);G.arom.push({cx,cy,r:R0*.62,R:R0,ids:r.ids})}});
+ return G}
+function layoutMol(m,M,style){for(let k=0;k<160;k++){let G;try{G=tryLayout(m,M,style)}catch(e){G=null}if(G&&okLayout(G,1)&&(style!='x'||hOK(G)))return G}return null}
+
+function okLayout(G,lv=0){const{A,B}=G,adj=A.map(()=>[]);B.forEach(([a,b])=>{adj[a].push(b);adj[b].push(a)});
+ for(let i=0;i<A.length;i++)for(let j=i+1;j<A.length;j++){if(adj[i].includes(j))continue;const d=Math.hypot(A[i][0]-A[j][0],A[i][1]-A[j][1]),near=adj[i].some(x=>adj[x].includes(j));if(d<(near?[1.05,1,.85][lv]:[1.5,1.2,.9][lv]))return false}
+ const o=(a,b,c)=>(b[0]-a[0])*(c[1]-a[1])-(b[1]-a[1])*(c[0]-a[0]),cr=(p,q,r,s)=>o(p,q,r)*o(p,q,s)<0&&o(r,s,p)*o(r,s,q)<0;
+ for(let x=0;x<B.length;x++)for(let y=x+1;y<B.length;y++){const[a,b]=B[x],[c,d]=B[y];if(a==c||a==d||b==c||b==d)continue;if(cr(A[a],A[b],A[c],A[d]))return false}
+ for(const[a,b]of B){const[x1,y1]=A[a],[x2,y2]=A[b],dx=x2-x1,dy=y2-y1,L2=dx*dx+dy*dy;for(let c=0;c<A.length;c++){if(c==a||c==b)continue;let t=((A[c][0]-x1)*dx+(A[c][1]-y1)*dy)/L2;t=Math.max(0,Math.min(1,t));if(Math.hypot(A[c][0]-(x1+t*dx),A[c][1]-(y1+t*dy))<.55)return false}}
+ for(const r of(G.arom||[])){for(let c=0;c<A.length;c++){if(r.ids.includes(c))continue;if(Math.hypot(A[c][0]-r.cx,A[c][1]-r.cy)<(r.R||1)+.35)return false}}
+ return true}
+// H sticks for the Lewis view: they continue the direction of the branch (end carbons: straight on + both sides)
+function hSticks(G){const{A,B}=G,rg=G.rg||new Set(),Xh=G.Xh||{},val=A.map(()=>0),ang=A.map(()=>[]),out=[],pre={};
+ B.forEach(([a,b,o])=>{val[a]+=o;val[b]+=o;ang[a].push(Math.atan2(A[b][1]-A[a][1],A[b][0]-A[a][0]));ang[b].push(Math.atan2(A[a][1]-A[b][1],A[a][0]-A[b][0]))});
+ (G.sh||[]).forEach(([i,s])=>{pre[i]=s});
+ const room=(i,a)=>{const x=A[i][0]+.55*Math.cos(a),y=A[i][1]+.55*Math.sin(a);let m=9;A.forEach((q,j)=>{if(j!=i)m=Math.min(m,Math.hypot(q[0]-x,q[1]-y))});return m};
+ A.forEach((p,i)=>{if(Xh[i]!==undefined||rg.has(i))return;const h=4-val[i];if(h<=0)return;const an=ang[i];let hs;
+  if(pre[i]!==undefined)hs=[pre[i]*D90];
+  else if(!an.length)hs=[0,D90,Math.PI,-D90];
+  else if(an.length==1){const d=an[0]+Math.PI;hs=h==3?[d,d+D90,d-D90]:h==2?[d+D60,d-D60]:[d]}
+  else if(an.length==2){const sx=Math.cos(an[0])+Math.cos(an[1]),sy=Math.sin(an[0])+Math.sin(an[1]);
+   if(Math.hypot(sx,sy)<.2){const pp=an[0]+D90;hs=h==2?[pp,pp+Math.PI]:[room(i,pp)>=room(i,pp+Math.PI)?pp:pp+Math.PI]}
+   else{const mid=Math.atan2(-sy,-sx);hs=h==2?[mid+D90/2,mid-D90/2]:[mid]}}
+  else{const s=an.slice().sort((x,y)=>x-y);let bg=-1,ba=0;for(let k=0;k<s.length;k++){const nx=k+1<s.length?s[k+1]:s[0]+2*Math.PI,g=nx-s[k];if(g>bg){bg=g;ba=s[k]+g/2}}hs=[ba]}
+  hs.slice(0,h).forEach(a=>out.push([p[0],p[1],p[0]+.55*Math.cos(a),p[1]+.55*Math.sin(a),i]))});
+ return out}
+function hOK(G){const{A,B}=G,hs=hSticks(G);
+ for(const[x1,y1,x2,y2,i]of hs){
+  for(let c=0;c<A.length;c++){if(c==i)continue;if(Math.hypot(A[c][0]-x2,A[c][1]-y2)<.6)return false}
+  for(const[a,b]of B){if(a==i||b==i)continue;const[ax,ay]=A[a],[bx,by]=A[b],dx=bx-ax,dy=by-ay,L2=dx*dx+dy*dy;let t=((x2-ax)*dx+(y2-ay)*dy)/L2;t=Math.max(0,Math.min(1,t));if(Math.hypot(x2-(ax+t*dx),y2-(ay+t*dy))<.35)return false}}
+ for(let a=0;a<hs.length;a++)for(let b=a+1;b<hs.length;b++)if(Math.hypot(hs[a][2]-hs[b][2],hs[a][3]-hs[b][3])<.35)return false;
+ return true}
+function draw(q){const lew=VIEW=='lewis',G=lew?q.lg:q.g,{A,B}=G,XH=G.Xh||{},rg=G.rg||new Set();
+ const LB=lew?A.map((_,i)=>[i,XH[i]||'C']).filter(([i])=>!rg.has(i)):Object.keys(XH).map(i=>[+i,XH[i]]);
+ const xs=A.map(a=>a[0]),ys=A.map(a=>a[1]),S=36,pd=28,mx=Math.min(...xs),my=Math.min(...ys);
+ const W=(Math.max(...xs)-mx)*S+2*pd,H=(Math.max(...ys)-my)*S+2*pd,X=v=>((v-mx)*S+pd).toFixed(1),Y=v=>((v-my)*S+pd).toFixed(1);let s='';
+ B.forEach(([a,b,o])=>{const[x1,y1]=A[a],[x2,y2]=A[b],L=Math.hypot(x2-x1,y2-y1),nx=-(y2-y1)/L,ny=(x2-x1)/L;
+  (o==1?[0]:o==2?[-.1,.1]:[-.16,0,.16]).forEach(f=>{s+=`<line x1="${X(x1+nx*f)}" y1="${Y(y1+ny*f)}" x2="${X(x2+nx*f)}" y2="${Y(y2+ny*f)}"/>`})});
+ const hs=lew?hSticks(G).map(h=>`<line x1="${X(h[0])}" y1="${Y(h[1])}" x2="${X(h[2])}" y2="${Y(h[3])}" stroke-width="2"/>`).join(''):'';
+ const circ=(G.arom||[]).map(o=>`<circle cx="${X(o.cx)}" cy="${Y(o.cy)}" r="${(o.r*S).toFixed(1)}" fill="none" stroke-width="2.2"/>`).join('');
+ const lab=LB.map(([i,t])=>`<circle cx="${X(A[i][0])}" cy="${Y(A[i][1])}" r="${t.length>2?15:t.length>1?13:10}" fill="var(--card)" stroke="none"/><text x="${X(A[i][0])}" y="${Y(A[i][1])}" text-anchor="middle" dominant-baseline="central" fill="currentColor" stroke="none" font-size="15" font-weight="600">${t}</text>`).join('');
+ return`<svg viewBox="0 0 ${W.toFixed(0)} ${H.toFixed(0)}" style="width:${Math.min(W*1.4,640)}px;max-width:100%;max-height:320px" stroke="currentColor" stroke-width="2.6" stroke-linecap="round">${s}${hs}${circ}${lab}</svg>`}
+/* ---------- wrong-answer feedback: show exactly which piece differs and one short reason ---------- */
+const LEX=['benzenoate','benzanoate','dioicacid','benzoicacid','benzenethiol','oicacid','benzene','benzen','phenol','phenyl','hydroxyl','sulfanyl','cyclo','fluoro','chloro','bromo','thiol','oate','acid','oic','hept','meth','prop','pent','tetra','penta','eth','but','hex','oct','non','dec','tri','di','ene','yne','ane','oxy','benzamide','amine','amide','amino','an','en','yn','yl','ol','one','al'].sort((a,b)=>b.length-a.length);
+const STEMS=ST.slice(1),SUFW=['ol','thiol','one','al','oicacid','dioicacid','oate','ene','yne','ane','benzoicacid','benzenoate','benzanoate','benzenethiol','phenol','benzene','amine','amide','benzamide'],BRW=['methyl','ethyl','propyl','butyl','pentyl','chloro','bromo','fluoro','hydroxyl','phenyl','oxy','amino'];
+function toks(s,orig){const out=[],O=[];const raw=String(s||'').replace(/\s+/g,'').replace(/[\u2010-\u2015\u2212]/g,'-'),t=raw.toLowerCase();let i=0;
+ const push=(j)=>{out.push(t.slice(i,j));O.push(raw.slice(i,j));i=j};
+ while(i<t.length){const ch=t[i];
+  if(/\d/.test(ch)){let j=i;while(j<t.length&&/\d/.test(t[j]))j++;push(j);continue}
+  if(/[a-z]/.test(ch)){const w=LEX.find(x=>t.startsWith(x,i));if(w){push(i+w.length);continue}}
+  push(i+1)}
+ return orig?O:out}
+function lcs(a,b){const n=a.length,m=b.length,T=Array.from({length:n+1},()=>new Array(m+1).fill(0));
+ for(let i=n-1;i>=0;i--)for(let j=m-1;j>=0;j--)T[i][j]=a[i]==b[j]?T[i+1][j+1]+1:Math.max(T[i+1][j],T[i][j+1]);
+ const ma=new Array(n).fill(false),mb=new Array(m).fill(false);let i=0,j=0;
+ while(i<n&&j<m){if(a[i]==b[j]){ma[i]=mb[j]=true;i++;j++}else if(T[i+1][j]>=T[i][j+1])i++;else j++}
+ return{ma,mb}}
+const isStem=t=>STEMS.includes(t),isNum=t=>/^\d+$/.test(t);
+function explain(q,raw){const nm=q.nm,Ut=toks(raw),cands=[nm.show,...(nm.alts||[])].map(t=>{const E=toks(t),r=lcs(E,Ut);return{t,E,r,sc:r.ma.filter(Boolean).length}}).sort((a,b)=>b.sc-a.sc),best=cands[0],target=best.t,E=best.E,me=best.r.ma,mu=best.r.mb;
+ const top={amine:'N (amine)',amide:'C=O bonded to N (amide)',COOH:'COOH (oicacid)',CHO:'CHO (al)','C=O':'C=O (one)','ether O':'ether O',OH:'OH (ol)',SH:'SH (thiol)','C=C/C≡C':'C=C / C≡C',C_C:'',branches:'branches',ester:'ester',C:''}[nm.top]||nm.top;
+ const numRule=nm.top=='amine'?'Number the parent so the C–N carbon is lowest. Groups on N with 3+ carbons also get the number of their C–N carbon (N-1-propyl, N-2-propyl).':nm.top=='amide'?'C1 is the C=O carbon. Groups on N with 3+ carbons get the number of their C–N carbon (N-2-propyl).':(nm.alts||[]).some(a=>/amine$/.test(a))&&/amine$/.test(target)?'Number so the C–N carbon is lowest (methyl/ethyl need no number; 3+ carbons do: 2-propylamine).':nm.fixed&&!nm.ring?(nm.ester?'Count the alcohol side from the carbon on the O; the acid side from the C=O carbon.':`C1 is the ${nm.top=='COOH'?'COOH':'CHO'} carbon.`):`Number from the end that gives ${KEYLBL[nm.why]||'the highest-priority group'} the lowest number.`;
+ const ei=me.findIndex(x=>!x),ui=mu.findIndex(x=>!x);
+ const why=(()=>{
+  if(!raw.trim())return'Skipped.';
+  const eT=ei>=0?E[ei]:null,uT=ui>=0?Ut[ui]:null;
+  // number dropping
+  const eNums=E.filter(isNum).length,uNums=Ut.filter(isNum).length;
+  if(nm.full&&!eNums&&uNums)return'No numbers here: every group can only go in one spot, so all numbers are dropped (No-number names).';
+  // nitrogen names
+  const nE=E.filter(t=>t=='n').length,nU=Ut.filter(t=>t=='n').length;
+  if((nm.top=='amine'||nm.top=='amide')&&nE!=nU)return nE>nU?`N-: every group on the nitrogen (except the parent) is written with "N-": ${nm.npre}. Two identical ones: N,N-di….`:'N-: only groups bonded to the nitrogen get "N-"; branches on the parent go in the bracket.';
+  if(nm.top=='amine'){const es=E.filter(isStem).pop(),us=Ut.filter(isStem).pop();if(es&&us&&es!=us)return`Parent: the longest group on the N is the parent (${nm.ring?'the ring':nm.n+' carbons'} → "${es}an…amine"); the other groups get N-.`}
+  if(nm.top=='amide'){const es=E.filter(isStem).pop(),us=Ut.filter(isStem).pop();if(es&&us&&es!=us&&!/benzamide/.test(target))return`Parent: the C=O side is the parent (${nm.n} carbons → "${es}anamide", the C=O carbon counts).`}
+  // OH as -ol vs hydroxyl
+  const eH=E.includes('hydroxyl'),uH=Ut.includes('hydroxyl'),eOl=E.includes('ol')||E.includes('phenol'),uOl=Ut.includes('ol');
+  if(eH&&!uH&&uOl)return`OH is a "hydroxyl" branch here because the ${top} outranks it. Only a lone OH gets "-ol".`;
+  if(eOl&&!eH&&uH)return'OH is the top group here, so the name ends in -ol (not a hydroxyl branch).';
+  // parent size
+  const lastStem=a=>{for(let i=a.length-1;i>=0;i--)if(isStem(a[i])&&!['yl','oxy'].includes(a[i+1]))return a[i];return null};
+  if(!nm.ester&&!nm.ring){const es=lastStem(E),us=lastStem(Ut);if(es&&us&&es!=us)return`Parent chain: the longest chain has ${nm.n} carbons → "${es}" (you used ${us}, ${ST.indexOf(us)}).`}
+  // the ending
+  const endW=a=>{for(let i=a.length-1;i>=0;i--)if(SUFW.includes(a[i]))return a[i];return null},ee=endW(E),ue=endW(Ut);
+  if(ee!=ue)return`Ending: the top group is the ${top}, so the name ends in "-${ee}". Lower groups go in brackets before it.`;
+  // an
+  if((eT=='an'||uT=='an')&&(nm.top=='amine'||nm.top=='amide'))return`Write the parent as "…an" + ${nm.top}: e.g. ethan${nm.top}, butan-2-amine.`;
+  if(eT=='an'||uT=='an'){const want=E.includes('an');return want?`Keep "an": there is no C=C or C≡C in the parent, so it is "${lastStem(E)||''}an".`:'Drop "an": the parent has a C=C or C≡C.'}
+  // branch words / multiplicity / order
+  const bw=a=>a.filter(t=>BRW.includes(t)||(isStem(t))).join(' ');
+  const ebr=E.filter(t=>BRW.includes(t)),ubr=Ut.filter(t=>BRW.includes(t));
+  if(ebr.slice().sort().join()!=ubr.slice().sort().join()||E.filter(t=>t=='di'||t=='tri').join()!=Ut.filter(t=>t=='di'||t=='tri').join())return'Branches: the set of branches is different — compare the highlighted part (repeated identical branches take di-/tri-).';
+  if(ebr.join()!=ubr.join())return'Order: list branches alphabetically, ignoring di-/tri- and anything in brackets.';
+  const stLen=toks((nm.show.match(/^(\([EZ]-\d+\)-)+/)||[''])[0]).length,uStLen=toks((raw.replace(/\s/g,'').match(/^(\([EZez]-?\d+\)-?)+/)||[''])[0]).length;
+  if((eT&&isNum(eT)&&ei>=stLen)||(uT&&isNum(uT)&&ui>=uStLen)){
+   const i=ei>=0&&isNum(E[ei])?ei:-1;let what='';if(i>=0){let k=i+1;while(k<E.length&&!/[a-z]/.test(E[k]))k++;if(['di','tri','tetra'].includes(E[k]))k++;while(k<E.length&&/^[a-z]+$/.test(E[k])){what+=E[k];k++}}
+   return`Numbers: ${what?`"${what}" goes on C${E[i]}. `:''}${numRule}`}
+  // stereo
+  const eSt=/^\([ez]-/.test(nzs(nm.show)),uSt=/^\([ez]-?\d/.test(nzs(raw));
+  if(eSt&&!uSt)return`E/Z: this C=C needs ${nm.show.match(/^(\([EZ]-\d+\)-?)+/)[0].replace(/-$/,'')} at the front. Same side of the main chain = Z, opposite = E.`;
+  if(!eSt&&uSt)return'E/Z: no E/Z here — that C=C is at the end of the chain or one of its carbons has two identical groups.';
+  if(eSt&&uSt&&nzs(raw).match(/^(\([ez]-?\d+\)-?)+/)[0].replace(/-/g,'')!=nzs(nm.show).match(/^(\([ez]-?\d+\)-?)+/)[0].replace(/-/g,''))return'E/Z: follow the main chain across the C=C — same side = Z, opposite sides = E.';
+  const ch=eT||uT;
+  if(ch=='-')return E[ei-1]==')'||Ut[ui-1]==')'?'Dash: a dash always follows ")" when the name keeps going, e.g. -(5-methyl)-decane.':'Dash: numbers are joined to words with a dash, e.g. 2-methyl, -(3-one)-.';
+  if((ch=='('||ch==')')&&(nm.top=='amine'||nm.top=='amide'||/amine$/.test(target)))return'Brackets: branches of the parent (or of an N-group) go in one bracket right before it — N-methyl-(5-bromo)pentanamide, N-1-(2-chloro)propyl.';
+  if(ch=='('||ch==')')return'Brackets: every lower-priority ending goes in ( ) — e.g. pentan-(3-one)-oicacid; the top group is last and bare.';
+  if(ch==',')return'Commas separate numbers of the same group: 2,3-dimethyl.';
+  if(isStem(ch))return'Branch size: count the carbons in the highlighted branch again.';
+  return'Spelling: compare the highlighted part.'})();
+ const show=(a,mk,cls)=>{let o='',run='';a.forEach((t,i)=>{if(mk[i]){if(run){o+=`<${cls}>${esc(run)}</${cls}>`;run=''}o+=esc(t)}else run+=t});if(run)o+=`<${cls}>${esc(run)}</${cls}>`;return o};
+ return{why,exp:show(toks(target,1),me,'mark'),got:raw.trim()?show(toks(raw,1),mu,'del'):'',also:[nm.show,...(nm.alts||[])].filter(x=>x!=target)}}
+/* ===================== Polymers & monomers (Lesson 8: 2.2 and 2.4) =====================
+ Everything here comes from the slides: addition polymers (polyethylene, polystyrene, polypropylene / poly(propene),
+ monomers with halogens or hydroxyl groups), condensation polymers (polyesters and polyamides, made either from two
+ monomers with the same two groups, or one monomer with both groups; water is released), dimers, nylon-66,
+ and the three stages of polymerization.                                                                       */
+
+/* ---------- drawing: expanded structures on one horizontal backbone ----------
+ node: {l:'C'|'CH₂'|'HO'|..., up:{l,dbl}|{ring:1}, dn:{l,dbl}|{ring:1}, d:2 (double bond to next node)} */
+const PW=ch=>ch.replace(/[₀-₉]/g,'').length*10.5+(/[₀-₉]/.test(ch)?7:0);
+function drawBackbone(nodes,o={}){const BL=30,S=[];let x=o.stubL||o.br?40:14;const pos=[];
+ nodes.forEach((nd,i)=>{const w=nd.bring?44:Math.max(12,PW(nd.l));pos.push({x:x+w/2,w});x+=w+BL});x-=BL;
+ const right=x,midY=70,line=(x1,y1,x2,y2,w=2.2)=>S.push(`<line x1="${x1.toFixed(1)}" y1="${y1}" x2="${x2.toFixed(1)}" y2="${y2}" stroke-width="${w}"/>`);
+ const txt=(x,y,t,sz=17)=>S.push(`<text x="${x.toFixed(1)}" y="${y}" text-anchor="middle" dominant-baseline="central" fill="currentColor" stroke="none" font-size="${sz}" font-weight="600">${t}</text>`);
+ let top=midY-14,bot=midY+14;
+ nodes.forEach((nd,i)=>{const p=pos[i];
+  if(nd.bring){let d='';for(let k=0;k<6;k++){const a=k*Math.PI/3;d+=(k?'L':'M')+(p.x+22*Math.cos(a)).toFixed(1)+' '+(midY+22*Math.sin(a)).toFixed(1)}S.push(`<path d="${d}Z" fill="none" stroke-width="2.2"/>`);top=Math.min(top,midY-21);bot=Math.max(bot,midY+21)}
+  else txt(p.x,midY,nd.l);
+  if(i<nodes.length-1){const q=pos[i+1],x1=p.x+p.w/2+(nd.bring?0:4),x2=q.x-q.w/2-(nodes[i+1].bring?0:4);if(nd.d==2){line(x1,midY-3.5,x2,midY-3.5);line(x1,midY+3.5,x2,midY+3.5)}else line(x1,midY,x2,midY)}
+  for(const[att,sg]of[[nd.up,-1],[nd.dn,1]]){if(!att)continue;
+   if(att.ring){const cy=midY+sg*(14+24+21),R=21;line(p.x,midY+sg*12,p.x,midY+sg*38);let d='';for(let k=0;k<6;k++){const a=Math.PI/2+k*Math.PI/3;d+=(k?'L':'M')+(p.x+R*Math.cos(a)).toFixed(1)+' '+(cy+R*Math.sin(a)).toFixed(1)}
+    S.push(`<path d="${d}Z" fill="none" stroke-width="2.2"/><circle cx="${p.x}" cy="${cy}" r="${R*.6}" fill="none" stroke-width="2"/>`);
+    if(sg<0)top=Math.min(top,cy-R);else bot=Math.max(bot,cy+R);continue}
+   const y2=midY+sg*44;if(att.dbl){line(p.x-3.5,midY+sg*12,p.x-3.5,y2-sg*11);line(p.x+3.5,midY+sg*12,p.x+3.5,y2-sg*11)}else line(p.x,midY+sg*12,p.x,y2-sg*11);
+   txt(p.x,y2,att.l);if(sg<0)top=Math.min(top,y2-12);else bot=Math.max(bot,y2+12)}});
+ const L=pos[0].x-pos[0].w/2,Rr=pos[nodes.length-1].x+pos[nodes.length-1].w/2,gL=nodes[0].bring?0:4,gR=nodes[nodes.length-1].bring?0:4;
+ if(o.stubL||o.br)line(L-34,midY,L-gL,midY);if(o.stubR||o.br)line(Rr+gR,midY,Rr+34,midY);
+ let W=Rr+(o.stubR||o.br?40:14);
+ if(o.br){const h=Math.max(midY-top,bot-midY)+6,bx1=L-19,bx2=Rr+19;
+  S.push(`<path d="M${bx1+7} ${midY-h}H${bx1}V${midY+h}H${bx1+7}" fill="none" stroke-width="2.2"/><path d="M${bx2-7} ${midY-h}H${bx2}V${midY+h}H${bx2-7}" fill="none" stroke-width="2.2"/>`);
+  txt(bx2+10,midY+h,'n',15);W=Math.max(W,bx2+20);top=Math.min(top,midY-h);bot=Math.max(bot,midY+h+8)}
+ const vbY=top-10,H=bot-top+20;
+ return`<svg viewBox="0 ${vbY} ${W.toFixed(0)} ${H}" style="width:${Math.min(W*(o.scale||1.15),o.max||620).toFixed(0)}px;max-width:100%" stroke="currentColor" stroke-linecap="round">${S.join('')}</svg>`}
+const plus=`<span class="pplus">+</span>`;
+const picRow=(...svgs)=>`<div class="prow">${svgs.join(plus)}</div>`;
+
+/* ---------- structures ---------- */
+const XS={H:{l:'H',nm:'ethylene',poly:['polyethylene'],mono:['ethylene','ethene']},CH3:{l:'CH₃',nm:'propene',poly:['polypropylene','poly(propene)'],mono:['propene']},Ph:{ring:1,nm:'styrene',poly:['polystyrene'],mono:['styrene']},
+ Cl:{l:'Cl'},F:{l:'F'},Br:{l:'Br'},OH:{l:'OH'},COOH:{l:'COOH'}};
+const NAMED=['H','CH3','Ph'];
+const att=k=>XS[k].ring?{ring:1}:{l:XS[k].l};
+function addMonomer(k,up){return drawBackbone([{l:'C',up:{l:'H'},dn:{l:'H'},d:2},up?{l:'C',up:att(k),dn:{l:'H'}}:{l:'C',up:{l:'H'},dn:att(k)}])}
+function addUnit(k,up,o={}){const c2=up?{l:'C',up:att(k),dn:{l:'H'}}:{l:'C',up:{l:'H'},dn:att(k)};
+ if(o.keepDbl)return drawBackbone([{l:'C',up:{l:'H'},d:2},{l:'C',...(up?{up:att(k)}:{dn:att(k)})}],{br:1});
+ if(o.both){const cx=up?{l:'C',up:att(k),dn:{l:'H'}}:{l:'C',up:{l:'H'},dn:att(k)};return drawBackbone([cx,{...cx}],{br:1})}
+ return drawBackbone([{l:'C',up:{l:'H'},dn:{l:'H'}},c2],{br:1})}
+function addSegment(k,up,units=3){const ns=[];for(let i=0;i<units;i++){ns.push({l:'C',up:{l:'H'},dn:{l:'H'}});ns.push(up?{l:'C',up:att(k),dn:{l:'H'}}:{l:'C',up:{l:'H'},dn:att(k)})}return drawBackbone(ns,{stubL:1,stubR:1,max:640})}
+// sat: the monomer drawn without its C=C (a common wrong answer)
+function satMonomer(k,up){return drawBackbone([{l:'C',up:{l:'H'},dn:{l:'H'}},up?{l:'C',up:att(k),dn:{l:'H'}}:{l:'C',up:{l:'H'},dn:att(k)}],{stubL:0})}
+
+// condensation monomers are written as piece tokens (see PIECES); c = {kind:'two'|'one', link:'ester'|'amide'|'mixed', A, B, mids}
+function randCond(D){D=D||CFGP.d||1;const ch=(arr)=>pick(arr);
+ const mid=(lo,hi,extra)=>{const n=R(lo,hi),o=[];for(let i=0;i<n;i++)o.push(D>=2&&chance(.3)?ch(extra):'CH2');return o};
+ const ex2=['CHM','CHCl','CHCH'],ex1=['CHM'];
+ if(chance(D>=2?.55:.6)){let link=chance(.5)?'ester':'amide';if(D>=3&&chance(.45))link='mixed';
+  let A=mid(D==1?0:1,D==1?3:4,ex2),B=mid(2,D==1?4:5,ex2);
+  if(D>=3){if(chance(.5))B=chance(.5)?['RING']:['CH2','RING'];else if(chance(.5))A=chance(.5)?['RING']:['CH2','RING','CH2']}
+  if(D>=2&&A.every(t=>t=='CH2')&&B.every(t=>t=='CH2')){if(chance(.5))A[R(0,A.length-1)]=ch(ex2);else if(A.length)B[R(0,B.length-1)]=ch(ex2)}
+  return{kind:'two',link,A,B}}
+ const link=chance(.5)?'ester':'amide',m1=D==1?[chance(.5)?'CHM':'CH2']:mid(1,D>=3?3:2,D>=3?['CHM','CHCl','RING']:['CHM','CHCl']);
+ if(D>=2&&chance(.4)){let m2=D==1?['CH2']:mid(1,2,['CHM','CHCl']);if(m2.join()==m1.join())m2=m1.length>1?['CH2']:[m1[0]=='CH2'?'CHM':'CH2'];return{kind:'one',link,mids:[m1,m2]}}
+ return{kind:'one',link,mids:[m1]}}
+const linkPair=c=>c.link=='ester'?['O','O']:c.link=='amide'?['NH','NH']:['O','NH'];
+const endPair=c=>c.link=='ester'?['OH','OH']:c.link=='amide'?['NH2','NH2']:['OH','NH2'];
+function unitSeq(c){const[L1,L2]=linkPair(c);if(c.kind=='two')return['CO',...c.A,'CO',L1,...c.B,L2];
+ const L=c.link=='ester'?'O':'NH';return c.mids.flatMap(m=>[L,...m,'CO'])}
+function monoSeqs(c){const[E1,E2]=endPair(c);if(c.kind=='two')return[['OH','CO',...c.A,'CO','OH'],[E1,...c.B,E2]];
+ const E=c.link=='ester'?'OH':'NH2';return c.mids.map(m=>[E,...m,'CO','OH'])}
+const tokNodes=seq=>seq.map(p=>PIECES[p].n);
+// draw left ends as HO– / H₂N– and right ends as –OH / –NH₂, like the slides
+const ends=seq=>seq.map((p,i)=>i==0&&p=='OH'?'HO':i==0&&p=='NH2'?'H2N':i==seq.length-1&&p=='HO'?'OH':i==seq.length-1&&p=='H2N'?'NH2':p);
+const condUnit=c=>drawBackbone(tokNodes(unitSeq(c)),{br:1});
+const condMonomers=c=>{const ms=monoSeqs(c).map(ends);return ms.length==1?drawBackbone(tokNodes(ms[0])):picRow(...ms.map(m=>drawBackbone(tokNodes(m))))};
+const many=c=>c.kind=='two'||c.mids.length>1;
+const linkWord=c=>c.link=='mixed'?'ester and amide':c.link;
+
+/* ---------- question bank ---------- */
+function shuffle(a){for(let i=a.length-1;i>0;i--){const j=R(0,i);[a[i],a[j]]=[a[j],a[i]]}return a}
+// give every picture answer the same scale, so a shorter drawing can't stand out by size
+function sameScale(opts){const vw=o=>+(/viewBox="0 [^ ]+ ([\d.]+)/.exec(o.svg)||[0,0])[1],W=Math.max(...opts.filter(o=>o.svg&&o.svg.startsWith('<svg')).map(vw),1);
+ return opts.map(o=>o.svg&&o.svg.startsWith('<svg')?{...o,svg:o.svg.replace(/style="width:[^;]+;max-width:100%"/,`style="width:${(vw(o)/W*100*0.86).toFixed(1)}%;max-width:${Math.round(vw(o)*1.15)}px"`)}:o)}
+const mc=(prompt,pic,opts,why,tag)=>({kind:'poly',prompt,pic,opts:shuffle(sameScale(opts.map((o,i)=>({...o,ok:i==0})))),why,tag});
+const T=(text)=>({text});
+const D=(svg)=>({svg});
+/* ---------- build-it-yourself tasks ----------
+ Addition: the student sets the groups on both carbons and the C–C bond (click to change).
+ Condensation: the student strings together pieces (C=O, CH₂, O, NH …) to make the repeating unit or the monomers. */
+const GK=['H','CH3','Cl','F','Br','OH','Ph','COOH'];
+const glab=k=>k=='Ph'?'C₆H₅':XS[k].l;
+// a monomer CH₂=CH–X, or (harder) a second group on the other carbon or the same carbon
+function randAddMono(){const D=CFGP.d||1,xs=['CH3','Cl','F','Br','OH','Ph'].concat(D>=3?['COOH']:[]),x=pick(xs),c1=['H','H'],c2=['H',x];
+ if(D==2&&chance(.5)||D>=3){const y=pick(['CH3','Cl','F','Br','OH'].concat(D>=3?['COOH']:[]));if(chance(.5))c1[1]=y;else c2[0]=y}
+ return{c1:shuffle(c1),c2:shuffle(c2)}}
+const sameCarbons=(a,b)=>{const k=c=>c.slice().sort().join();return(k(a.c1)==k(b.c1)&&k(a.c2)==k(b.c2))||(k(a.c1)==k(b.c2)&&k(a.c2)==k(b.c1))};
+const addNodes=(m,bond)=>[{l:'C',up:att2(m.c1[0]),dn:att2(m.c1[1]),d:bond},{l:'C',up:att2(m.c2[0]),dn:att2(m.c2[1])}];
+const att2=k=>k=='Ph'?{ring:1}:{l:XS[k].l};
+function addSeg(m,units){const ns=[];for(let i=0;i<units;i++)ns.push(...addNodes(m,1).map(x=>({...x,d:1})));return drawBackbone(ns,{stubL:1,stubR:1,max:660})}
+// the clickable builder for addition tasks
+function addBuilder(st,unit){const X0=unit?95:60,X1=X0+90,Y=95,S=[];const t=(x,y,s,f=18)=>S.push(`<text x="${x}" y="${y}" text-anchor="middle" dominant-baseline="central" font-size="${f}" font-weight="700" fill="currentColor" stroke="none">${s}</text>`);
+ const slot=(key,x,dir)=>{const k=st[key],y=Y+dir*52;S.push(`<line x1="${x}" y1="${Y+dir*13}" x2="${x}" y2="${Y+dir*36}" stroke-width="2.4"/>`);
+  S.push(`<g class="bslot" onclick="bSet('${key}')"><rect x="${x-30}" y="${y-20}" width="60" height="40" rx="9"/>`);
+  if(k=='Ph'){const R=13;let d='';for(let i=0;i<6;i++){const a=Math.PI/2+i*Math.PI/3;d+=(i?'L':'M')+(x+R*Math.cos(a)).toFixed(1)+' '+(y+R*Math.sin(a)).toFixed(1)}S.push(`<path d="${d}Z" fill="none" stroke-width="2"/><circle cx="${x}" cy="${y}" r="7" fill="none" stroke-width="1.6"/>`)}
+  else t(x,y,glab(k));S.push('</g>')};
+ t(X0,Y,'C',20);t(X1,Y,'C',20);
+ S.push(`<g class="bslot" onclick="bSet('bond')"><rect x="${X0+15}" y="${Y-17}" width="${X1-X0-30}" height="34" rx="8"/>`);
+ if(st.bond==2){S.push(`<line x1="${X0+14}" y1="${Y-4}" x2="${X1-14}" y2="${Y-4}" stroke-width="2.4"/><line x1="${X0+14}" y1="${Y+4}" x2="${X1-14}" y2="${Y+4}" stroke-width="2.4"/>`)}else S.push(`<line x1="${X0+14}" y1="${Y}" x2="${X1-14}" y2="${Y}" stroke-width="2.4"/>`);S.push('</g>');
+ slot('c1u',X0,-1);slot('c1d',X0,1);slot('c2u',X1,-1);slot('c2d',X1,1);
+ let W=X1+60;
+ if(unit){S.push(`<line x1="${X0-50}" y1="${Y}" x2="${X0-13}" y2="${Y}" stroke-width="2.4"/><line x1="${X1+13}" y1="${Y}" x2="${X1+50}" y2="${Y}" stroke-width="2.4"/>`);
+  S.push(`<path d="M${X0-26} 20H${X0-34}V170H${X0-26}M${X1+26} 20H${X1+34}V170H${X1+26}" fill="none" stroke-width="2.4"/>`);t(X1+44,172,'n',15);W=X1+70}
+ return`<svg viewBox="0 0 ${W} 190" style="width:${W*1.2}px;max-width:100%" stroke="currentColor" stroke-linecap="round">${S.join('')}</svg>`}
+
+// pieces for condensation builders
+const PIECES={CO:{n:{l:'C',up:{l:'O',dbl:1}},b:'C=O'},CH2:{n:{l:'CH₂'},b:'CH₂'},CHM:{n:{l:'CH',dn:{l:'CH₃'}},b:'CH(CH₃)'},CHCl:{n:{l:'CH',dn:{l:'Cl'}},b:'CH(Cl)'},CHCH:{n:{l:'CH=CH'},b:'CH=CH'},RING:{n:{bring:1},b:'⬡ ring'},CH2CH:{n:{l:'CH₂=CH'},b:'CH₂=CH'},CH3:{n:{l:'CH₃'},b:'CH₃'},O:{n:{l:'O'},b:'O'},NH:{n:{l:'N',dn:{l:'H'}},b:'NH'},
+ HO:{n:{l:'HO'},b:'HO'},OH:{n:{l:'OH'},b:'OH'},H2N:{n:{l:'H₂N'},b:'H₂N'},NH2:{n:{l:'NH₂'},b:'NH₂'},H:{n:{l:'H'},b:'H'}};
+const normP=p=>p=='HO'?'OH':p=='H2N'?'NH2':p;
+const sameUnit=(u,v)=>{if(u.length!=v.length)return false;const k=v.join(),r=v.slice().reverse().join();for(let i=0;i<u.length;i++){const x=u.slice(i).concat(u.slice(0,i)).join();if(x==k||x==r)return true}return false};
+const sameMonos=(got,want)=>{const key=m=>{const a=m.map(normP).join(),b=m.map(normP).reverse().join();return a<b?a:b};const g=[...new Set(got.filter(m=>m.length).map(key))].sort(),w=[...new Set(want.map(key))].sort();return g.join('|')==w.join('|')};
+function seqDraw(seq,unit){if(!seq.length)return`<p class="mono" style="margin:30px 0">Tap the pieces below to build it.</p>`;
+ if(unit)return drawBackbone(seq.map(p=>PIECES[p].n),{br:1});
+ const ms=[[]];seq.forEach(p=>p=='+'?ms.push([]):ms[ms.length-1].push(p));
+ return picRow(...ms.map(m=>m.length?drawBackbone(m.map(p=>PIECES[p].n)):'<span class="mono">…</span>'))}
+
+const PQ={
+ // addition: monomer -> repeating unit
+ buildAddUnit(){const m=randAddMono();return{kind:'poly',build:'add',unit:1,m,prompt:'Build the repeating unit of the polymer this monomer makes. Tap a group or the C–C bond to change it.',pic:drawBackbone(addNodes(m,2)),
+  start:{c1u:'H',c1d:'H',c2u:'H',c2d:'H',bond:2},answer:drawBackbone(addNodes(m,1),{br:1}),tag:'add'}},
+ // addition: polymer -> monomer
+ buildAddMono(){const m=randAddMono();return{kind:'poly',build:'add',unit:0,m,prompt:'Build the monomer that made this polymer. Tap a group or the C–C bond to change it.',pic:addSeg(m,3),
+  start:{c1u:'H',c1d:'H',c2u:'H',c2d:'H',bond:1},answer:drawBackbone(addNodes(m,2)),tag:'add'}},
+ // condensation: monomers -> repeating unit
+ buildCondUnit(){const c=randCond();return{kind:'poly',build:'seq',unit:1,c,prompt:`Build the repeating unit of the polymer ${many(c)?'these monomers make':'this monomer makes'}.`,pic:condMonomers(c),
+  pal:palette(1),answer:condUnit(c),tag:'cond'}},
+ // condensation: repeating unit -> monomers
+ buildCondMono(){const c=randCond();return{kind:'poly',build:'seq',unit:0,c,prompt:'Build the monomer(s) that made this polymer. Use “+ new monomer” to start a second one.',pic:condUnit(c),
+  pal:palette(0),answer:condMonomers(c),tag:'cond'}},
+ // board-style: two monomers react ONCE (hard)
+ buildDimer(){const start=pick(['CH3','CH2CH']),m1=[start,...(chance(.6)?['CHCl']:['CHM']),...(chance(.4)?['CH2']:[])],m2mid=pick([['RING'],['CH2','CH2'],['CH2','RING'],['CHM','CH2']]);
+  const ends0=chance(.6)?['OH','NH2']:chance(.5)?['OH','OH']:['NH2','NH2'];const A=[...m1,'CO','OH'],Bm=[ends0[0],...m2mid,ends0[1]];
+  const prods=[];[0,1].forEach(e=>{const end=Bm[e?Bm.length-1:0],link=end=='OH'?'O':'NH',rest=e?Bm.slice(0,-1).reverse():Bm.slice(1);prods.push([...m1,'CO',link,...rest])});
+  return{kind:'poly',build:'seq',unit:0,single:1,prods,prompt:'These two react ONCE (one condensation, one H₂O lost). Build the product.',pic:picRow(drawBackbone(tokNodes(ends(A))),drawBackbone(tokNodes(ends(Bm)))),
+   pal:['CH3','CH2CH','CH2','CHM','CHCl','RING','CO','O','NH','OH','NH2','H2N','HO'],answer:drawBackbone(tokNodes(ends(prods[ends0[0]=='OH'?0:1])))+(ends0[0]!=ends0[1]?'<p class="hint">(Joining at the NH₂ instead, to make an amide, is also accepted.)</p>':''),tag:'cond'}},
+ // classify a repeating unit (typed)
+ classify(){if(chance(.4)){const m=randAddMono();return{kind:'poly',prompt:'What type of polymer is this? Type addition, polyester or polyamide.',pic:drawBackbone(addNodes(m,1),{br:1}),typed:['addition','additionpolymer'],why:'Only C–C single bonds in the backbone, from a monomer with a C=C → addition polymer.',tag:'add'}}
+  let c=randCond();while(c.link=='mixed')c=randCond();return{kind:'poly',prompt:'What type of polymer is this? Type addition, polyester or polyamide.',pic:condUnit(c),typed:c.link=='ester'?['polyester']:['polyamide'],why:c.link=='ester'?'The links are –C(=O)–O– (esters) → polyester (condensation).':'The links are –C(=O)–NH– (amides) → polyamide (condensation).',tag:'cond'}},
+ // counting patterns (typed numbers)
+ water(){const c=randCond(),two=many(c),n=R(3,12)*(two?2:1),txt=two?`${n} monomers (${n/2} of each)`:`${n} of these monomers`;
+  return{kind:'poly',prompt:`If ${txt} join into one straight chain, how many water molecules are released?`,pic:condMonomers(c),typed:[String(n-1)],why:`Every new link releases one H₂O. ${n} monomers in a chain have ${n-1} links → ${n-1} H₂O.`,tag:'cond'}},
+ bonds(){const m=randAddMono(),n=R(4,60);return{kind:'poly',prompt:`${n} of these monomers join into one addition polymer chain. How many C=C double bonds are broken?`,pic:drawBackbone(addNodes(m,2)),typed:[String(n)],why:`Each monomer's C=C breaks once when it joins, so ${n} monomers → ${n} broken.`,tag:'add'}},
+ count(){const m=randAddMono(),u=R(2,4);return{kind:'poly',prompt:'How many monomers made this piece of the chain?',pic:addSeg(m,u),typed:[String(u)],why:`Each monomer gives 2 backbone carbons: ${2*u} carbons → ${u} monomers.`,tag:'add'}},
+ links(){const c=randCond(),two=many(c),n=R(2,4)*(two?2:1);
+  return{kind:'poly',prompt:`How many ${c.link=='mixed'?'links (ester + amide together)':c.link+' links'} are in a chain made from ${n} of these monomers${two?' (half of each)':''}?`,pic:condMonomers(c),typed:[String(n-1)],why:`Each link joins two monomers: ${n} monomers in a chain → ${n-1} links.`,tag:'cond'}},
+};
+const CONCEPTS=[
+ ['A polymer is…',['A very large molecule made of many repeating subunits (monomers)','A small molecule with one functional group','Two molecules joined by a C=C','A molecule that contains nitrogen'],'Polymer = very large molecule of many repeating monomers (polymerization).'],
+ ['Monomers are…',['Small molecules, similar in structure, linked together to form a polymer','Very large molecules made of repeating subunits','The water released in condensation','The brackets drawn around a repeating unit'],'Monomers are the small, similar molecules that link into a polymer.'],
+ ['In an addition polymer, what happens to the double bonds of the monomers?',['They are broken','They stay as double bonds','They become triple bonds','They react with water'],'Addition polymer: monomers contain double bonds, which break when the monomers join.'],
+ ['Condensation polymers mostly form…',['Esters or amides','Alkenes or alkynes','Ethers or ketones','Aldehydes'],'Condensation polymers form from condensation reactions — mostly esters or amides.'],
+ ['What is a dimer (in polymers)?',['A monomer that contains two functional groups (the same or different)','A polymer made of exactly two monomers','A monomer with a C=C','Two polymers joined together'],'Dimers are monomers containing two functional groups, either the same or different.'],
+ ['How can a polyester form?',['A dicarboxylic acid + a dialcohol, or one monomer with both a COOH and an OH','Only from monomers with C=C','A dicarboxylic acid + a diamine only','Two alcohols joining'],'Polyesters: two different dimers (2 × COOH + 2 × OH), or one monomer with both groups.'],
+ ['How can a polyamide form?',['A dicarboxylic acid + a diamine, or one monomer with both a COOH and an NH₂','A dicarboxylic acid + a dialcohol','Breaking the C=C of an amine','Only from amino groups'],'Polyamides form the same two ways as polyesters, with NH₂ in place of OH.'],
+ ['To simplify a polymer structure we draw…',['One or two monomers joined together, in brackets with n','Every single monomer','Only the functional groups','The monomer with its C=C'],'We draw either one or two monomers joined together.'],
+ ['Adding functional groups (like halogens or hydroxyl groups) to the monomers changes…',['The polarity, and so the strength of the polymer','Nothing about the polymer','Only the colour','The number of carbons in the backbone'],'Functional groups change polarity, and thus the strength of the polymer.'],
+ ['When branches are added to a polymer, its properties change because of…',['The strength of the dipole of the branches (intermolecular forces)','The number of brackets','The type of reaction only','The letter n'],'It depends on the strength of the dipole of the branches and thus the intermolecular forces.'],
+ ['What are the three stages of polymerization, in order?',['Initiation → Propagation → Termination','Propagation → Initiation → Termination','Initiation → Termination → Propagation','Termination → Propagation → Initiation'],'Initiation starts it, propagation lengthens the chain, termination ends it.'],
+ ['Initiation is…',['The chemical trigger that starts the reaction of bonding the monomers together','The process of lengthening the polymer chain','The chemical trigger that ends the lengthening','The release of water'],'Initiation = the trigger that starts the bonding of monomers.'],
+ ['Propagation is…',['The process of lengthening the polymer chain','The chemical trigger that starts the reaction','The chemical trigger that ends the reaction','Breaking the polymer into monomers'],'Propagation = lengthening the polymer chain.'],
+ ['Termination is…',['The chemical trigger that ends the lengthening of the polymer chain','The process of lengthening the chain','The trigger that starts the reaction','Adding a functional group'],'Termination = the trigger that ends the lengthening.'],
+];
+function conceptQ(){const[q,opts,why]=pick(CONCEPTS);return mc(q,'',opts.map(T),why,'conc')}
+let CFGP={add:1,cond:1,conc:1,d:1};try{const x=JSON.parse(localStorage.getItem('nth_poly')||'null');if(x)CFGP={...CFGP,...x}}catch(e){}
+const savePoly=()=>{try{localStorage.setItem('nth_poly',JSON.stringify(CFGP))}catch(e){}};
+function genPoly(){const pool=[],w=(k,n)=>{for(let i=0;i<n;i++)pool.push(PQ[k])};
+ if(CFGP.add){w('buildAddUnit',3);w('buildAddMono',3);w('bonds',1);w('count',1)}
+ if(CFGP.cond){w('buildCondUnit',4);w('buildCondMono',4);w('water',1);w('links',1);if((CFGP.d||1)>=3)w('buildDimer',3)}
+ if(CFGP.add||CFGP.cond)w('classify',2);
+ if(CFGP.conc)pool.push(conceptQ,conceptQ);
+ if(!pool.length)pool.push(conceptQ);
+ const q=pick(pool)();q.id=q.prompt+(q.pic||'').length+Math.random();return q}
+// grading a build, with one short reason when it's wrong
+function checkBuild(q,st){
+ if(q.build=='add'){const got={c1:[st.c1u,st.c1d],c2:[st.c2u,st.c2d]};
+  if(q.unit&&st.bond==2)return'The C=C breaks when monomers join: in the polymer the two carbons are joined by a single bond.';
+  if(!q.unit&&st.bond==1)return'The monomer still has its C=C — the double bond only breaks when it joins the polymer.';
+  if(!sameCarbons(got,q.m))return'Each carbon keeps exactly the groups it had in the monomer — compare them carbon by carbon.';
+  return null}
+ const seq=st.seq;
+ if(q.single){const one=seq.filter(p=>p!='+');if(seq.includes('+'))return'The product is ONE molecule — the two monomers are joined, so don’t use “+”.';
+  if(q.prods.some(p=>sameMonos([one],[p])))return null;
+  if(one.some(p=>p=='OH'||p=='HO')&&one.filter(p=>p=='OH'||p=='HO').length>(q.prods[0].filter(p=>p=='OH').length))return'The COOH loses its –OH and the other monomer loses an H — that H₂O leaves, it is not in the product.';
+  if(!one.includes('O')&&!one.includes('NH'))return'The new link is –C(=O)–O– (with an OH) or –C(=O)–NH– (with an NH₂).';
+  return'Keep everything else on both monomers (the C=C, Cl, ring …) exactly as it was — only the H₂O leaves.'}
+ if(q.unit){const want=unitSeq(q.c),[L1,L2]=linkPair(q.c);
+  if(sameUnit(seq,want))return null;
+  if(seq.some(p=>['OH','HO','H','NH2','H2N'].includes(p)))return'Water is removed at every link, so no –OH, –H or –NH₂ ends stay inside the repeating unit.';
+  if(q.c.link=='ester'&&seq.includes('NH'))return'COOH + OH makes an ester link: –C(=O)–O–.';
+  if(q.c.link=='amide'&&seq.includes('O'))return'COOH + NH₂ makes an amide link: –C(=O)–NH–.';
+  if(q.c.link=='mixed'&&!(seq.includes('O')&&seq.includes('NH')))return'The second monomer has an OH and an NH₂, so the unit has one ester link (–O–) and one amide link (–NH–).';
+  if(seq.length<want.length)return many(q.c)?'The repeating unit must contain one of each monomer.':'Something is missing — every atom of the monomer except the water stays in the unit.';
+  if(seq.length>want.length)return'Too many pieces — the repeating unit is just one of each monomer, minus the water.';
+  return'The pieces are right but the order isn\'t — follow each monomer’s chain and join each C=O to the O / NH of the next monomer.'}
+ const got=[[]];seq.forEach(p=>p=='+'?got.push([]):got[got.length-1].push(p));const want=monoSeqs(q.c);
+ if(sameMonos(got,want))return null;
+ if(seq.some(p=>p=='O'||p=='NH'))return'Split every link: put the water back — the C=O gets its –OH back and the O / NH gets its H back (–OH / –NH₂).';
+ if(got.filter(m=>m.length).length<new Set(want.map(m=>m.join())).size)return'This polymer came from two different monomers — use “+ new monomer” for the second one.';
+ return'Each monomer must end in its two functional groups (COOH, OH or NH₂) with its own chain (CH₂, CH(Cl), ring …) in between.'}
+function palette(unit){const D=CFGP.d||1,base=['CO','CH2','CHM'].concat(D>=2?['CHCl','CHCH']:[],D>=3?['RING']:[]);
+ return unit?base.concat(['O','NH','OH','H']):['HO','OH','H2N','NH2'].concat(base,['O','NH'])}
+/* ===================== Reaction sequencing (start from ethene, unlimited materials) =====================
+ Reactions are exactly the ones on the board / quizzes / Lesson 7:
+  Addition to C=C:  + H₂ · + HCl / HBr · + Cl₂ / Br₂ · + H₂O · + NH₃
+  Substitution:     R–X + H₂O → R–OH + HX · R–X + NH₃ → R–NH₂ + HX
+  Oxidation [O]:    1° alcohol → aldehyde → carboxylic acid · 2° alcohol → ketone (then nothing)
+  Swap an H (– H₂): C–H + NH₃ → C–NH₂ + H₂ · C–H + H₂O → C–OH + H₂
+  Join (– H₂):      two chains joined end to end (3 ethane → hexane + 2H₂, acid + ethene → longer acid + H₂)
+  Ring closing (– H₂): hexane → cyclohexane + H₂
+  Condensation (– H₂O): acid + alcohol → ester · acid + amine / NH₃ → amide · alcohol + ethanol → ether
+ A molecule L = {t:'chain'|'ring', n, bo:[bond orders], g:[[groups on each carbon]]}; groups: F Cl Br OH NH2 O(=O) OEt */
+const GV={F:1,Cl:1,Br:1,OH:1,NH2:1,O:2,OEt:1};
+const Lc=L=>JSON.parse(JSON.stringify(L));
+const nbrs=(L,i)=>{const o=[];if(L.t=='ring'){const n=L.n;o.push([(i+n-1)%n,L.bo[(i+n-1)%n]],[(i+1)%n,L.bo[i]])}else{if(i>0)o.push([i-1,L.bo[i-1]]);if(i<L.n-1)o.push([i+1,L.bo[i]])}return o};
+const Hc=(L,i)=>4-nbrs(L,i).reduce((s,x)=>s+x[1],0)-L.g[i].reduce((s,x)=>s+GV[x],0);
+const isAcidC=(L,i)=>L.g[i].includes('O')&&L.g[i].includes('OH');
+const isCarbonyl=(L,i)=>L.g[i].includes('O');
+const ETHENE={t:'chain',n:2,bo:[2],g:[[],[]]};
+const ETHANOL_KEYS=new Set();
+
+// L -> naming spec (null when the classroom rules don't cover it, or an E/Z would be undecided)
+function toSpec(L){const n=L.n,hal=x=>['F','Cl','Br'].includes(x);
+ for(let i=0;i<n;i++){const g=L.g[i];if(Hc(L,i)<0)return null;const het=g.filter(x=>x!='O'&&x!='OH').length,hal=g.filter(x=>['F','Cl','Br'].includes(x)).length;
+  if(g.includes('O')&&het)return null;if(hal&&g.some(x=>x=='OH'||x=='NH2'||x=='OEt'))return null;if(g.includes('OH')&&nbrs(L,i).some(x=>x[1]>1))return null;if(g.filter(x=>x=='OH'||x=='NH2'||x=='OEt').length>(isAcidC(L,i)?2:1))return null;if(g.filter(x=>x=='O').length>1)return null}
+ if(L.t=='ring'){if(n<3||n>8)return null;const m={kind:'ring',r:n,ar:false,ene:[],subs:[],oh:[],sh:[],ket:[],cooh:null};
+  L.bo.forEach((o,j)=>{if(o==2)m.ene.push(j);if(o==3)m.ene.push(-99)});if(m.ene.includes(-99))return null;
+  for(let i=0;i<n;i++)for(const x of L.g[i]){if(x=='O'){if(L.g[i].includes('OH'))return null;m.ket.push(i)}else if(x=='OH')m.oh.push(i);else if(x=='NH2')m.subs.push({p:i,s:{k:'nh2'}});else if(hal(x))m.subs.push({p:i,s:{k:'hal',x}});else return null}
+  return checked(m)}
+ if(n<1||n>10)return null;
+ const ends=n==1?[0]:[0,n-1],acid=ends.filter(i=>isAcidC(L,i)),ald=ends.filter(i=>isCarbonyl(L,i)&&!isAcidC(L,i));
+ for(let i=1;i<n-1;i++)if(isAcidC(L,i))return null;
+ if(acid.length&&ald.length||ald.length>1)return null;
+ const rev=(acid.length==1&&acid[0]==n-1&&n>1)||(ald.length==1&&ald[0]==n-1&&n>1),p=i=>rev?n-i:i+1;
+ const m={kind:'chain',n,bonds:{},subs:[],oh:[],sh:[],ket:[],stereo:{}};if(acid.length)m.acid=1;if(acid.length==2)m.acid2=1;if(ald.length)m.ald=1;
+ for(let i=0;i<n-1;i++)if(L.bo[i]>1)m.bonds[Math.min(p(i),p(i+1))]=L.bo[i];
+ for(let i=0;i<n;i++){const end=ends.includes(i);for(const x of L.g[i]){
+  if((acid.includes(i)&&(x=='O'||x=='OH'))||(ald.includes(i)&&x=='O'))continue;
+  if(x=='O'){if(end)return null;m.ket.push(p(i))}else if(x=='OH')m.oh.push(p(i));else if(x=='NH2')m.subs.push({p:p(i),s:{k:'nh2'}});
+  else if(hal(x))m.subs.push({p:p(i),s:{k:'hal',x}});else if(x=='OEt'){if(m.eth)return null;m.eth={p:p(i),s:{k:'eth',n:2,ms:[]}}}}}
+ m.oh.sort(asc);m.ket.sort(asc);return checked(m)}
+function checked(m){try{const M=buildMol(m);if(invalid(m,M))return null;if((m.kind=='chain'||m.kind=='ester'&&m.ac.t=='chain')&&stereoBonds(m,M).length)return null;
+  const nm=nameMol(m);if(!nm.show||/undefined|NaN/.test(nm.show))return null;return m}catch(e){return null}}
+const canonOf=m=>canonMol(buildMol(m));
+function dispName(spec){let nn=null;try{if(spec.kind=='chain')nn=noNumber(JSON.parse(JSON.stringify(spec)))}catch(e){}return nn||nameMol(spec).show}
+function item(L,spec){spec=spec||toSpec(L);if(!spec)return null;return{L,spec,canon:canonOf(spec),name:dispName(spec)}}
+
+/* ---------- reactions ---------- */
+function rAddition(L,ga,gb){const out=[];L.bo.forEach((o,j)=>{if(o<2)return;const a=j,b=L.t=='ring'?(j+1)%L.n:j+1;
+  for(const[x,y]of ga===null?[[null,null]]:[[ga,gb],[gb,ga]]){const N=Lc(N0(L));N.bo[j]=o-1;if(x)N.g[a].push(x);if(y)N.g[b].push(y);out.push(N)}});return out}
+const N0=L=>L;
+function rSub(L,nu){const out=[];L.g.forEach((g,i)=>g.forEach((x,k)=>{if(['F','Cl','Br'].includes(x)){const N=Lc(L);N.g[i][k]=nu;out.push(N)}}));return out}
+function rOx(L){const out=[];for(let i=0;i<L.n;i++){if(Hc(L,i)<1)continue;const g=L.g[i];
+  if(g.includes('OH')&&!g.includes('O')){const N=Lc(L);N.g[i].splice(N.g[i].indexOf('OH'),1);N.g[i].push('O');out.push(N)}
+  else if(g.includes('O')&&!g.includes('OH')&&L.t=='chain'&&(i==0||i==L.n-1)){const N=Lc(L);N.g[i].push('OH');out.push(N)}}return out}
+function rSwapH(L,grp){const out=[];for(let i=0;i<L.n;i++)if(Hc(L,i)>=1&&nbrs(L,i).every(x=>x[1]==1)&&!isCarbonyl(L,i)){const N=Lc(L);N.g[i].push(grp);out.push(N)}return out}
+const orient=(L,end)=>end==0?{...Lc(L),bo:L.bo.slice().reverse(),g:Lc(L.g).reverse()}:Lc(L); // make `end` the last carbon
+function rJoin(A,B){const out=[];if(A.t!='chain'||B.t!='chain')return out;
+ for(const ea of A.n==1?[0]:[0,A.n-1])for(const eb of B.n==1?[0]:[0,B.n-1]){if(Hc(A,ea)<1||Hc(B,eb)<1||isCarbonyl(A,ea)||isCarbonyl(B,eb))continue;
+  const a=orient(A,ea),b=orient(B,eb==0?B.n-1:0);if(eb!=0&&B.n>1){}const bb=eb==0?Lc(B):{...Lc(B),bo:B.bo.slice().reverse(),g:Lc(B.g).reverse()};
+  if(a.n+bb.n>10)continue;out.push({t:'chain',n:a.n+bb.n,bo:[...a.bo,1,...bb.bo],g:[...a.g,...bb.g]})}return out}
+function rRing(L){if(L.t!='chain'||L.n<3||L.n>8)return[];const e=L.n-1;if(Hc(L,0)<1||Hc(L,e)<1||isCarbonyl(L,0)||isCarbonyl(L,e)||L.bo[0]>1||L.bo[e-1]>1)return[];return[{t:'ring',n:L.n,bo:[...L.bo,1],g:Lc(L.g)}]}
+const isEthanol=L=>L.t=='chain'&&L.n==2&&L.bo[0]==1&&((L.g[0].join()=='OH'&&!L.g[1].length)||(L.g[1].join()=='OH'&&!L.g[0].length));
+// acid part of an ester / amide: acid carbon first
+function acidPart(L,allowBonds){if(L.t!='chain')return[];const res=[];for(const e of L.n==1?[0]:[0,L.n-1]){if(!isAcidC(L,e))continue;const a=orient(L,e==0?L.n-1:0);// acid carbon becomes index 0
+  const A=e==0?Lc(L):{...Lc(L),bo:L.bo.slice().reverse(),g:Lc(L.g).reverse()};
+  const ac={t:'chain',n:A.n,bonds:{},subs:[],stereo:{}};let ok=true;
+  A.bo.forEach((o,j)=>{if(o>1){if(!allowBonds)ok=false;ac.bonds[j+1]=o}});
+  A.g.forEach((g,i)=>g.forEach(x=>{if(i==0&&(x=='O'||x=='OH'))return;if(['F','Cl','Br'].includes(x))ac.subs.push({p:i+1,s:{k:'hal',x}});else if(x=='OH')ac.subs.push({p:i+1,s:{k:'oh'}});else if(x=='NH2')ac.subs.push({p:i+1,s:{k:'nh2'}});else ok=false}));
+  if(ok)res.push(ac)}return res}
+function sideGroups(L,skip){const ms=[];let ok=true;L.g.forEach((g,i)=>g.forEach((x,k)=>{if(i==skip[0]&&k==skip[1])return;if(['F','Cl','Br'].includes(x))ms.push({i,s:{k:'hal',x}});else if(x=='OH')ms.push({i,s:{k:'oh'}});else if(x=='NH2')ms.push({i,s:{k:'nh2'}});else ok=false}));return ok?ms:null}
+function alcParts(L,grp){const out=[];L.g.forEach((g,i)=>g.forEach((x,k)=>{if(x!=grp||isCarbonyl(L,i))return;const ms=sideGroups(L,[i,k]);if(!ms)return;
+  if(L.t=='chain'){if(L.bo.some(o=>o>1))return;out.push({t:'chain',n:L.n,a:i+1,ms:ms.map(m=>({q:m.i+1,s:m.s}))})}
+  else for(const d of[1,-1]){const n=L.n,idx=j=>((j-i)*d%n+n)%n;const ene=[];L.bo.forEach((o,j)=>{if(o==2){const a=idx(j),b=idx((j+1)%n);ene.push(d==1?a:b)}});
+   out.push({t:'ring',r:n,ene,ms:ms.map(m=>({q:idx(m.i),s:m.s}))})}}));return out}
+function rCond(A,B){const out=[];
+ for(const[X,Y]of[[A,B],[B,A]]){
+  for(const ac of acidPart(X,true))for(const al of alcParts(Y,'OH')){const m=checked({kind:'ester',ac,al});if(m)out.push({final:m})}
+  for(const ac of acidPart(X,false))for(const am of alcParts(Y,'NH2')){if(am.t!='chain'||am.ms.some(x=>x.s.k!='hal'))continue;const m=checked({kind:'amide',ac:{t:'chain',n:ac.n,subs:ac.subs},ns:[{k:'alk',n:am.n,a:am.a,ms:am.ms}]});if(m)out.push({final:m})}
+  if(isEthanol(Y)&&Y!==undefined)X.g.forEach((g,i)=>{if(X.t!='chain'||!g.includes('OH')||isAcidC(X,i))return;const N=Lc(X);N.g[i][N.g[i].indexOf('OH')]='OEt';out.push(N)})}
+ return out}
+function rCondNH3(L){return acidPart(L,false).map(ac=>{const m=checked({kind:'amide',ac:{t:'chain',n:ac.n,subs:ac.subs},ns:[]});return m?{final:m}:null}).filter(Boolean)}
+
+const RX=[
+ {id:'h2',grp:'Addition (to a C=C)',lab:'+ H₂',f:L=>rAddition(L,null,null),need:'a C=C'},
+ {id:'hcl',grp:'Addition (to a C=C)',lab:'+ HCl',f:L=>rAddition(L,'Cl',null),need:'a C=C'},
+ {id:'hbr',grp:'Addition (to a C=C)',lab:'+ HBr',f:L=>rAddition(L,'Br',null),need:'a C=C'},
+ {id:'cl2',grp:'Addition (to a C=C)',lab:'+ Cl₂',f:L=>rAddition(L,'Cl','Cl'),need:'a C=C'},
+ {id:'br2',grp:'Addition (to a C=C)',lab:'+ Br₂',f:L=>rAddition(L,'Br','Br'),need:'a C=C'},
+ {id:'hyd',grp:'Addition (to a C=C)',lab:'+ H₂O',f:L=>rAddition(L,'OH',null),need:'a C=C'},
+ {id:'nh3a',grp:'Addition (to a C=C)',lab:'+ NH₃',f:L=>rAddition(L,'NH2',null),need:'a C=C'},
+ {id:'subOH',grp:'Substitution (replace a halogen)',lab:'+ H₂O → –OH + HX',f:L=>rSub(L,'OH'),need:'a halogen (F, Cl, Br)',by:'HX'},
+ {id:'subNH',grp:'Substitution (replace a halogen)',lab:'+ NH₃ → –NH₂ + HX',f:L=>rSub(L,'NH2'),need:'a halogen (F, Cl, Br)',by:'HX'},
+ {id:'ox',grp:'Oxidation',lab:'[O]',f:rOx,need:'an –OH or –CHO on a carbon that still has an H'},
+ {id:'hOH',grp:'Swap an H (releases H₂)',lab:'+ H₂O → C–OH + H₂',f:L=>rSwapH(L,'OH'),need:'a C–H',by:'H₂'},
+ {id:'hNH',grp:'Swap an H (releases H₂)',lab:'+ NH₃ → C–NH₂ + H₂',f:L=>rSwapH(L,'NH2'),need:'a C–H',by:'H₂'},
+ {id:'join',grp:'Join (releases H₂)',lab:'Join end-to-end',two:1,f:(A,B)=>rJoin(A,B),need:'two chains whose end carbons have an H (10 carbons max)',by:'H₂'},
+ {id:'ring',grp:'Join (releases H₂)',lab:'Close into a ring',f:rRing,need:'a 3–8 carbon chain whose end carbons are single-bonded and still have an H',by:'H₂'},
+ {id:'cond',grp:'Condensation (releases H₂O)',lab:'Join two molecules',two:1,f:(A,B)=>rCond(A,B),need:'acid + alcohol (ester), acid + amine (amide), or alcohol + ethanol (ether)',by:'H₂O'},
+ {id:'condN',grp:'Condensation (releases H₂O)',lab:'+ NH₃ → amide',f:rCondNH3,need:'a carboxylic acid with no C=C',by:'H₂O'},
+];
+// run a reaction on bench items -> unique valid product items
+function runRx(rx,A,B){const raw=rx.two?rx.f(A.L,(B||A).L):rx.f(A.L);const seen=new Set(),out=[];
+ for(const r of raw){const it=r.final?{final:1,spec:r.final,canon:canonOf(r.final),name:dispName(r.final)}:item(r);if(!it||seen.has(it.canon))continue;seen.add(it.canon);out.push(it)}return out}
+
+/* ---------- target generator: purposeful forward synthesis from ethene ----------
+ Pieces are made by short random walks that keep molecules sensible (≤ 3 groups, ≤ 2 halogens, ≤ 1 NH₂),
+ favouring oxidations, joins and ring closing. Hard targets join two pieces by a condensation, like the board. */
+const RW={h2:1,hcl:2,hbr:1,cl2:1,br2:1,hyd:3,nh3a:2,subOH:1,subNH:1,ox:4,hOH:2,hNH:2,join:3,ring:2};
+function sensible(it,maxG){if(it.final)return true;const gs=it.L.g.flat(),acidO=it.L.g.reduce((s,g,i)=>s+(isAcidC(it.L,i)?2:0),0);
+ const hal=gs.filter(x=>['F','Cl','Br'].includes(x)).length,nh=gs.filter(x=>x=='NH2').length,oh=gs.filter(x=>x=='OH').length;
+ return gs.length-acidO<=maxG&&hal<=2&&nh<=1&&oh<=2+(acidO?2:0)}
+function walk(steps,maxG,goal){
+ for(let t=0;t<120;t++){let cur={...item(ETHENE),steps:[]},ok=true;const made=[cur];
+  for(let s=0;s<steps;s++){const cand=[];
+   for(const rx of RX){if(rx.id=='cond'||rx.id=='condN')continue;const w=RW[rx.id]||1;
+    const partner=rx.two?pick(made.concat([{...item(ETHENE),steps:[]}])):null;
+    for(const p of runRx(rx,cur,partner))if(p.canon!=cur.canon&&!made.some(m=>m.canon==p.canon)&&sensible(p,maxG))for(let k=0;k<w;k++)cand.push({p,rx,partner})}
+   if(!cand.length){ok=false;break}const c=pick(cand);
+   const st=[...cur.steps,...(c.partner?c.partner.steps:[]),{rx:c.rx,a:cur.name,b:c.partner?c.partner.name:null,p:c.p.name,canon:c.p.canon}];
+   cur={...c.p,steps:st};made.push(cur)}
+  if(ok&&(!goal||goal(cur)))return cur}
+ return null}
+const uniqSteps=st=>{const seen=new Set(),o=[];for(const x of st)if(!seen.has(x.canon)){seen.add(x.canon);o.push(x)}return o};
+const hasAcid=it=>!it.final&&it.L.t=='chain'&&[0,it.L.n-1].some(i=>isAcidC(it.L,i));
+const hasG=(it,g)=>!it.final&&it.L.g.some((x,i)=>x.includes(g)&&!isAcidC(it.L,i));
+function genRoute(D){
+ for(let t=0;t<300;t++){let tgt;
+  if(D>=3&&chance(.7)){const A=walk(R(3,5),3,hasAcid);if(!A)continue;const amide=chance(.35);
+   const B=walk(R(1,4),2,it=>amide?hasG(it,'NH2'):hasG(it,'OH')&&!hasAcid(it));if(!B)continue;
+   const prods=runRx(RX.find(r=>r.id=='cond'),A,B).filter(p=>p.final);if(!prods.length)continue;const p=pick(prods);
+   tgt={...p,steps:[...A.steps,...B.steps,{rx:RX.find(r=>r.id=='cond'),a:A.name,b:B.name,p:p.name,canon:p.canon}]}}
+  else if(D==2&&chance(.3)){const A=walk(R(2,3),2,hasAcid);if(!A)continue;const B=walk(1,1,it=>hasG(it,'OH')||hasG(it,'NH2'));
+   const prods=B?runRx(RX.find(r=>r.id=='cond'),A,B).filter(p=>p.final):[];if(!prods.length)continue;const p=pick(prods);
+   tgt={...p,steps:[...A.steps,...B.steps,{rx:RX.find(r=>r.id=='cond'),a:A.name,b:B.name,p:p.name,canon:p.canon}]}}
+  else{tgt=walk(D==1?R(1,2):D==2?R(3,4):R(5,6),D==1?2:3,it=>D==1||!it.final);if(!tgt)continue}
+  const route=uniqSteps(tgt.steps),par=route.length;
+  if(D==1&&par>2||D==2&&(par<3||par>5)||D>=3&&par<5)continue;
+  return{target:tgt,route,par}}
+ return null}
+function genRxnQ(){const D=CFGR.d||1;const r=genRoute(D)||genRoute(1);return{kind:'rxn',D,...r}}
+let CFGR={d:1};try{const x=JSON.parse(localStorage.getItem('nth_rxn')||'null');if(x)CFGR={...CFGR,...x}}catch(e){}
+const saveRxn=()=>{try{localStorage.setItem('nth_rxn',JSON.stringify(CFGR))}catch(e){}};
+// drawing any naming spec in the current view
+const SVGC=new Map();
+function specSvg(spec){const k=VIEW+JSON.stringify(spec);if(SVGC.has(k))return SVGC.get(k);
+ const M=buildMol(spec);let G=layoutMol(spec,M,VIEW=='lewis'?'x':'z')||layoutMol(spec,M,VIEW=='lewis'?'z':'x');const svg=G?draw({g:G,lg:G}):'<p class="mono">(no drawing)</p>';SVGC.set(k,svg);return svg}
+/* ===================== Properties (Lesson 7 polarity table + evaluation questions) =====================
+ Slide ranking (most → least polar): amide > carboxylic acid > alcohol > ketone > aldehyde > amine > ester > ether > alkane > alkene > alkyne
+ Forces: H-bonding needs an H on O or N · more carbons on the N → less H-bonding · bigger molecule → more London forces →
+ higher boiling point · smaller surface area (more branched / compact) → packs closer → more dense · symmetric dipoles cancel. */
+const PFAM={
+ amide:{lab:'Amide',rk:1,forces:'hd',why:'H-bonding and dipole–dipole forces (N–H and C=O)'},
+ acid:{lab:'Carboxylic acid',rk:2,forces:'hd',why:'H-bonding and dipole–dipole forces (O–H and C=O)'},
+ alcohol:{lab:'Alcohol',rk:3,forces:'h',why:'H-bonding (O–H)'},
+ ketone:{lab:'Ketone',rk:4,forces:'d',why:'dipole–dipole forces (C=O)'},
+ aldehyde:{lab:'Aldehyde',rk:5,forces:'d',why:'dipole–dipole forces (C=O)'},
+ amine:{lab:'Amine',rk:6,forces:'wh',why:'weak H-bonding (N–H)'},
+ ester:{lab:'Ester',rk:7,forces:'d',why:'dipole–dipole forces'},
+ ether:{lab:'Ether',rk:8,forces:'d',why:'dipole–dipole forces'},
+ alkane:{lab:'Alkane',rk:9,forces:'l',why:'London forces only'},
+ alkene:{lab:'Alkene',rk:10,forces:'l',why:'London forces only'},
+ alkyne:{lab:'Alkyne',rk:11,forces:'l',why:'London forces only'},
+};
+const alk1=n=>({k:'alk',n,a:1,ms:[]});
+// one molecule of a family with (about) C carbons in total
+function famSpec(f,C){const ch=(o)=>({kind:'chain',n:C,bonds:{},subs:[],oh:[],sh:[],ket:[],stereo:{},...o});
+ switch(f){case'alkane':return ch({});case'alkene':return ch({bonds:{1:2}});case'alkyne':return ch({bonds:{1:3}});
+  case'alcohol':return ch({oh:[1]});case'aldehyde':return ch({ald:1});case'ketone':return ch({ket:[2]});case'acid':return ch({acid:1});
+  case'ether':return{...ch({n:C-2}),eth:{p:1,s:{k:'eth',n:2,ms:[]}}};
+  case'amine':return ch({subs:[{p:1,s:{k:'nh2'}}]});
+  case'ester':return{kind:'ester',ac:{t:'chain',n:C-2,bonds:{},subs:[],stereo:{}},al:{t:'chain',n:2,a:1,ms:[]}};
+  case'amide':return{kind:'amide',ac:{t:'chain',n:C,subs:[]},ns:[]}}}
+const mol=(spec)=>({spec,name:dispName(spec),svg:specSvg(spec)});
+const card=(m)=>({svg:`<div class="mcard">${m.svg}<div class="mname">${esc(m.name)}</div></div>`,name:m.name});
+const FORCE_TXT={l:'London forces only',d:'London + dipole–dipole',h:'London + dipole–dipole + H-bonding',hd:'London + dipole–dipole + H-bonding',wh:'London + dipole–dipole + (weak) H-bonding'};
+const PQP={
+ // which intermolecular forces?
+ forces(){const f=pick(Object.keys(PFAM)),m=mol(famSpec(f,R(4,6))),ans=PFAM[f].forces;
+  const keys=['l','d','h'],right=ans=='l'?'l':ans=='d'?'d':'h';
+  return mc('Which intermolecular forces act between these molecules?',m.svg+`<p class="mname">${esc(m.name)}</p>`,[T(FORCE_TXT[right]),...keys.filter(k=>k!=right).map(k=>T(FORCE_TXT[k]))],`${PFAM[f].lab}: ${PFAM[f].why}.${right=='h'?' H-bonding needs an H on O or N.':''}`,'prop')},
+ // rank by polarity (same size)
+ rankPolar(){const D=CFGQ.d||1,k=D==1?3:4,fs=shuffle(Object.keys(PFAM)).slice(0,k),C=R(4,6),ms=fs.map(f=>({f,...mol(famSpec(f,C))}));
+  const order=ms.slice().sort((a,b)=>PFAM[a.f].rk-PFAM[b.f].rk);
+  return{kind:'poly',order:1,prompt:`These are about the same size. Tap them from MOST polar (strongest intermolecular forces) to LEAST polar.`,opts:shuffle(ms.map(m=>({...card(m),rk:order.indexOf(m)}))),
+   why:'Most → least polar: amide › carboxylic acid › alcohol › ketone › aldehyde › amine › ester › ether › alkane › alkene › alkyne. Here: '+order.map(m=>PFAM[m.f].lab.toLowerCase()).join(' › ')+'.',tag:'prop'}},
+ // boiling point and size, same family
+ rankSize(){const f=pick(['alkane','alcohol','ketone','aldehyde','acid','amine','alkene']),ns=shuffle([2,3,4,5,6,7,8].filter(n=>!(f=='ketone'&&n<3))).slice(0,3),ms=ns.map(n=>({n,...mol(famSpec(f,n))}));
+  const order=ms.slice().sort((a,b)=>a.n-b.n);
+  return{kind:'poly',order:1,prompt:'Tap them from LOWEST to HIGHEST boiling point.',opts:shuffle(ms.map(m=>({...card(m),rk:order.indexOf(m)}))),why:'Same functional group, so size decides: more carbons → bigger surface area → more London forces → higher boiling point.',tag:'prop'}},
+ // amines / amides: carbons on the N
+ rankN(){const amide=chance(.5),C=R(3,5);let ms;
+  if(amide)ms=[{d:0,spec:{kind:'amide',ac:{t:'chain',n:C,subs:[]},ns:[]}},{d:1,spec:{kind:'amide',ac:{t:'chain',n:C-1,subs:[]},ns:[alk1(1)]}},{d:2,spec:{kind:'amide',ac:{t:'chain',n:C-2>0?C-2:1,subs:[]},ns:[alk1(1),alk1(1)]}}];
+  else ms=[{d:0,spec:{kind:'chain',n:C,bonds:{},subs:[{p:1,s:{k:'nh2'}}],oh:[],sh:[],ket:[],stereo:{}}},{d:1,spec:{kind:'amine',par:{t:'chain',n:C-1,a:1,subs:[]},ns:[alk1(1)]}},{d:2,spec:{kind:'amine',par:{t:'chain',n:C-2,a:1,subs:[]},ns:[alk1(1),alk1(1)]}}];
+  ms=ms.filter(x=>!(x.spec.kind=='amine'&&x.spec.par.n<=1)).map(x=>({...x,...mol(x.spec)}));
+  return{kind:'poly',order:1,prompt:`Tap these ${amide?'amides':'amines'} from MOST to LEAST H-bonding.`,opts:shuffle(ms.map(m=>({...card(m),rk:m.d}))),
+   why:`You need an H on the N to H-bond. Each carbon group added to the N removes an H, so ${amide?'the plain –NH₂ amide is most polar and N,N-disubstituted is the least':'primary > secondary > tertiary (tertiary has no N–H)'}.`,tag:'prop'}},
+ // isomers: same formula, different functional groups
+ isomers(){const pairs=[['acid','ester'],['alcohol','ether'],['aldehyde','ketone']],[a,b]=pick(pairs),C=R(4,6);
+  const right=[mol(famSpec(a,C)),mol(famSpec(b,C))],F=formulaOf(right[0].spec);
+  const wrongF=shuffle(Object.keys(PFAM).filter(f=>![a,b].includes(f)&&f!='amine'&&f!='amide')).slice(0,2).map(f=>mol(famSpec(f,C))).filter(m=>formulaOf(m.spec)!=F);
+  const opts=shuffle([...right.map(m=>({...card(m),ok:true})),...wrongF.map(m=>({...card(m),ok:false}))]);
+  return{kind:'poly',multi:1,prompt:`Select EVERY molecule that is an isomer with formula ${F}.`,opts,why:`Isomers have the same formula but different structures: ${right.map(m=>m.name).join(' and ')} are both ${F}.`,tag:'prop'}},
+ // oxidation reasoning (evaluation question)
+ oxid(){const C=R(3,6),H=2*C+2,v=pick(['sec','pri','none']);
+  const txt=v=='sec'?`An alcohol C${C}H${H}O is oxidized to C${C}H${H-2}O. When it is oxidized again, nothing happens.`:v=='pri'?`An alcohol C${C}H${H}O is oxidized to C${C}H${H-2}O, then oxidized again to C${C}H${H-2}O₂.`:`An alcohol C${C}H${H}O cannot be oxidized at all.`;
+  const right=v=='sec'?'The –OH is on a middle carbon (it made a ketone)':v=='pri'?'The –OH is on an end carbon (aldehyde, then carboxylic acid)':'The –OH carbon has no H left to lose';
+  const opts=['The –OH is on a middle carbon (it made a ketone)','The –OH is on an end carbon (aldehyde, then carboxylic acid)','The –OH carbon has no H left to lose'];
+  return mc(txt+' What does that tell you?','',[T(right),...opts.filter(o=>o!=right).map(T)],v=='sec'?'A middle-carbon –OH oxidizes to a ketone, which can’t be oxidized further.':v=='pri'?'An end-carbon –OH oxidizes to an aldehyde, then to a carboxylic acid.':'Oxidation removes an H from the –OH carbon; with none left, nothing happens.','prop')},
+ // symmetry: dipoles cancel
+ dipole(){const x=pick(['F','Cl','Br']),opts=[[0,3],[0,1],[0,2]].map(([a,b])=>mol({kind:'ring',ar:true,r:6,ene:[],subs:[{p:a,s:{k:'hal',x}},{p:b,s:{k:'hal',x}}],oh:[],sh:[],ket:[],cooh:null}));
+  return mc('Which of these has the weakest dipole overall?','',[{svg:card(opts[0]).svg},{svg:card(opts[1]).svg},{svg:card(opts[2]).svg}],`In ${opts[0].name} the two C–${x} dipoles point in exactly opposite directions and cancel, so the molecule is non-polar overall.`,'prop')},
+ // branching: boiling point vs density (evaluation question)
+ branch(){const v=pick([['pentane','2,2-dimethylpropane',5],['hexane','2,2-dimethylbutane',6]]),straight=mol({kind:'chain',n:v[2],bonds:{},subs:[],oh:[],sh:[],ket:[],stereo:{}}),
+  br=mol({kind:'chain',n:v[2]-2,bonds:{},subs:[{p:2,s:alk1(1)},{p:2,s:alk1(1)}],oh:[],sh:[],ket:[],stereo:{}}),ask=chance(.5)?'bp':'den';
+  return mc(ask=='bp'?'Same formula. Which has the HIGHER boiling point?':'Same formula. Which is MORE dense?','',ask=='bp'?[{svg:card(straight).svg},{svg:card(br).svg}]:[{svg:card(br).svg},{svg:card(straight).svg}],
+   ask=='bp'?'The straight chain has more surface area → more London forces → higher boiling point.':'The branched one is more compact (less surface area), so its molecules pack closer together → more dense.','prop')},
+};
+function formulaOf(spec){const M=buildMol(spec);const c={};let h=0;M.at.forEach((a,i)=>{c[a.el]=(c[a.el]||0)+1;h+=M.hc(i)});c.H=h;
+ return['C','H','N','O','F','Cl','Br'].filter(k=>c[k]).map(k=>k+(c[k]>1?String(c[k]).replace(/\d/g,d=>'₀₁₂₃₄₅₆₇₈₉'[d]):'')).join('')}
+let CFGQ={d:1};try{const x=JSON.parse(localStorage.getItem('nth_prop')||'null');if(x)CFGQ={...CFGQ,...x}}catch(e){}
+const saveProp=()=>{try{localStorage.setItem('nth_prop',JSON.stringify(CFGQ))}catch(e){}};
+/* ===================== Deep-thinking properties (generated, multi-step reasoning) ===================== */
+const CH=(n,o)=>({kind:'chain',n,bonds:{},subs:[],oh:[],sh:[],ket:[],stereo:{},...o});
+const AW={C:12,H:1,N:14,O:16,F:19,Cl:35.5,Br:80};
+function massOf(spec){const M=buildMol(spec);let m=0;M.at.forEach((a,i)=>{m+=AW[a.el]+M.hc(i)});return m}
+const nm_=spec=>dispName(spec);
+// can a molecule H-bond with itself? (an H on O or N)
+const selfHB=f=>['alcohol','acid','amide','amine','amine1','amine2','amide1','amide2'].includes(f);
+const PQD={
+ // 1 · mystery compound from clues
+ mystery(){const kind=pick(['alc','alc','amine']);let cands,clue,ans,why;
+  if(kind=='alc'){const n=R(4,6),c={pri:CH(n,{oh:[1]}),sec:CH(n,{oh:[2]}),ter:CH(n-1,{oh:[2],subs:[{p:2,s:alk1(1)}]}),eth:{...CH(n-2),eth:{p:1,s:{k:'eth',n:2,ms:[]}}}};
+   ans=pick(Object.keys(c));const F=formulaOf(c.pri);
+   clue={pri:`It H-bonds with itself. One [O] gives a compound that can be oxidized again — the final product is a carboxylic acid.`,
+    sec:`It H-bonds with itself. One [O] gives a LESS polar compound, and a second [O] does nothing.`,
+    ter:`It H-bonds with itself, but [O] does nothing to it at all.`,
+    eth:`It cannot H-bond with itself, and [O] does nothing to it.`}[ans];
+   why={pri:'OH on an end carbon: alcohol → aldehyde → carboxylic acid.',sec:'OH on a middle carbon: alcohol → ketone (less polar: no more O–H), and a ketone can’t be oxidized further.',
+    ter:'It has an O–H (H-bonding) but the OH carbon has no H left to lose, so [O] can’t act.',eth:'No O–H at all → no H-bonding with itself; an ether has no OH to oxidize.'}[ans];
+   cands=Object.entries(c).map(([k,sp])=>({k,...mol(sp)}));clue=`A compound has formula ${F}. ${clue} Which one is it?`}
+  else{const n=R(4,5),c={p:CH(n,{subs:[{p:1,s:{k:'nh2'}}]}),s:{kind:'amine',par:{t:'chain',n:n-1,a:1,subs:[]},ns:[alk1(1)]},t:{kind:'amine',par:{t:'chain',n:n-2,a:1,subs:[]},ns:[alk1(1),alk1(1)]}};
+   ans=pick(['p','s','t']);const F=formulaOf(c.p);
+   clue={p:'Its molecules H-bond with each other. When it reacts with a carboxylic acid, the amide it makes STILL has an N–H.',
+    s:'Its molecules H-bond with each other. When it reacts with a carboxylic acid, the amide it makes has NO N–H left.',
+    t:'Its molecules can’t H-bond with each other, and it cannot react with a carboxylic acid to make an amide at all.'}[ans];
+   why={p:'NH₂ (two H’s): one H leaves as part of H₂O, one N–H stays in the amide.',s:'NH (one H): that H leaves in the H₂O, so the amide’s N holds no H.',t:'No H on the N: no H-bonding, and an amide can only form from a primary or secondary amine.'}[ans];
+   cands=Object.entries(c).map(([k,sp])=>({k,...mol(sp)}));clue=`A compound has formula ${F}. ${clue} Which one is it?`}
+  const right=cands.find(x=>x.k==ans);return mc(clue,'',[{svg:card(right).svg},...cands.filter(x=>x.k!=ans).map(x=>({svg:card(x).svg}))],why,'prop')},
+ // 2 · which statement is FALSE
+ falseStmt(){const facts=[];const C=R(4,6);
+  const sz=()=>{const f=pick(['alkane','alcohol','ketone','acid','aldehyde']),a=R(3,5),b=a+R(1,3),A=nm_(famSpec(f,a)),B=nm_(famSpec(f,b));return chance(.5)?{t:`${B} has a higher boiling point than ${A}.`,v:true}:{t:`${A} has a higher boiling point than ${B}.`,v:false}};
+  const pol=()=>{const[f1,f2]=shuffle(Object.keys(PFAM).filter(f=>f!='amide')).slice(0,2),A=nm_(famSpec(f1,C)),B=nm_(famSpec(f2,C)),v=PFAM[f1].rk<PFAM[f2].rk;return{t:`${A} is more polar than ${B}.`,v}};
+  const hb=()=>{const f=pick(['alcohol','acid','ether','ester','ketone','aldehyde','amine','alkene']);return{t:`${nm_(famSpec(f,C))} can H-bond with itself.`,v:selfHB(f)}};
+  const br=()=>{const n=R(5,6),S=nm_(CH(n)),B=nm_(CH(n-2,{subs:[{p:2,s:alk1(1)},{p:2,s:alk1(1)}]}));return pick([{t:`${B} is more dense than ${S}.`,v:true},{t:`${B} has a higher boiling point than ${S}.`,v:false},{t:`${S} has more surface area than ${B}.`,v:true}])};
+  const am=()=>{const n=R(4,5),T=nm_({kind:'amine',par:{t:'chain',n:n-2,a:1,subs:[]},ns:[alk1(1),alk1(1)]}),P=nm_(CH(n,{subs:[{p:1,s:{k:'nh2'}}]}));return pick([{t:`${T} can H-bond with itself.`,v:false},{t:`${P} H-bonds more strongly than ${T}.`,v:true},{t:`${T} can react with ethanoic acid to make an amide.`,v:false}])};
+  const gens=[sz,pol,hb,br,am];let tries=0,falseOne=null;const trues=[];
+  while((trues.length<3||!falseOne)&&tries++<200){const f=pick(gens)();if(facts.some(x=>x.t==f.t))continue;facts.push(f);if(f.v&&trues.length<3)trues.push(f);else if(!f.v&&!falseOne)falseOne=f}
+  return mc('Exactly ONE of these statements is FALSE. Which one?','',[T(falseOne.t),...trues.map(x=>T(x.t))],'Check each against the rules: bigger → more London forces → higher boiling point; polarity table; H-bonding needs an H on O or N; branched = less surface area = lower boiling point but more dense; a tertiary amine has no N–H.','prop')},
+ // 3 · same formula, two functional groups (quiz style)
+ rankMulti(){const n=R(4,5),ms=[{r:0,...mol(CH(n,{acid:1}))},{r:1,...mol(CH(n,{ket:[2],oh:[1]}))},{r:2,...mol(CH(n,{ald:1,oh:[n]}))},{r:3,...mol({kind:'ester',ac:{t:'chain',n:n-1,bonds:{},subs:[],stereo:{}},al:{t:'chain',n:1,a:1,ms:[]}})}];
+  return{kind:'poly',order:1,prompt:`All four are ${formulaOf(ms[0].spec)}. Tap them from STRONGEST to WEAKEST intermolecular forces.`,opts:shuffle(ms.map(m=>({...card(m),rk:m.r}))),
+   why:'Acid: H-bonding + strong dipole (C=O and O–H on one carbon). Both hydroxy compounds H-bond and have a C=O — ketone ranks above aldehyde on the table. The ester has no O–H, so dipole–dipole only.',tag:'prop'}},
+ // 4 · the assumption decides the order
+ assume(){for(let t=0;t<60;t++){const fs=shuffle(['alkane','alcohol','ketone','acid','ether','alkene','aldehyde','amine']).slice(0,3),ms=fs.map(f=>{const sp=famSpec(f,R(['ether','ester'].includes(f)?4:3,8));return{f,...mol(sp),m:massOf(sp),C:buildMol(sp).at.filter(a=>a.el=='C').length}});
+   if(ms.some(x=>x.C<2))continue;const masses=ms.map(x=>x.m).sort(asc);if(masses[1]-masses[0]<10||masses[2]-masses[1]<10)continue;
+   const bySize=ms.slice().sort((a,b)=>a.m-b.m),byPol=ms.slice().sort((a,b)=>PFAM[b.f].rk-PFAM[a.f].rk);if(bySize.map(x=>x.f).join()==byPol.map(x=>x.f).join())continue;
+   const size=chance(.5),ord=size?bySize:byPol;
+   return{kind:'poly',order:1,prompt:`Assume ${size?'SIZE contributes more than polarity':'POLARITY contributes more than size'}. Tap them from LOWEST to HIGHEST boiling point.`,opts:shuffle(ms.map(m=>({...card(m),rk:ord.indexOf(m)}))),
+    why:size?`Under this assumption the biggest molecule (most London forces) wins: ${bySize.map(x=>x.name).join(' < ')}.`:`Under this assumption the polarity table decides: ${byPol.map(x=>x.name).join(' < ')}.`,tag:'prop'}}
+  return PQP.rankPolar()},
+ // 5 · predict the effect of a change, with the right reason
+ change(){const n=R(3,6),v=pick(['ohToCl','clToOh','longer','branch','ox2','oxAld','ester','amineN','polyOH']);
+  const D=(e,r)=>`${e} — ${r}`;let q,right,wrong;
+  if(v=='ohToCl'){q=`The –OH in ${nm_(CH(n,{oh:[1]}))} is replaced by –Cl. What happens to the boiling point?`;right=D('Decreases','it loses H-bonding (no H on O/N); only dipole–dipole and London forces remain');wrong=[D('Increases','chlorine is heavier than OH'),D('Decreases','the molecule has fewer carbons'),D('No change','both are polar groups')]}
+  if(v=='clToOh'){q=`The –Cl in ${nm_(CH(n,{subs:[{p:1,s:{k:'hal',x:'Cl'}}]}))} is replaced by –OH (substitution). What happens to the boiling point?`;right=D('Increases','the O–H allows H-bonding between molecules');wrong=[D('Decreases','OH is lighter than Cl'),D('Increases','the chain gets longer'),D('No change','both are polar groups')]}
+  if(v=='longer'){const f=pick(['alcohol','ketone','acid','alkane']);q=`${nm_(famSpec(f,n))} is made 2 carbons longer. What happens to the boiling point?`;right=D('Increases','more surface area → more London forces');wrong=[D('Increases','it gains more H-bonding'),D('Decreases','longer molecules are less polar'),D('No change','the functional group is the same')]}
+  if(v=='branch'){const nn=R(5,6);q=`${nm_(CH(nn))} is rearranged into ${nm_(CH(nn-2,{subs:[{p:2,s:alk1(1)},{p:2,s:alk1(1)}]}))} (same formula). What happens to the boiling point and density?`;right=D('Boiling point decreases, density increases','more compact = less surface area (fewer London forces) and the molecules pack closer');wrong=[D('Both increase','branches add more London forces'),D('Both decrease','smaller molecules are lighter'),D('Boiling point increases, density decreases','branches push molecules apart')]}
+  if(v=='ox2'){const nn=Math.max(n,4);q=`${nm_(CH(nn,{oh:[2]}))} is oxidized once. How does the product’s polarity compare?`;right=D('Less polar','the ketone has a C=O but no O–H, so no H-bonding');wrong=[D('More polar','it gains a C=O double bond'),D('Less polar','it loses carbons'),D('The same','it has the same number of O atoms')]}
+  if(v=='oxAld'){q=`${nm_(CH(n,{ald:1}))} is oxidized. How does the product’s polarity compare?`;right=D('More polar','the carboxylic acid gains an O–H (H-bonding) next to its C=O');wrong=[D('Less polar','the C=O is removed'),D('More polar','the chain gets longer'),D('The same','oxidation only changes the name')]}
+  if(v=='ester'){q=`${nm_(CH(n,{acid:1}))} reacts with ethanol to make an ester. Is the ester more or less polar than the acid?`;right=D('Less polar','the ester has no O–H, so it can’t H-bond with itself');wrong=[D('More polar','it is a bigger molecule'),D('More polar','it now has two O atoms in a row'),D('The same','both have a C=O')]}
+  if(v=='amineN'){const nn=Math.max(n,3);q=`One H on the N of ${nm_(CH(nn,{subs:[{p:1,s:{k:'nh2'}}]}))} is replaced by a methyl group. What happens to its H-bonding?`;right=D('Decreases','there is one fewer H on the N to H-bond with');wrong=[D('Increases','the molecule is bigger'),D('No change','it still has a nitrogen'),D('Stops completely','any carbon on the N blocks H-bonding')]}
+  if(v=='polyOH'){q='In an addition polymer, the –H on every second carbon is replaced by –OH. What happens to the strength of the polymer?';right=D('Stronger','–OH groups H-bond between the chains, so the chains hold together more strongly');wrong=[D('Weaker','OH makes the chain shorter'),D('No change','only the backbone matters'),D('Stronger','the C=C bonds come back')]}
+  return mc(q,'',[T(right),...wrong.map(T)],`${right}.`,'prop')},
+ // 6 · strength between polymer chains
+ polyRank(){if(chance(.5)){const ks=shuffle(['H','CH3','Cl','OH']).slice(0,3),rk={OH:0,Cl:1,CH3:2,H:3},ms=ks.map(k=>({k,svg:drawBackbone(addNodes({c1:['H','H'],c2:['H',k]},1),{br:1})}));
+   const ord=ms.slice().sort((a,b)=>rk[a.k]-rk[b.k]);
+   return{kind:'poly',order:1,prompt:'Tap these addition polymers from STRONGEST to WEAKEST forces between their chains.',opts:shuffle(ms.map(m=>({svg:m.svg,rk:ord.indexOf(m)}))),why:'–OH: H-bonding between chains › –Cl: dipole–dipole › –CH₃: London only (bigger than H) › –H: London only.',tag:'prop'}}
+  const A=['CH2','CH2'],B=['CH2','CH2'],ms=[{r:0,svg:condUnit({kind:'two',link:'amide',A,B})},{r:1,svg:condUnit({kind:'two',link:'ester',A,B})},{r:2,svg:drawBackbone(addNodes({c1:['H','H'],c2:['H','H']},1),{br:1})}];
+  return{kind:'poly',order:1,prompt:'Tap these polymers from STRONGEST to WEAKEST forces between their chains.',opts:shuffle(ms.map(m=>({svg:m.svg,rk:m.r}))),why:'Polyamide: N–H lets the chains H-bond (amide is the most polar group) › polyester: C=O and C–O dipoles but no H-bonding › polyethylene: London forces only.',tag:'prop'}},
+ // 7 · same formula, very different boiling point — why?
+ sameMass(){const v=pick(['alc','acid','amine']),n=R(3,6);let hi,lo,right;
+  if(v=='alc'){hi=CH(Math.max(n,4),{oh:[1]});lo={...CH(Math.max(n,4)-2),eth:{p:1,s:{k:'eth',n:2,ms:[]}}};right='Only the alcohol has an O–H, so only it can H-bond with itself'}
+  if(v=='acid'){hi=CH(Math.max(n,3),{acid:1});lo={kind:'ester',ac:{t:'chain',n:Math.max(n,3)-1,bonds:{},subs:[],stereo:{}},al:{t:'chain',n:1,a:1,ms:[]}};right='Only the acid has an O–H, so only it can H-bond with itself'}
+  if(v=='amine'){const nn=Math.max(n,4);hi=CH(nn,{subs:[{p:1,s:{k:'nh2'}}]});lo={kind:'amine',par:{t:'chain',n:nn-2,a:1,subs:[]},ns:[alk1(1),alk1(1)]};right='Only the primary amine has N–H bonds, so only it can H-bond with itself'}
+  return mc(`${nm_(hi)} and ${nm_(lo)} have the same formula (${formulaOf(hi)}) and the same size, but ${nm_(hi)} boils at a higher temperature. Why?`,'',[T(right),T('It has more carbons, so more London forces'),T('Its chain is more branched'),T('It has a C=O double bond that the other lacks')],right+'. Same formula means the London forces are about equal, so H-bonding decides.','prop')},
+ // 8 · no overall dipole (symmetry)
+ noDipole(){const x=pick(['Cl','Br','F']),L=x,ring=(a,b)=>mol({kind:'ring',ar:true,r:6,ene:[],subs:[{p:a,s:{k:'hal',x}},{p:b,s:{k:'hal',x}}],oh:[],sh:[],ket:[],cooh:null}).svg;
+  const trans=drawBackbone([{l:'C',up:{l:L},dn:{l:'H'},d:2},{l:'C',up:{l:'H'},dn:{l:L}}]),cis=drawBackbone([{l:'C',up:{l:L},dn:{l:'H'},d:2},{l:'C',up:{l:L},dn:{l:'H'}}]),gem=drawBackbone([{l:'C',up:{l:L},dn:{l:L},d:2},{l:'C',up:{l:'H'},dn:{l:'H'}}]);
+  const opts=shuffle([{svg:trans,ok:true},{svg:`<div class="mcard">${ring(0,3)}</div>`,ok:true},{svg:cis,ok:false},{svg:`<div class="mcard">${ring(0,1)}</div>`,ok:false},{svg:gem,ok:false}]).slice(0,5);
+  return{kind:'poly',multi:1,prompt:'Select EVERY molecule that has NO overall dipole (non-polar), even though it has polar C–'+x+' bonds.',opts,why:`When two identical C–${x} dipoles point in exactly opposite directions (across a C=C on opposite sides, or opposite corners of a benzene ring) they cancel. Same side or neighbouring positions don’t cancel.`,tag:'prop'}},
+ // 9 · boiling point vs density don’t contradict (quiz d)
+ bpDensity(){const n=R(5,6),S=nm_(CH(n)),B=nm_(CH(n-2,{subs:[{p:2,s:alk1(1)},{p:2,s:alk1(1)}]}));
+  return mc(`${S} has the higher boiling point, but ${B} has the higher density. Why don’t these two facts contradict each other?`,'',
+   [T('Boiling point depends on the forces between molecules (surface area → London forces); density depends on how closely the molecules pack'),T('They do contradict — stronger forces should always mean a higher density'),T(`${B} is heavier than ${S}`),T(`${S} has H-bonding but ${B} does not`)],
+   'Long chain: more surface area → more London forces → higher boiling point. Compact ball: less surface area → packs closer → more dense. Two different properties, two different causes.','prop')},
+};
+function genProp(){const D=CFGQ.d||1;let pool;
+ if(D>=3)pool=['mystery','mystery','falseStmt','falseStmt','rankMulti','assume','assume','change','change','change','polyRank','sameMass','noDipole','bpDensity','oxid','isomers'];
+ else pool=['forces','forces','rankPolar','rankPolar','rankSize','rankN','isomers','dipole','branch'].concat(D>=2?['oxid','oxid','isomers','rankPolar','change','sameMass']:[]);
+ const k=pick(pool),q=(PQD[k]||PQP[k])();q.id=q.prompt+Math.random();return q}
+/* ---------- game ---------- */
+const $=document.getElementById('app');let S=null;
+let VIEW='skel';try{VIEW=localStorage.getItem('nth_view')=='lewis'?'lewis':'skel'}catch(e){}
+let VMODE=VIEW;try{if(localStorage.getItem('nth_view')=='random'){VMODE='random';VIEW=chance(.5)?'lewis':'skel'}}catch(e){}
+let CFG={cats:{},diff:3,lives:3};try{const x=JSON.parse(localStorage.getItem('nth_cfg')||'null');if(x&&x.cats)CFG=x}catch(e){}
+CATS.forEach(([k])=>{if(CFG.cats[k]===undefined)CFG.cats[k]=['ket','ald','acid','est','nonum'].includes(k)?0:1});
+const saveCfg=()=>{try{localStorage.setItem('nth_cfg',JSON.stringify(CFG))}catch(e){}};
+const mult=s=>s<5?1:s<10?2:s<20?3:4+Math.floor((s-20)/10);
+const bonusFor=ms=>{const s=ms/1000;return s<10?10:s<20?6:s<30?4:s<45?2:s<60?1:0};
+const fmt=ms=>{const s=ms/1000;return s>=60?Math.floor(s/60)+':'+(s%60).toFixed(1).padStart(4,'0'):s.toFixed(1)+'s'};
+const getBest=()=>{try{return +localStorage.getItem('nth_inf0')||0}catch(e){return 0}};
+const setBest=v=>{try{if(v>getBest())localStorage.setItem('nth_inf0',v)}catch(e){}};
+let TI=null;function stopT(){clearInterval(TI);TI=null}
+function tick(){stopT();if(S&&!S.ans)TI=setInterval(()=>{if(!S){stopT();return}const e=document.getElementById('tm');if(e)e.textContent='⏱ '+fmt(Date.now()-S.t0)},100)}
+function toast(t,ok){const e=document.createElement('div');e.className='toast '+(ok?'y':'n');e.textContent=t;document.body.appendChild(e);setTimeout(()=>e.remove(),1900)}
+const benzMode=q=>{if(q.kind=='ring'&&q.ar)return'parent';if(q.kind=='ester'&&q.ac.t=='benz')return'parent';const has=s=>s.k=='cyc'&&s.ar||(s.ms||[]).some(x=>has(x.s));
+ return(q.subs||[]).some(x=>has(x.s))?'branch':null};
+function benzNote(q){const b=benzMode(q);return b?`<div class="note" style="margin:12px 0 0"><span><b>Benzene: ${b=='parent'?'Parent':'Branch'}</b></span></div>`:''}
+function setView(){if(VMODE=='random')return;if(!S.ans){const i=document.getElementById('ans');if(i)S.last=i.value}VIEW=VIEW=='lewis'?'skel':'lewis';VMODE=VIEW;try{localStorage.setItem('nth_view',VIEW)}catch(e){}gameUI()}
+function startGame(mode){mode=mode===1?'poly':(mode||'name');S={mode,poly:mode=='poly',i:0,score:0,streak:0,best:0,right:0,seen:new Set(),ans:false,last:'',gain:0,sp:[],lives:CFG.lives>0?CFG.lives:Infinity};nextQ()}
+const qKey=q=>q.kind=='poly'?q.id:q.kind=='rxn'?q.target.canon:q.nm.show;
+const MODEGEN={poly:()=>genPoly(),rxn:()=>genRxnQ(),prop:()=>genProp(),name:()=>gen()};
+const MODELAB={poly:'Polymers · ',rxn:'Reactions · ',prop:'Properties · ',name:''};
+function nextQ(){S.i++;S.ans=false;S.last='';S.ex=null;S.pick=null;let q;for(let k=0;k<8;k++){q=MODEGEN[S.mode]();if(!S.seen.has(qKey(q)))break}S.seen.add(qKey(q));
+ if(VMODE=='random')VIEW=chance(.5)?'lewis':'skel';S.bs=q.build=='add'?{...q.start}:q.build=='seq'?{seq:[]}:null;S.ord=[];S.msel=new Set();S.rx=q.kind=='rxn'?{bench:[{...item(ETHENE),inf:1}],sel:[0],log:[],pend:null,msg:'',peek:false}:null;S.cur=q;S.t0=Date.now();S.pace=null;gameUI();tick()}
+function okFB(){return`<div class="fb ok">✅ Correct! <b>+${S.gain}</b> points <small>(${S.base} + ${S.bn} speed bonus · ${fmt(S.el)})</small><br>${S.pace?paceHTML():''}`}
+function gameUI(){const m=mult(S.streak),c=S.cur,poly=c.kind=='poly';let fb='';
+ if(S.ans&&!poly&&c.kind!="rxn")fb=S.ok?`${okFB()}<code>${esc(c.nm.show)}</code>${(c.nm.alts||[]).length?`<div class="hint">Also accepted: ${c.nm.alts.map(esc).join(', ')}</div>`:''}</div>`
+  :`<div class="fb no"><b>${S.last?'❌ Not quite':'Skipped'}</b>${S.ex?`<div class="cmp"><div><span class="lbl">Correct</span><code>${S.ex.exp}</code></div>${S.ex.got?`<div><span class="lbl">You wrote</span><code>${S.ex.got}</code></div>`:''}</div><p class="why">${esc(S.ex.why)}</p>${S.ex.also&&S.ex.also.length?`<div class="hint">Also accepted: ${S.ex.also.map(esc).join(', ')}</div>`:''}`:`<div class="cmp"><div><span class="lbl">Correct</span><code>${esc(c.nm.show)}</code></div></div>`}</div>`;
+ if(S.ans&&c.kind=='rxn')fb=S.ok?`${okFB()}Made it in ${S.rx.log.length} step${S.rx.log.length==1?'':'s'} (the route I found took ${c.par}).</div>`:`<div class="fb no"><b>Route</b><ol class="route">${c.route.map(st=>`<li>${esc(st.a)}${st.b?' + '+esc(st.b):''} → <b>${esc(st.rx.grp.replace(/ \(.*\)/,''))}: ${esc(st.rx.lab)}</b> → ${esc(st.p)}</li>`).join('')}</ol><div class="ansdraw">${specSvg(c.target.spec)}</div></div>`;
+ if(S.ans&&poly){const ans=c.typed?`<div class="cmp"><div><span class="lbl">Correct</span><code>${c.typed.map(esc).join(' or ')}</code></div></div>`:'';
+  if(c.build)fb=S.ok?`${okFB()}</div>`:`<div class="fb no"><b>${S.why?'❌ Not quite':'Skipped'}</b>${S.why?`<p class="why">${esc(S.why)}</p>`:''}<div class="lbl" style="margin-top:8px">Correct answer</div><div class="ansdraw">${c.answer}</div></div>`;
+  else fb=S.ok?`${okFB()}${esc(c.why)}</div>`:`<div class="fb no"><b>${S.pick!=null||S.last?'❌ Not quite':'Skipped'}</b>${ans}<p class="why">${esc(c.why)}</p></div>`}
+ const viewBtn=poly&&!c.order&&!c.multi&&c.tag!='prop'?'':`<button onclick="setView()" ${VMODE=='random'?'disabled title="View is set to Random"':''}>${VMODE=='random'?'View: Random':(VIEW=='lewis'?'Show skeletal':'Show Lewis')}</button>`;
+ let body;
+ if(poly){body=`<h3 class="pq">${esc(c.prompt)}</h3>${c.pic?`<div class="mol poly">${c.pic}</div>`:''}`;
+  if(c.build=='add')body+=`<div class="lbl">Your answer</div><div class="mol poly bld${S.ans?' done':''}">${addBuilder(S.bs,c.unit)}</div>${S.ans?`<div class="row">${nextBtn()}</div>`:`<div class="row"><button class="pri" onclick="gradeBuild()">Check</button></div>`}`;
+  else if(c.build=='seq')body+=`<div class="lbl">Your answer</div><div class="mol poly bld">${seqDraw(S.bs.seq,c.unit)}</div>${S.ans?`<div class="row">${nextBtn()}</div>`:`<div class="pal">${c.pal.map(p=>`<button onclick="bAdd('${p}')">${PIECES[p].b}</button>`).join('')}${c.unit?'':`<button onclick="bAdd('+')">+ new monomer</button>`}<button class="ghost" onclick="bUndo()">⌫ Undo</button><button class="ghost" onclick="bClear()">Clear</button></div><div class="row"><button class="pri" onclick="gradeBuild()">Check</button></div>`}`;
+  else if(c.typed)body+=`<div class="row"><input id="ans" type="text" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="Type the name…" value="${esc(S.last)}" ${S.ans?'disabled':''}>${S.ans?nextBtn():`<button class="pri" onclick="grade(ans.value)">Check</button>`}</div>`;
+  else if(c.order)body+=`<div class="popts pics">${c.opts.map((o,i)=>{const k=S.ord.indexOf(i);return`<button class="popt${S.ans?(S.ok?' right':(k!=o.rk?' wrong':' right')):''}${k>=0?' picked':''}" ${S.ans?'disabled':''} onclick="ordTap(${i})"><span class="pk">${S.ans?o.rk+1:k>=0?k+1:'·'}</span>${o.svg}</button>`}).join('')}</div>${S.ans?`<div class="row">${nextBtn()}</div>`:`<div class="row"><button class="pri" onclick="gradeOrd()" ${S.ord.length<c.opts.length?'disabled':''}>Check</button><button class="ghost" onclick="S.ord=[];gameUI()">Reset</button></div>`}`;
+  else if(c.multi)body+=`<div class="popts pics">${c.opts.map((o,i)=>`<button class="popt${S.ans?(o.ok?' right':S.msel.has(i)?' wrong':''):S.msel.has(i)?' picked':''}" ${S.ans?'disabled':''} onclick="msTap(${i})"><span class="pk">${S.msel.has(i)?'✓':''}</span>${o.svg}</button>`).join('')}</div>${S.ans?`<div class="row">${nextBtn()}</div>`:`<div class="row"><button class="pri" onclick="gradeMulti()">Check</button></div>`}`;
+  else body+=`<div class="popts ${c.opts.some(o=>o.svg)?'pics':''}">${c.opts.map((o,i)=>`<button class="popt${S.ans?(o.ok?' right':S.pick==i?' wrong':''):''}" ${S.ans?'disabled':''} onclick="gradeOpt(${i})"><span class="pk">${'ABCD'[i]}</span>${o.svg||esc(o.text)}</button>`).join('')}</div>${S.ans?`<div class="row">${nextBtn()}</div>`:''}`;
+  body+=S.ans?'':`<div class="hint">${c.opts?'Keys 1–4 pick an answer · ':c.build?'Enter = check · ':''}Tab = restart. <button class="link" onclick="grade('')">Skip</button></div>`}
+ else if(c.kind=='rxn')body=rxnBody(c);
+ else body=`<div class="mol">${draw(c)}</div>${benzNote(c)}${c.dropped&&c.dropped.length?`<div class="hint">⚠ Couldn't fit every Guaranteed category into one molecule this time (left out: ${c.dropped.map(k=>(CATS.find(x=>x[0]==k)||[0,k])[1]).join(', ')}).</div>`:''}
+ <div class="row"><input id="ans" type="text" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="Type the name…" value="${esc(S.last)}" ${S.ans?'disabled':''}>
+ ${S.ans?nextBtn():`<button class="pri" onclick="grade(ans.value)">Check</button>`}</div>
+ ${S.ans?'':`<div class="hint">Tab = restart. <button class="link" onclick="grade('')">Skip</button></div>`}`;
+ $.innerHTML=`<div class="bar"><button class="link" onclick="home()">✕ Quit</button><span class="pill">${MODELAB[S.mode]}Question ${S.i}</span><button onclick="finish()">Finish</button>${viewBtn}</div>
+ <div class="bar"><span class="pill">Score <b>${S.score.toLocaleString()}</b></span><span class="pill">🔥 Streak <b>${S.streak}</b></span><span class="pill">Next: <b>+${10*m}</b> (×${m})</span>${S.lives<Infinity?`<span class="pill">❤️ <b>${S.lives}</b></span>`:''}<span class="pill" id="tm">⏱ ${fmt(S.ans?S.el:Date.now()-S.t0)}</span></div>
+ ${body}${fb}${splitsHTML()}`;
+ const i=document.getElementById('ans');if(i&&!S.ans){i.focus();i.onkeydown=e=>{if(e.key=='Enter')grade(i.value)}}else if(S.ans)window.scrollTo(0,document.body.scrollHeight)}
+const nextBtn=()=>`<button class="pri" id="nx" onclick="${S.over?'finish()':'nextQ()'}">${S.over?'Results':'Next →'}</button>`;
+function score(ok){S.ok=ok;
+ if(S.ok){S.base=10*mult(S.streak);S.bn=bonusFor(S.el);S.gain=S.base+S.bn;S.score+=S.gain;S.streak++;S.right++;S.best=Math.max(S.best,S.streak);const pc=paceOf();S.pace=pc;S.sp.push({n:S.i,t:S.el,ok:1,b:S.bn,p:pc?pc.tier:0});if(pc)setTimeout(()=>fireworks(pc.tier,pc.msg),80);toast('✅ Correct!  +'+S.gain+(S.bn?'  ⚡ +'+S.bn+' speed':'')+(S.streak>=5?'  🔥 '+S.streak+' streak':''),1)}
+ else{S.streak=0;S.lives--;if(S.lives<=0)S.over=true;S.sp.push({n:S.i,t:S.el,ok:0,b:0});toast(S.last||S.pick!=null?'❌ Incorrect':'Skipped',0)}}
+function grade(txt){if(S.ans)return;if(S.cur.build){S.bs=S.cur.build=='seq'?{seq:[]}:S.bs;if(S.cur.build=='seq')return gradeBuild();S.el=Date.now()-S.t0;stopT();S.at=Date.now();S.ans=true;S.why=null;S.pick=null;score(false);return gameUI()}S.el=Date.now()-S.t0;stopT();S.at=Date.now();S.ans=true;S.last=txt.trim();const c=S.cur;
+ const acc=c.kind=='poly'?(c.typed||[]).map(nzs):c.nm.out;score(!!S.last&&acc.includes(nzs(S.last)));
+ if(!S.ok&&c.kind!='poly'){try{S.ex=explain(c,S.last)}catch(e){S.ex=null}}
+ gameUI()}
+function bSet(k){if(S.ans)return;if(k=='bond')S.bs.bond=S.bs.bond==2?1:2;else S.bs[k]=GK[(GK.indexOf(S.bs[k])+1)%GK.length];gameUI()}
+function bAdd(p){if(S.ans)return;const q=S.bs.seq;if(p=='+'&&(!q.length||q[q.length-1]=='+'))return;if(q.length<24)q.push(p);gameUI()}
+function bUndo(){if(!S.ans){S.bs.seq.pop();gameUI()}}
+function bClear(){if(!S.ans){S.bs.seq=[];gameUI()}}
+function gradeBuild(){if(S.ans)return;S.el=Date.now()-S.t0;stopT();S.at=Date.now();S.ans=true;const empty=S.cur.build=='seq'&&!S.bs.seq.length;S.why=empty?null:checkBuild(S.cur,S.bs);S.pick=empty?null:0;score(!empty&&!S.why);gameUI()}
+function ordTap(i){if(S.ans)return;const k=S.ord.indexOf(i);if(k>=0)S.ord=S.ord.slice(0,k);else S.ord.push(i);gameUI()}
+function gradeOrd(){if(S.ans)return;S.el=Date.now()-S.t0;stopT();S.at=Date.now();S.ans=true;S.pick=0;score(S.ord.every((i,k)=>S.cur.opts[i].rk==k));gameUI()}
+function msTap(i){if(S.ans)return;S.msel.has(i)?S.msel.delete(i):S.msel.add(i);gameUI()}
+function gradeMulti(){if(S.ans)return;S.el=Date.now()-S.t0;stopT();S.at=Date.now();S.ans=true;S.pick=0;score(S.cur.opts.every((o,i)=>!!o.ok==S.msel.has(i)));gameUI()}
+/* ---------- reaction sequencing bench ---------- */
+function rxnBody(c){const X=S.rx,mc2=(it,i,act)=>`<button class="mcardb${X.sel.includes(i)&&act=='rxSel'?' on':''}" ${S.ans?'disabled':''} onclick="${act}(${i})">${X.sel.includes(i)&&act=='rxSel'?`<span class="selno">${X.sel.indexOf(i)+1}</span>`:''}<div class="mc-svg">${specSvg(it.spec)}</div><div class="mname">${esc(it.name)}${it.inf?' <i>· unlimited</i>':''}</div></button>`;
+ const grps=[...new Set(RX.map(r=>r.grp))];
+ return`<div class="tgt"><div><span class="lbl">Target</span><code>${esc(c.target.name)}</code></div>${X.peek||S.ans?`<div class="mc-svg">${specSvg(c.target.spec)}</div>`:`<button class="ghost" onclick="S.rx.peek=true;gameUI()">Show its structure</button>`}</div>
+ <p class="hint">Start from ethene (unlimited). Unlimited reagents: H₂, H₂O, HCl, HBr, Cl₂, Br₂, NH₃, [O]. Tap 1 molecule (or 2 for joining / condensation), then a reaction. My route takes <b>${c.par}</b> step${c.par>1?'s':''}.</p>
+ <div class="lbl">Your bench</div><div class="bench">${X.bench.map((it,i)=>mc2(it,i,'rxSel')).join('')}</div>
+ ${X.pend?`<div class="pend"><b>Which product do you want?</b><div class="bench">${X.pend.prods.map((it,i)=>mc2(it,i,'rxPick')).join('')}</div><button class="ghost" onclick="S.rx.pend=null;gameUI()">Cancel</button></div>`:''}
+ ${X.msg?`<p class="rmsg">${esc(X.msg)}</p>`:''}
+ ${S.ans?`<div class="row">${nextBtn()}</div>`:`<div class="rx">${grps.map(g=>`<div class="rxg"><span class="lbl">${esc(g)}</span><div>${RX.filter(r=>r.grp==g).map(r=>`<button onclick="rxDo('${r.id}')">${esc(r.lab)}</button>`).join('')}</div></div>`).join('')}</div>
+ <div class="row"><button class="ghost" onclick="rxUndo()" ${X.log.length?'':'disabled'}>⌫ Undo last step</button><button class="ghost" onclick="rxGiveUp()">Give up · show route</button></div>`}
+ ${X.log.length?`<div class="lbl">Your steps</div><ol class="route">${X.log.map(l=>`<li>${esc(l)}</li>`).join('')}</ol>`:''}`}
+function rxSel(i){if(S.ans)return;const X=S.rx;X.pend=null;X.msg='';const k=X.sel.indexOf(i);if(k>=0)X.sel.splice(k,1);else{X.sel.push(i);if(X.sel.length>2)X.sel.shift()}gameUI()}
+function rxDo(id){const X=S.rx,rx=RX.find(r=>r.id==id);X.pend=null;if(!X.sel.length){X.msg='Tap a molecule on your bench first.';return gameUI()}
+ const A=X.bench[X.sel[0]],B=rx.two?X.bench[X.sel[1]!==undefined?X.sel[1]:X.sel[0]]:null;
+ if(A.final||(B&&B.final)){X.msg='Esters and amides are finished products here — they don’t react further.';return gameUI()}
+ if(!rx.two&&X.sel.length>1){X.msg='This reaction uses one molecule — tap to deselect the other.';return gameUI()}
+ const prods=runRx(rx,A,B);if(!prods.length){X.msg=`Nothing happens: this needs ${rx.need}.`;return gameUI()}
+ X.msg='';if(prods.length==1)return rxAdd(prods[0],rx,A,B);X.pend={prods,rx,A,B};gameUI()}
+function rxPick(i){const p=S.rx.pend;rxAdd(p.prods[i],p.rx,p.A,p.B)}
+function rxAdd(p,rx,A,B){const X=S.rx;X.pend=null;let k=X.bench.findIndex(b=>b.canon==p.canon);
+ X.log.push(`${A.name}${B?' + '+B.name:''} → ${rx.grp.replace(/ \(.*\)/,'')}: ${rx.lab} → ${p.name}${rx.by?' (+ '+rx.by+')':''}`);
+ if(k<0){X.bench.push(p);k=X.bench.length-1}X.sel=[k];
+ if(p.canon==S.cur.target.canon){S.el=Date.now()-S.t0;stopT();S.at=Date.now();S.ans=true;S.pick=0;score(true)}gameUI()}
+function rxUndo(){const X=S.rx;if(!X.log.length||S.ans)return;X.log.pop();if(X.bench.length>1)X.bench.pop();X.sel=[X.bench.length-1];X.pend=null;X.msg='';gameUI()}
+function rxGiveUp(){if(S.ans)return;S.el=Date.now()-S.t0;stopT();S.at=Date.now();S.ans=true;S.pick=0;score(false);gameUI()}
+function gradeOpt(i){if(S.ans)return;S.el=Date.now()-S.t0;stopT();S.at=Date.now();S.ans=true;S.pick=i;score(!!S.cur.opts[i].ok);gameUI()}
+document.addEventListener('keydown',e=>{if(e.key=='Enter'&&S&&!S.ans&&S.cur&&S.cur.build){e.preventDefault();gradeBuild();return}if(S&&!S.ans&&S.cur&&S.cur.opts&&/^[1-4]$/.test(e.key)&&+e.key<=S.cur.opts.length)gradeOpt(+e.key-1)});
+const PM=['⏱️','🥉','🥉','🥈','🥇','🏆'];
+function paceOf(){const a=S.sp;if(!a.length)return{tier:0,msg:'Baseline set — now beat it!',avg:0,pct:0};
+ const avg=a.reduce((s,x)=>s+x.t,0)/a.length,r=S.el/avg,T=r<.4?[5,'Amazing pace!']:r<.6?[4,'Great pace!']:r<.8?[3,'Quick!']:r<1?[2,'Ahead of pace']:r<1.25?[1,'Right on pace']:[0,'Slower than usual'];
+ return{tier:T[0],msg:T[1],avg,pct:Math.round((1-r)*100)}}
+function paceHTML(){const p=S.pace;return`<div class="pace t${p.tier}"><span class="medal">${PM[p.tier]}</span><div><b>${p.msg}</b><small>${fmt(S.el)}${p.avg?` vs ${fmt(p.avg)} avg · ${p.pct>=0?p.pct+'% faster':-p.pct+'% slower'}`:' · first answer'}</small></div></div>`}
+function fireworks(tier,msg){if(!tier||matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+ if(tier>=4){const e=document.createElement('div');e.className='pacepop';e.textContent=msg;document.body.appendChild(e);setTimeout(()=>e.remove(),1800)}
+ const cv=document.createElement('canvas'),dpr=Math.min(2,window.devicePixelRatio||1),W=innerWidth,H=innerHeight;
+ cv.style.cssText='position:fixed;left:0;top:0;width:100%;height:100%;pointer-events:none;z-index:20';cv.width=W*dpr;cv.height=H*dpr;document.body.appendChild(cv);
+ const g=cv.getContext('2d');g.scale(dpr,dpr);
+ const COL={bronze:['#cd7f32','#e39a4f','#a8642a'],silver:['#d9dde3','#aeb6c2','#f4f6f8'],gold:['#ffd700','#ffc300','#fff1a8','#ffb000']};
+ const mix=[0,['bronze'],['bronze','bronze','silver'],['bronze','silver','silver'],['silver','gold','gold'],['bronze','silver','gold','gold','gold']][tier],Pt=[],cx=W/2,cy=H*.38;
+ const burst=(n,x,y)=>{for(let i=0;i<n;i++){const a=Math.random()*Math.PI*2,sp=(tier>=4?6:4)+Math.random()*(tier*2.2+3);Pt.push({x,y,vx:Math.cos(a)*sp,vy:Math.sin(a)*sp-3-tier*.5,r:2+Math.random()*(2+tier),c:pick(COL[pick(mix)]),life:70+Math.random()*50,rot:Math.random()*6,vr:(Math.random()-.5)*.4,star:tier>=4&&Math.random()<.35,tr:tier>=3&&Math.random()<.5})}};
+ burst([0,26,44,70,110,170][tier],cx,cy);
+ const star=(x,y,r)=>{g.beginPath();for(let k=0;k<10;k++){const rr=k%2?r*.45:r,a=k*Math.PI/5-Math.PI/2;g.lineTo(x+Math.cos(a)*rr,y+Math.sin(a)*rr)}g.closePath();g.fill()};
+ let f=0;(function loop(){f++;g.clearRect(0,0,W,H);
+  if(tier>=5&&f==16){burst(70,W*.25,H*.45);burst(70,W*.75,H*.45)}
+  if(tier>=5&&f<14){g.fillStyle=`rgba(255,215,0,${.16*(1-f/14)})`;g.fillRect(0,0,W,H)}
+  if(tier>=5&&f<40){g.strokeStyle=`rgba(255,215,0,${1-f/40})`;g.lineWidth=5;g.beginPath();g.arc(cx,cy,f*14,0,7);g.stroke()}
+  let alive=0;for(const p of Pt){if(p.life<=0)continue;alive++;p.life--;p.vy+=.18;p.vx*=.985;p.x+=p.vx;p.y+=p.vy;p.rot+=p.vr;const al=Math.min(1,p.life/30);g.fillStyle=p.c;
+   if(p.tr){g.globalAlpha=al*.35;g.beginPath();g.arc(p.x-p.vx*2,p.y-p.vy*2,p.r*.7,0,7);g.fill()}
+   g.globalAlpha=al;if(p.star)star(p.x,p.y,p.r*1.8);else{g.save();g.translate(p.x,p.y);g.rotate(p.rot);g.fillRect(-p.r,-p.r*.6,p.r*2,p.r*1.2);g.restore()}}
+  g.globalAlpha=1;if((alive||f<20)&&f<220)requestAnimationFrame(loop);else cv.remove()})()}
+function splitsHTML(){const a=S.sp,c=a.filter(x=>x.ok),avg=a.length?a.reduce((s,x)=>s+x.t,0)/a.length:0,fast=c.length?Math.min(...c.map(x=>x.t)):0,bb=a.reduce((s,x)=>s+x.b,0);
+ return`<div class="card splits"><div class="sphead"><h3>Splits</h3><div class="spstats"><span class="pill">Avg <b>${a.length?fmt(avg):'–'}</b></span><span class="pill">Fastest <b>${c.length?fmt(fast):'–'}</b></span><span class="pill">Speed bonus <b>+${bb}</b></span></div></div>${a.length?`<ol class="splist">${a.slice().reverse().map(x=>`<li class="${x.ok?'':'x'}"><span>Q${x.n}</span><i style="width:${Math.min(100,x.t/600)}%"></i><b>${fmt(x.t)}</b><em>${x.ok?(x.b?'+'+x.b+' ⚡':'—'):'✗'}</em></li>`).join('')}</ol>`:'<p class="mono">Your split times show up here after each answer.</p>'}</div>`}
+function finish(){stopT();setBest(S.score);const asked=S.sp.length;
+ const msg=S.right>=30?'Unstoppable!':S.right>=10?'Great run!':'Good start — go again!';
+ S.url=location.href.split('#')[0]+'#'+new URLSearchParams({m:'inf',s:S.score,c:S.right,t:asked,b:S.best});
+ $.innerHTML=`<div class="end card"><div class="trophy">🏆</div><h2 style="margin:4px 0">${msg}</h2><div class="sub">Practice</div>
+ <div class="big">${S.score.toLocaleString()}</div><div class="sub">points</div><h2 style="margin:6px 0">${S.right} / ${asked} correct</h2>
+ <p class="sub">${asked?'Avg '+fmt(S.sp.reduce((s,x)=>s+x.t,0)/asked)+' per question · ':''}Best streak: ${S.best} 🔥${getBest()>S.score?' · Personal best: '+getBest():S.score?' · New personal best!':''}</p>
+ <div class="row"><button class="pri" onclick="startGame(S.mode)">▶ Play again</button><button id="cp" onclick="copyLink()">🔗 Copy link to share</button><button onclick="home()">Home</button></div></div>`}
+function copyLink(){const b=document.getElementById('cp'),t=`I scored ${S.score} in Name That Hydrocarbon! Beat me: ${S.url}`,ok=()=>b.textContent='✅ Link copied!';
+ const fb=()=>{const a=document.createElement('textarea');a.value=t;document.body.appendChild(a);a.select();try{document.execCommand('copy');ok()}catch(e){prompt('Copy this link:',t)}a.remove()};
+ try{navigator.clipboard.writeText(t).then(ok,fb)}catch(e){fb()}}
+function pickView(v){VMODE=v;VIEW=v=='random'?(chance(.5)?'lewis':'skel'):v;try{localStorage.setItem('nth_view',v)}catch(e){}home()}
+function setCat(k,v){CFG.cats[k]=v;saveCfg();home()}
+function allCats(v){CATS.forEach(([k])=>CFG.cats[k]=v);saveCfg();home()}
+function setDiff(v){CFG.diff=+v;saveCfg();const e=document.getElementById('dfl');if(e)e.textContent=v+' · '+DN[v-1]}
+function setPolyD(v){CFGP.d=+v;savePoly();home()}
+function setRxnD(v){CFGR.d=+v;saveRxn();home()}
+function setPropD(v){CFGQ.d=+v;saveProp();home()}
+function setPoly(k,v){CFGP[k]=+v;savePoly();home()}
+function setLives(v){CFG.lives=+v;saveCfg();home()}
+function home(){stopT();S=null;let sh='';
+ try{const q=new URLSearchParams(location.hash.slice(1));if(q.get('s')&&q.get('m'))sh=`<div class="note"><span>🏆 A friend scored <b>${(+q.get('s')).toLocaleString()}</b> in Practice (${+q.get('c')} correct, best streak ${+q.get('b')||0}). Can you beat it?</span><button class="pri" onclick="startGame()">Take the challenge</button></div>`}catch(e){}
+ const seg=(o,cur,fn)=>`<div class="seg">${o.map(([v,t])=>`<button class="${cur==v?'on':''}" onclick="${fn}('${v}')">${t}</button>`).join('')}</div>`;
+ const chk=CATS.map(([k,t])=>`<div class="cat2"${CATHELP[k]?` title="${esc(CATHELP[k])}"`:''}><b>${t}</b>${k=='nonum'?'<small class="mono">e.g. methylpropene</small>':''}<div class="seg">${[['0','Off'],['1','Allowed'],['2','Guaranteed']].map(([v,n])=>`<button class="${(CFG.cats[k]||0)==v?'on':''}" onclick="setCat('${k}',${v})">${n}</button>`).join('')}</div></div>`).join('');
+ $.innerHTML=`<h1 class="hero">Name<small>that</small><mark>Hydrocarbon</mark></h1><p class="lede">Pick what you want to practice, then play. Questions never stop — your run ends when you run out of strikes.</p>${sh}
+ <div class="card"><h3>Settings</h3>
+ <div class="ctl"><b>Categories</b><button onclick="allCats(0)">All off</button><button onclick="allCats(1)">All allowed</button><button onclick="allCats(2)">All guaranteed</button></div>
+ <p class="hint" style="margin:0 0 8px"><b>Off</b> = never appears · <b>Allowed</b> = might appear · <b>Guaranteed</b> = always appears. E/Z needs a C=C inside the chain, so Guaranteed E/Z always adds one. <b>No-number names</b>: names where every number is dropped because each group has only one possible spot.</p>
+ <div class="cats">${chk}</div>
+ <div class="ctl"><b>Difficulty</b><input type="range" min="1" max="5" value="${CFG.diff}" oninput="setDiff(this.value)" style="width:min(260px,60%)"><span id="dfl">${CFG.diff} · ${DN[CFG.diff-1]}</span></div>
+ <div class="ctl"><span>Strikes</span>${seg([['1','1'],['3','3'],['0','None']],String(CFG.lives),'setLives')}<span>Draw as</span>${seg([['lewis','Lewis'],['skel','Skeletal'],['random','Random']],VMODE,'pickView')}</div>
+ <button class="pri play" onclick="startGame()">Play ▶</button></div>
+ <div class="card" style="margin-top:22px"><h3>Polymers &amp; monomers</h3><p class="hint" style="margin:0 0 8px">A separate game from Lesson 8. You build the answers yourself: draw the repeating unit from the monomers, work back from a polymer to its monomers, identify addition / polyester / polyamide, and count links, water and broken C=C bonds.</p>
+ <div class="cats">${[['add','Addition polymers'],['cond','Condensation polymers'],['conc','Definitions & stages (multiple choice)']].map(([k,t])=>`<div class="cat2"><b>${t}</b><div class="seg">${[['0','Off'],['1','On']].map(([v,n])=>`<button class="${(CFGP[k]?1:0)==v?'on':''}" onclick="setPoly('${k}',${v})">${n}</button>`).join('')}</div></div>`).join('')}</div>
+ <div class="ctl"><b>Difficulty</b><div class="seg">${[['1','Easy'],['2','Medium'],['3','Hard']].map(([v,n])=>`<button class="${(CFGP.d||1)==v?'on':''}" onclick="setPolyD(${v})">${n}</button>`).join('')}</div><span class="mono">Hard = rings, CH(Cl), CH=CH, mixed OH/NH₂ monomers, one-step condensations like the board</span></div>
+ <button class="pri play" onclick="startGame('poly')">Play polymers ▶</button></div>
+ <div class="card" style="margin-top:22px"><h3>Reaction sequencing</h3><p class="hint" style="margin:0 0 8px">You get a target compound. Start from ethene with unlimited reagents and build it step by step: additions, substitutions, oxidations, joining chains, closing rings and condensations — exactly the reactions from class.</p>
+ <div class="ctl"><b>Difficulty</b><div class="seg">${[['1','Easy · 1–2 steps'],['2','Medium · 3–4'],['3','Hard · 5–7']].map(([v,n])=>`<button class="${(CFGR.d||1)==v?'on':''}" onclick="setRxnD(${v})">${n}</button>`).join('')}</div></div>
+ <button class="pri play" onclick="startGame('rxn')">Play reactions ▶</button></div>
+ <div class="card" style="margin-top:22px"><h3>Properties</h3><p class="hint" style="margin:0 0 8px">Intermolecular forces, polarity ranking (amide › acid › alcohol › ketone › aldehyde › amine › ester › ether › alkane › alkene › alkyne), boiling point and size, branching vs density, cancelling dipoles, isomers and oxidation clues.</p>
+ <div class="ctl"><b>Difficulty</b><div class="seg">${[['1','Easy'],['2','Harder'],['3','Deep thinking']].map(([v,n])=>`<button class="${(CFGQ.d||1)==v?'on':''}" onclick="setPropD(${v})">${n}</button>`).join('')}</div></div>
+ <button class="pri play" onclick="startGame('prop')">Play properties ▶</button></div>
+ <div class="card" style="margin-top:22px"><h3>Quick rules</h3><p style="margin:0;line-height:1.7">Lowest number goes to (highest first): <b>COOH › ester/ether › CHO › C=O › OH › SH › C=C/C≡C › branches</b>.<br>
+ Lower endings go in brackets, the top one is last: <i>pentan-(3-one)-oicacid</i> · <i>2-methylbutan-(3-one)-al</i> · <i>1-chloropent-(3-yne)-2-one</i> · <i>decan-(3-thiol)-5-ol</i><br>
+ "an" stays unless there is a C=C/C≡C: <i>decan-…</i> vs <i>but-(2-ene)-oicacid</i> · A lone OH is <i>-ol</i>; next to C=O/CHO/COOH/ether it is <i>hydroxyl</i>.<br>
+ Esters: <i>1-butylethanoate</i> · <i>3-(6-chloro-5-methyl)-heptylmethanoate</i> · <i>1-(3-hydroxyl)-cyclopent-(4-ene)-yl-(3-methyl)-benzanoate</i><br>
+ Amines: <i>3-aminopentane</i> or <i>3-pentylamine</i> · <i>N-methylethanamine</i> · <i>N,N-dimethylbutan-2-amine</i> · <i>N-methyl-(3-cyclohexyl)butan-2-amine</i><br>
+ Amides: <i>N-methylethanamide</i> · <i>N-methyl-N-2-propylbutanamide</i> · <i>N-ethyl-N-methyl-(2-methyl)benzamide</i> (groups on N with 3+ carbons get a number: N-1-propyl).<br>
+ Diacids: <i>(Z-3)-2,2-dichlorohex-(3-ene)-dioicacid</i> · Halomethyl: <i>3-(chloro)-methyl…</i> · Benzene esters: <i>2-(4-methyl)-pentylbenzanoate</i><br>
+ Dash after every ")" that continues: <i>2-ethoxy-(5-methyl)-decane</i> · Stereo: <i>(E-2)-…</i>, read along the main chain · Benzene: <i>benzenethiol</i>, but <i>2-methylbenzene-1-thiol</i>.<br>
+ 10 pts per answer · streak 5 → 20, 10 → 30, 20 → 40 · speed bonus up to +10 · <b>Tab</b> restarts.</p></div>`}
+const rt=document.documentElement;
+function curTheme(){return rt.dataset.theme||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light')}
+function paintTh(){const b=document.getElementById('thm');if(b)b.textContent=curTheme()=='dark'?'☀️':'🌙'}
+function toggleTheme(){const n=curTheme()=='dark'?'light':'dark';rt.dataset.theme=n;try{localStorage.setItem('nth_theme',n)}catch(e){}paintTh()}
+try{const t=localStorage.getItem('nth_theme');if(t)rt.dataset.theme=t}catch(e){}
+paintTh();
+document.addEventListener('keydown',e=>{if(e.key=='Enter'&&!e.repeat&&S&&S.ans&&Date.now()-S.at>350){const n=document.getElementById('nx');if(n)n.click()}});
+document.addEventListener('keydown',e=>{if(e.key=='Tab'&&S&&S.mode!='rxn'){e.preventDefault();startGame(S.mode)}});
+home();
+</script></body></html>
